@@ -6,9 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 14:54:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/07 11:44:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:16:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memset(void *ptr, int value, size_t len)
 {

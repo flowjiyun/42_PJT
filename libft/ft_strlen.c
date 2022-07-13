@@ -6,9 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:04:50 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/08 17:22:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:16:54 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

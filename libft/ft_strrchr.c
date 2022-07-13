@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:35:46 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/07 11:29:56 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:50:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ char	*ft_strrchr(const char *s, int c)
 		i++;
 	}
 	if (new_c == 0)
-		return (&s[len]);
+		return ((char *)&s[len]);
 	i = len;
 	while (i >= 0)
 	{
 		if (s[i] == new_c)
-			return (&s[i]);
+			return ((char *)&s[i]);
 		i--;
 	}
 	return (0);

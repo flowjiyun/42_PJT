@@ -6,9 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:14:36 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/07 11:49:34 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:17:09 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

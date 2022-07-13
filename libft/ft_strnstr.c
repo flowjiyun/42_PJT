@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:45:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/08 18:08:24 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/13 10:52:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-
-static size_t	ft_strlen(const char *s)
-{
-	int	i;
-	int	len;
-
-	len = 0;
-	i = 0;
-	while (s[i] != 0)
-	{
-		len++;
-		i++;
-	}
-	return (len);
-}
+#include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
