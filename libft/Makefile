@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 10:36:05 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/07/13 18:44:48 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/07/14 09:38:54 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = libft.a
 SRC_NAME = isalpha isdigit isalnum isascii isprint \
 			toupper tolower strchr strrchr strlen strncmp \
 			memset bzero memchr memcpy memcmp memmove \
-			strnstr strlcpy strlcat atoi calloc strdup
+			strnstr strlcpy strlcat atoi calloc strdup \
+			substr
 
 SRC = $(addprefix ft_, $(addsuffix .c, $(SRC_NAME)))
 OBJ = $(SRC:.c=.o)
