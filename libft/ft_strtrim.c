@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:24:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/14 12:03:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/14 13:35:00 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	len;
 	char	*ptr;
 
+	if (!s1 || !set)
+		return (0);
 	start = get_start(s1, set);
 	end = get_end(s1, set);
 	if (start > end)
