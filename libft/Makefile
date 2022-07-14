@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 10:36:05 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/07/14 10:53:58 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/07/14 20:26:03 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_NAME = isalpha isdigit isalnum isascii isprint \
 			toupper tolower strchr strrchr strlen strncmp \
 			memset bzero memchr memcpy memcmp memmove \
 			strnstr strlcpy strlcat atoi calloc strdup \
-			substr strjoin strtrim
+			substr strjoin strtrim split
 
 SRC = $(addprefix ft_, $(addsuffix .c, $(SRC_NAME)))
 OBJ = $(SRC:.c=.o)
@@ -38,6 +38,6 @@ $(NAME) : $(OBJ)
 		$(AR) $(ARFLAGS) $@ $?
 
 %.o : %.c
-		$(CC) $(CFLAGS) -c $< -o $@
+		$(CC) $(CFLAGS) -I libft.h -c $< -o $@
 
 .PHONY : all clean fclean re
