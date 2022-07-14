@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/14 20:24:10 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/14 20:28:28 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**ft_split(char const *s, char c)
 			j++;
 		list[i] = make_word(&s[j], c);
 		if (!list[i])
-			reutrn (do_free(list));
+			return (do_free(list));
 		while (s[j] != 0 && s[j] != c)
 			i++;
 		j++;
