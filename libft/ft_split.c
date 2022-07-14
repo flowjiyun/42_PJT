@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/14 20:28:28 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/14 20:32:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ char	**ft_split(char const *s, char c)
 		if (!list[i])
 			return (do_free(list));
 		while (s[j] != 0 && s[j] != c)
-			i++;
-		j++;
+			j++;
+		i++;
 	}
 	list[i] = 0;
 	return (list);
