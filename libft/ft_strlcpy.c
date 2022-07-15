@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:14:35 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/12 17:25:55 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:32:49 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int		i;
-	size_t	len;
-
-	len = 0;
-	i = 0;
-	while (s[i] != 0)
-	{
-		len++;
-		i++;
-	}
-	return (len);
-}
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
