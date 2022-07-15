@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 10:36:05 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/07/15 15:17:51 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/07/15 20:12:03 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC_NAME = isalpha isdigit isalnum isascii isprint \
 			strnstr strlcpy strlcat atoi calloc strdup \
 			substr strjoin strtrim split itoa strmapi \
 			striteri putchar_fd putstr_fd putendl_fd putnbr_fd \
-			lstnew lstadd_front
+			lstnew lstadd_front lstsize lstlast lstadd_back lstdelone \
+			lstclear lstiter lstmap
 
 #SRC_NAME_BONUS = lstnew
 
