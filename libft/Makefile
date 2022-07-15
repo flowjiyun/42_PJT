@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 10:36:05 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/07/15 10:53:37 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/07/15 15:17:51 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,14 @@ SRC_NAME = isalpha isdigit isalnum isascii isprint \
 			memset bzero memchr memcpy memcmp memmove \
 			strnstr strlcpy strlcat atoi calloc strdup \
 			substr strjoin strtrim split itoa strmapi \
-			striteri putchar_fd putstr_fd putendl_fd putnbr_fd
+			striteri putchar_fd putstr_fd putendl_fd putnbr_fd \
+			lstnew lstadd_front
+
+#SRC_NAME_BONUS = lstnew
+
 
 SRC = $(addprefix ft_, $(addsuffix .c, $(SRC_NAME)))
+#SRC_BONUS = $(addprefix ft_, $(addsuffix .c, $(SRC_NAME_BONUS)))
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror -g

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:36:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/13 18:46:06 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/15 12:06:34 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ char	*ft_strdup(const char *s1)
 	size_t			len;
 	unsigned int	i;
 
+	if (!s1)
+		return (0);
 	i = 0;
 	len = ft_strlen(s1);
-	ptr = (char *)malloc(sizeof(char) * len + 1);
+	ptr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (0);
 	while (s1[i] != 0)
@@ -28,5 +30,6 @@ char	*ft_strdup(const char *s1)
 		ptr[i] = s1[i];
 		i++;
 	}
+	ptr[i] = '\0';
 	return (ptr);
 }
