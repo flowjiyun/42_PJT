@@ -4,9 +4,11 @@
 
 int	main(void)
 {
-	char s[] = {'c', 'c'};
-	char d[] = {'a', 'a'};
+	//char h[] = "hello";
+	//char n[] = "he";
 
-	memcpy(s, d, 0);
+	printf("%p", ft_strnstr(0, 0, 1));
+
 	return (0);
+
 }
