@@ -4,11 +4,7 @@
 
 int	main(void)
 {
-	t_list a;
-	t_list *b;
-	printf("%lu\n", sizeof(b));
-	printf("%lu\n", sizeof(a));
-	printf("%lu\n", sizeof(a.content));
-	printf("%lu\n", sizeof(a.next));
+	//char s[] = {'c', 'c'};
+	memset(0, 2, 1);
 	return (0);
 }
