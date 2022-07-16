@@ -4,7 +4,9 @@
 
 int	main(void)
 {
-	//char s[] = {'c', 'c'};
-	memset(0, 2, 1);
+	char s[] = {'c', 'c'};
+	char d[] = {'a', 'a'};
+
+	memcpy(s, d, 0);
 	return (0);
 }
