@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:29:58 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/15 20:13:47 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:11:14 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*begin;
 	t_list	*new;
 
-	if (!lst || !(*f))
+	if (!lst || !f)
 		return (0);
 	begin = ft_lstnew(f(lst->content));
 	if (!begin)

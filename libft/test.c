@@ -4,9 +4,9 @@
 
 int	main(void)
 {
-	//char h[] = "hello";
+	char h[] = "hello";
 	//char *n;
-	ft_strnstr(((void *)0), "fake", 3);
+	memcpy(0, h, 1);
 	return (0);
 
 }

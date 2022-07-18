@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 09:30:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/15 12:12:10 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:25:46 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		ptr[i] = f(i, s[i]);
 		i++;
 	}
-	ptr[i] = '\0';
+	ptr[i] = 0;
 	return (ptr);
 }

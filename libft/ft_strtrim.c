@@ -6,12 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:24:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/14 13:35:00 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:16:39 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	is_charset(const char c, char const *set)
 {
@@ -61,10 +60,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = get_start(s1, set);
 	end = get_end(s1, set);
 	if (start > end)
-	{
 		len = 0;
-		start--;
-	}
 	else
 		len = end - start + 1;
 	ptr = ft_substr(s1, (unsigned int)start, len);

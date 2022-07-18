@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:05:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/15 17:13:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:42:54 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*lst_last;
 
-	if (*lst == 0)
-	{
-		*lst = new;
+	if (new == 0)
 		return ;
+	else
+	{
+		if (*lst == 0)
+		{
+			*lst = new;
+			return ;
+		}
+		lst_last = ft_lstlast(*lst);
+		lst_last->next = new;
 	}
-	lst_last = ft_lstlast(*lst);
-	lst_last->next = new;
 }

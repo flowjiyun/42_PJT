@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 15:20:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/13 16:56:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:27:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t dstsize)
 	src_len = ft_strlen(src);
 	if (dstsize <= dest_len)
 		return (src_len + dstsize);
-	while (src[i] && (dest_len + i + 1) < dstsize)
+	while (src[i] != 0 && (dest_len + i + 1) < dstsize)
 	{
 		dest[dest_len + i] = src[i];
 		i++;
