@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:39:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/13 18:23:40 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:55:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int			sign;
-	long long	value;
-	int			i;
+	int		sign;
+	long	value;
+	int		i;
 
 	sign = 1;
 	value = 0;

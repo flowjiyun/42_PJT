@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/14 20:32:05 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 09:14:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,15 @@ char	**ft_split(char const *s, char c)
 	unsigned int	i;
 	unsigned int	j;
 
-	i = 0;
+	if (!s)
+		return (0);
+	i = -1;
 	j = 0;
 	word_cnt = count_word(s, c);
 	list = (char **)malloc(sizeof(char *) * (word_cnt + 1));
 	if (!list)
 		return (0);
-	while (i < word_cnt)
+	while (++i < word_cnt)
 	{
 		while (s[j] != 0 && s[j] == c)
 			j++;
@@ -96,7 +98,6 @@ char	**ft_split(char const *s, char c)
 			return (do_free(list));
 		while (s[j] != 0 && s[j] != c)
 			j++;
-		i++;
 	}
 	list[i] = 0;
 	return (list);

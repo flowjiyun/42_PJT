@@ -5,10 +5,8 @@
 int	main(void)
 {
 	//char h[] = "hello";
-	//char n[] = "he";
-
-	printf("%p", ft_strnstr(0, 0, 1));
-
+	//char *n;
+	ft_strnstr(((void *)0), "fake", 3);
 	return (0);
 
 }

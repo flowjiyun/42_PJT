@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:45:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/16 16:30:10 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 10:30:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t		i;
 	size_t		j;
 
-	i = 0;
 	if (ft_strlen(needle) == 0)
 		return ((char *)haystack);
-	while (i + ft_strlen(needle) <= len && haystack[i] != 0)
+	i = 0;
+	while (haystack[i] != 0 && i + ft_strlen(needle) <= len)
 	{
 		j = 0;
 		while (needle[j] != 0)
