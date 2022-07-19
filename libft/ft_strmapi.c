@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 09:30:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/18 17:25:46 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 11:23:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t			s_len;
 	unsigned int	i;
 
-	if (!s || !f)
-		return (0);
 	i = 0;
 	s_len = ft_strlen(s);
 	ptr = (char *)malloc(sizeof(char) * (s_len + 1));

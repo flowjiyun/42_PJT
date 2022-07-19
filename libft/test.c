@@ -4,9 +4,11 @@
 
 int	main(void)
 {
-	char h[] = "hello";
+	//char h[] = "hello";
 	//char *n;
-	memcpy(0, h, 1);
+	char *s = ft_calloc(SIZE_MAX, SIZE_MAX);
+	char *v = calloc(SIZE_MAX - 1, 1);
+	printf("%p", s);
+	printf("%p", v);
 	return (0);
-
 }
