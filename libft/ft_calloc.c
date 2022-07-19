@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:25:03 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/19 13:28:07 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:51:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
+	if (count == 0 || size == 0)
+	{
+		count = 1;
+		size = 1;
+	}
 	ptr = (void *)malloc(count * size);
 	if (!ptr)
 		return (0);

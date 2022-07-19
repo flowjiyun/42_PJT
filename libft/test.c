@@ -4,11 +4,7 @@
 
 int	main(void)
 {
-	//char h[] = "hello";
-	//char *n;
-	char *s = ft_calloc(SIZE_MAX, SIZE_MAX);
-	char *v = calloc(SIZE_MAX - 1, 1);
-	printf("%p", s);
-	printf("%p", v);
+	printf("%d", atoi("9223372036854775808"));
+	printf("%d", ft_atoi("9223372036854775808"));
 	return (0);
 }
