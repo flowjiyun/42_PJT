@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/21 14:34:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:08:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,30 @@ char	*ft_strdup(const char *s1)
 	}
 	ptr[i] = '\0';
 	return (ptr);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int		i;
+	int		len;
+	char	new_c;
+
+	i = 0;
+	len = 0;
+	new_c = (char)c;
+	while (s[i] != 0)
+	{
+		len++;
+		i++;
+	}
+	if (new_c == 0)
+		return ((char *)&s[len]);
+	i = 0;
+	while (s[i] != 0)
+	{
+		if (s[i] == new_c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
 }

@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/21 20:37:34 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/07/21 16:22:59 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/07/21 20:37:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <stdlib.h>
-# include <unistd.h>
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 50
-# endif
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
 
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s1);
-char	*ft_strchr(const char *s, int c);
-
-#endif
+int	main(void)
+{
+	char	buff[];
+	int	fd = open("./text.txt", O_RDONLY);
+	ssize_t size = read(fd, buff, 6);
+	printf("%zu\n", size);
+	for (int i = 0; i < 7; i++)
+		printf("%d", buff[i]);
+	printf("%s", buff);
+	return (0);
+}
