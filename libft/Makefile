@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 10:36:05 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/07/18 11:43:26 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/07/20 13:22:46 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ ARFLAGS = -rcus
 all : $(NAME)
 
 bonus :
-	make WITH_BONUS=1 all
+	@make WITH_BONUS=1 all
 
 clean :
 		rm -f $(OBJ_MAN) $(OBJ_BONUS)
@@ -47,7 +47,9 @@ clean :
 fclean : clean
 		rm -f $(NAME)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
 $(NAME) : $(OBJ)
 		$(AR) $(ARFLAGS) $@ $?
