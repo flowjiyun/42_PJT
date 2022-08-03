@@ -6,7 +6,7 @@
 /*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/03 22:42:19 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/08/03 23:53:42 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	delete_list(t_list *list, t_file *cur_file)
 {
 }
 
-char	*read_file(t_file *cur_file, char *buf, int fd)
+char	*read_file(t_file *cur_file, int fd)
 {
 	char	*buf;
+	char 	*tmp;
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
@@ -55,16 +56,22 @@ char	*read_file(t_file *cur_file, char *buf, int fd)
 	{
 		cur_file->flag = read(fd, buf, BUFFER_SIZE);
 		if (cur_file->flag == ERROR)
+		{
+			free(buf);
 			return (NULL);
 		}
+		buf[cur_file->flag] = 0;
+		tmp = ft
+		if (ft_stchr(buf, '\n') != FALSE)
+			break ;
+	}
 }
 
 char	*get_next_line(int fd)
 {
-	static	t_list list;
-	t_file 	*cur_file;
-	char	*line;
-	char	*buf;
+	static t_list	list;
+	t_file 			*cur_file;
+	char			*line;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -72,7 +79,7 @@ char	*get_next_line(int fd)
 	cur_file = check_list(&list, fd);
 	if (cur_file)
 	{
-		buf = read_file(cur_file, buf, fd);
+		cur_file->backup = read_file(cur_file, fd);
 	}
 	delete_list(&list, cur_file);
 	return (line);
