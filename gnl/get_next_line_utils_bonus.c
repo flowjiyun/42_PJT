@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/21 16:22:59 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/21 20:37:31 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/08/03 19:50:34 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "get_next_line_bonus.h"
 
-void func()
+void	ft_bzero(void *s, size_t n)
 {
-	char *c = (char *)malloc(sizeof(char) * 5);
-	c[0] = 'a';
-	c[1] = 'b';
-}
+	unsigned char	*new_s;
 
-int	main(void)
-{
-	func();
-	return (0);
+	new_s = (unsigned char *)s;
+	if (n == 0)
+		return ;
+	while (n--)
+	{
+		*new_s = 0;
+		new_s++;
+	}	
 }
