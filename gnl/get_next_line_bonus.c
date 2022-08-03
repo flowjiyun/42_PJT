@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/03 22:04:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/03 22:42:19 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,27 @@ void	delete_list(t_list *list, t_file *cur_file)
 {
 }
 
-char	*read_file(t_file *cur_file, char **line, int fd)
+char	*read_file(t_file *cur_file, char *buf, int fd)
 {
 	char	*buf;
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	cur_file->flag = read(fd, buf, BUFFER_SIZE);
+	while (cur_file->flag > 0)
+	{
+		cur_file->flag = read(fd, buf, BUFFER_SIZE);
+		if (cur_file->flag == ERROR)
+			return (NULL);
+		}
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	list;	
-	t_file			*cur_file;
-	char			*line;
+	static	t_list list;
+	t_file 	*cur_file;
+	char	*line;
+	char	*buf;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -66,6 +72,7 @@ char	*get_next_line(int fd)
 	cur_file = check_list(&list, fd);
 	if (cur_file)
 	{
+		buf = read_file(cur_file, buf, fd);
 	}
 	delete_list(&list, cur_file);
 	return (line);
