@@ -12,16 +12,17 @@
 
 #include <unistd.h>
 #include <stdio.h>
-#include <fcntl.h>
+#include <stdlib.h>
+
+void func()
+{
+	char *c = (char *)malloc(sizeof(char) * 5);
+	c[0] = 'a';
+	c[1] = 'b';
+}
 
 int	main(void)
 {
-	char	buff[];
-	int	fd = open("./text.txt", O_RDONLY);
-	ssize_t size = read(fd, buff, 6);
-	printf("%zu\n", size);
-	for (int i = 0; i < 7; i++)
-		printf("%d", buff[i]);
-	printf("%s", buff);
+	func();
 	return (0);
 }
