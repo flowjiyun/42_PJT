@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/03 23:53:42 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/08/04 18:41:17 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 t_file	*check_list(t_list *list, int fd)
 {
-	t_file	*new_file;
+	t_file	*cur_file;
 	t_file	*last_file;
 
-	new_file = list->head;
-	while (new_file)
+	cur_file = list->head;
+	while (cur_file)
 	{
-		if (new_file->fd == fd)
-			return (new_file);
-		last_file = new_file;
-		new_file = new_file->next;
+		if (cur_file->fd == fd)
+			return (cur_file);
+		last_file = cur_file;
+		cur_file = cur_file->next;
 	}
-	new_file = (t_file *)malloc(sizeof(t_file));
-	if (new_file)
+	cur_file = (t_file *)malloc(sizeof(t_file));
+	if (cur_file)
 	{
-		new_file->backup = NULL;
-		new_file->flag = BUFFER_SIZE;
-		new_file->next = NULL;
+		cur_file->backup = NULL;
+		cur_file->flag = BUFFER_SIZE;
+		cur_file->next = NULL;
 		(list->len)++;
 	}
 	if (list->len <= 1)
-		list->head = new_file;
+		list->head = cur_file;
 	else
-		last_file->next = new_file;
-	return (new_file);
+		last_file->next = cur_file;
+	return (cur_file);
 }
 
 void	delete_list(t_list *list, t_file *cur_file)
@@ -46,31 +46,22 @@ void	delete_list(t_list *list, t_file *cur_file)
 
 char	*read_file(t_file *cur_file, int fd)
 {
-	char	*buf;
-	char 	*tmp;
+	char	buf[BUFFER_SIZE + 1];
+	ssize_t	byte;
 
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buf)
-		return (NULL);
-	while (cur_file->flag > 0)
+	buf[0] = '\0';
+	while (ft_strchr(buf, '\n') == 0)
 	{
-		cur_file->flag = read(fd, buf, BUFFER_SIZE);
-		if (cur_file->flag == ERROR)
-		{
-			free(buf);
-			return (NULL);
-		}
-		buf[cur_file->flag] = 0;
-		tmp = ft
-		if (ft_stchr(buf, '\n') != FALSE)
-			break ;
+		byte = read(fd, buf, BUFFER_SIZE);
+		if ()
 	}
+	return (tmp);
 }
 
 char	*get_next_line(int fd)
 {
 	static t_list	list;
-	t_file 			*cur_file;
+	t_file			*cur_file;
 	char			*line;
 
 	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
@@ -79,7 +70,7 @@ char	*get_next_line(int fd)
 	cur_file = check_list(&list, fd);
 	if (cur_file)
 	{
-		cur_file->backup = read_file(cur_file, fd);
+		cur_file->backup = read_file(fd, cur_file);
 	}
 	delete_list(&list, cur_file);
 	return (line);

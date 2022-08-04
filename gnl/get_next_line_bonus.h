@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/03 23:52:59 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/08/04 18:41:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define TRUE 1
-# define FALSE 0
 # define ERROR -1
 # define BUFFER_SIZE 42
 
@@ -24,7 +22,6 @@ typedef struct s_file
 {
 	char	*backup;
 	int		fd;
-	int		flag;
 	t_file	*next;
 
 }	t_file;
