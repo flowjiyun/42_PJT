@@ -286,5 +286,26 @@ int main(void)
 	printf("==============%% +010d 216%%==================\n");
 	printf(" original: %d\n", printf("%+010d",216));
 	printf(" ft: %d\n", ft_printf("%+010d",216));
+	printf("==============%% .0d 0%%==================\n");
+	printf(" original: %d\n", printf("%.0d",0));
+	printf(" ft: %d\n", ft_printf("%.0d",0));
+	printf("==============%% .d 0%%==================\n");
+	printf(" original: %d\n", printf("%.d",0));
+	printf(" ft: %d\n", ft_printf("%.d",0));
+	printf("==============%% 5.0d 0%%==================\n");
+	printf(" original: %d\n", printf("%5.0d",0));
+	printf(" ft: %d\n", ft_printf("%5.0d",0));
+
+	printf("==============%% .0x 0%%==================\n");
+	printf(" original: %d\n", printf("%.0x",0));
+	printf(" ft: %d\n", ft_printf("%.0x",0));
+	printf("==============%% 5.0x 0%%==================\n");
+	printf(" original: %d\n", printf("%5.0x",0));
+	printf(" ft: %d\n", ft_printf("%5.0x",0));
+
+
+	printf("==============%% 0#52x 1705278066%%==================\n");
+	printf(" original: %d\n", printf("%0#52x",1705278066));
+	printf(" ft: %d\n", ft_printf("%0#52x",1705278066));
 	return (0);
 }
