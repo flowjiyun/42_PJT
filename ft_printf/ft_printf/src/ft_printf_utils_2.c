@@ -6,22 +6,24 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:18:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/11 18:47:27 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:01:18 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-void	ft_print_width(t_option *option, long *len)
+int	ft_print_width(t_option *option, long *len)
 {
 	char	val;
 
 	val = ft_check_insert(option);
 	while ((option->width)-- > 0)
 	{
-		write(1, &val, 1);
+		if (write(1, &val, 1) == -1)
+			return (-1);
 		(*len)++;
 	}
+	return (1);
 }
 
 char	ft_check_insert(t_option *option)
@@ -86,30 +88,23 @@ void	ft_get_hex(unsigned long num, char *base, char res[])
 	res[j] = '\0';
 }
 
-void	ft_print_digit(long num, int num_len, long *len)
+int	ft_putnbr(long num, long *len)
 {
-	long	nbr;
-	int		div;
-	char	digit;
+	if (num < 0)
+		num *= -1;
+	if (num > 9)
+	{
+		if (ft_putnbr(num / 10, len) == -1)
+			return (-1);
+		num = num % 10;
+	}
+	if (ft_putchar(num + '0') == -1)
+		return (-1);
+	(*len)++;
+	return (1);
+}
 
-	nbr = num;
-	div = 1;
-	while (--num_len)
-		div *= 10;
-	if (nbr < 0)
-		nbr *= -1;
-	if (nbr == 0)
-	{
-		write(1, "0", 1);
-		(*len)++;
-		return ;
-	}
-	while (div > 0)
-	{
-		digit = nbr / div + '0';
-		write(1, &digit, 1);
-		nbr %= div;
-		div /= 10;
-		(*len)++;
-	}
+int	ft_putchar(char c)
+{
+	return (write(1, &c, 1));
 }

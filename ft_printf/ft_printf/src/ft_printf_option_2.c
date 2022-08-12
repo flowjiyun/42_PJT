@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:18:17 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/11 20:04:24 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:09:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,27 @@ void	ft_flag_toggle(t_option *option)
 	}
 }
 
-void	write_sign(t_option *option, long *len)
+int	write_sign(t_option *option, long *len)
 {
 	if (option->flag & SIGNED)
 	{
-		write(1, "-", 1);
+		if (write(1, "-", 1) == -1)
+			return (-1);
 		(*len)++;
 	}
 	else if (option->flag & PLUS)
 	{
-		write(1, "+", 1);
+		if (write(1, "+", 1) == -1)
+			return (-1);
 		(*len)++;
 	}
 	else if (option->flag & SPACE)
 	{
-		write(1, " ", 1);
+		if (write(1, " ", 1) == -1)
+			return (-1);
 		(*len)++;
 	}
+	return (1);
 }
 
 void	ft_calc_width_d(t_option *option, int num_len, int d_i)
@@ -134,39 +138,52 @@ void	ft_calc_sharp_width(t_option *option, int hex_len, unsigned long x)
 	}
 }
 
-void	ft_print_width_hex(t_option *option, long *len, char val)
+int	ft_print_width_hex(t_option *option, long *len, char val)
 {
 	if (val == ' ')
 	{
 		while (option->width-- > 0)
 		{
+			if (write(1, &val, 1) == -1)
+				return (-1);
 			(*len)++;
-			write(1, &val, 1);
 		}
 	}
 	else if (val == '0')
 	{
 		while (option->precision-- > 0)
 		{
+			if (write(1, &val, 1) == -1)
+				return (-1);
 			(*len)++;
-			write(1, &val, 1);
 		}
 	}
+	return (1);
 }
 
-void	ft_print_sharp(t_option *option, long *len, unsigned int x)
+int	ft_print_sharp(t_option *option, long *len, unsigned int x)
 {
-	if (x != 0)
+	if (option->flag & SPECIAL)
 	{
-		if (option->flag & SMALL)
-			write(1, "0x", 2);
-		else
-			write(1, "0X", 2);
-		(*len) = (*len) + 2;
+		if (x != 0)
+		{
+			if (option->flag & SMALL)
+			{
+				if (write(1, "0x", 2) == -1)
+					return (-1);
+			}
+			else
+			{
+				if (write(1, "0X", 2) == -1)
+					return (-1);
+			}
+			(*len) = (*len) + 2;
+		}
 	}
+	return (1);
 }
 
-void	print_option_d_i(t_option *option, long *len, va_list ap)
+int	print_option_d_i(t_option *option, long *len, va_list ap)
 {
 	int	d_i;
 	int	d_i_len;
@@ -181,23 +198,27 @@ void	print_option_d_i(t_option *option, long *len, va_list ap)
 	ft_calc_width_d(option, d_i_len, d_i);
 	if (!(option->flag & LEFT))
 	{
-		ft_print_width_hex(option, len, ' ');
-		write_sign(option, len);
-		ft_print_width_hex(option, len, '0');
-		if (!(option->flag & ZERO))
-			ft_print_digit(d_i, d_i_len, len);
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
 	}
-	else
+	if (write_sign(option, len) == -1)
+		return (-1);
+	if (ft_print_width_hex(option, len, '0') == -1)
+		return (-1);
+	if (!(option->flag & ZERO))
 	{
-		write_sign(option, len);
-		ft_print_width_hex(option, len, '0');
-		if (!(option->flag & ZERO))
-			ft_print_digit(d_i, d_i_len, len);
-		ft_print_width_hex(option, len, ' ');
+		if (ft_putnbr(d_i, len) == -1)
+			return (-1);
 	}
+	if (option->flag & LEFT)
+	{
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
+	}
+	return (1);
 }
 
-void	print_option_u(t_option *option, long *len, va_list ap)
+int	print_option_u(t_option *option, long *len, va_list ap)
 {
 	unsigned int	u;
 	int				u_len;
@@ -210,23 +231,27 @@ void	print_option_u(t_option *option, long *len, va_list ap)
 	ft_calc_width_d(option, u_len, u);
 	if (!(option->flag & LEFT))
 	{
-		ft_print_width_hex(option, len, ' ');
-		write_sign(option, len);
-		ft_print_width_hex(option, len, '0');
-		if (!(option->flag & ZERO))
-			ft_print_digit(u, u_len, len);
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
 	}
-	else
+	if (write_sign(option, len) == -1)
+		return (-1);
+	if (ft_print_width_hex(option, len, '0') == -1)
+		return (-1);
+	if (!(option->flag & ZERO))
 	{
-		write_sign(option, len);
-		ft_print_width_hex(option, len, '0');
-		if (!(option->flag & ZERO))
-			ft_print_digit(u, u_len, len);
-		ft_print_width_hex(option, len, ' ');
+		if (ft_putnbr(u, len) == -1)
+			return (-1);
 	}
+	if (option->flag & LEFT)
+	{
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
+	}
+	return (1);
 }
 
-void	print_option_x(t_option *option, long *len, va_list ap)
+int	print_option_x(t_option *option, long *len, va_list ap)
 {
 	unsigned int	x;
 	char			hex[18];
@@ -242,57 +267,30 @@ void	print_option_x(t_option *option, long *len, va_list ap)
 	hex_len = ft_strlen(hex);
 	//ft_flag_toggle(option);
 	ft_calc_sharp_width(option, hex_len, (unsigned long)x);
-	if (option->flag & SPECIAL)
+	if (!(option->flag & LEFT))
 	{
-		if (!(option->flag & LEFT))
-		{
-			ft_print_width_hex(option, len, ' ');
-			ft_print_sharp(option, len, x);
-			ft_print_width_hex(option, len, '0');
-			if (!(option->flag & ZERO))
-			{
-				write(1, hex, hex_len);
-				(*len) = (*len) + hex_len;
-			}
-		}
-		else
-		{
-			ft_print_sharp(option, len, x);
-			ft_print_width_hex(option, len, '0');
-			if (!(option->flag & ZERO))
-			{
-				write(1, hex, hex_len);
-				(*len) = (*len) + hex_len;
-			}
-			ft_print_width_hex(option, len, ' ');
-		}
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
 	}
-	else
+	if (ft_print_sharp(option, len, x) == -1)
+		return (-1);
+	if (ft_print_width_hex(option, len, '0') == -1)
+		return (-1);
+	if (!(option->flag & ZERO))
 	{
-		if (!(option->flag & LEFT))
-		{
-			ft_print_width_hex(option, len, ' ');
-			ft_print_width_hex(option, len, '0');
-			if (!(option->flag & ZERO))
-			{
-				write(1, hex, hex_len);
-				(*len) = (*len) + hex_len;
-			}
-		}
-		else
-		{
-			ft_print_width_hex(option, len, '0');
-			if (!(option->flag & ZERO))
-			{
-				write(1, hex, hex_len);
-				(*len) = (*len) + hex_len;
-			}
-			ft_print_width_hex(option, len, ' ');
-		}
+		if (write(1, hex, hex_len) == -1)
+			return (-1);
+		(*len) = (*len) + hex_len;
 	}
+	if (option->flag * LEFT)
+	{
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
+	}
+	return (1);
 }
 
-void	print_option_p(t_option *option, long *len, va_list ap)
+int	print_option_p(t_option *option, long *len, va_list ap)
 {
 	void			*x;
 	char			hex[18];
@@ -306,17 +304,19 @@ void	print_option_p(t_option *option, long *len, va_list ap)
 	option->width -= 2;
 	if (!(option->flag & LEFT))
 	{
-		ft_print_width_hex(option, len, ' ');
-		write(1, "0x", 2);
-		write(1, hex, hex_len);
-		*len += hex_len;
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
 	}
-	else
-	{
-		write(1, "0x", 2);
-		write(1, hex, hex_len);
-		ft_print_width_hex(option, len, ' ');
-		*len += hex_len;
-	}
+	if (write(1, "0x", 2) == -1)
+		return (-1);
 	*len += 2;
+	if (write(1, hex, hex_len) == -1)
+		return (-1);
+	*len += hex_len;
+	if (option->flag & LEFT)
+	{
+		if (ft_print_width_hex(option, len, ' ') == -1)
+			return (-1);
+	}
+	return (1);
 }

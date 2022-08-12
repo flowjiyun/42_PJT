@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 14:18:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/10 20:30:34 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:59:13 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,28 +81,32 @@ int	check_precision(const char **str)
 	return (precision);
 }
 
-void	print(const char **str, t_option *option, long *len, va_list ap)
+int	print(const char **str, t_option *option, long *len, va_list ap)
 {
+	int	ret;
+
+	ret = 1;
 	if (**str == 'c')
-		print_option_c(option, len, ap);
+		ret = print_option_c(option, len, ap);
 	else if (**str == 's')
-		print_option_s(option, len, ap);
+		ret = print_option_s(option, len, ap);
 	else if (**str == 'p')
-		print_option_p(option, len, ap);
+		ret = print_option_p(option, len, ap);
 	else if (**str == 'd' || **str == 'i')
-		print_option_d_i(option, len, ap);
+		ret = print_option_d_i(option, len, ap);
 	else if (**str == 'u')
-		print_option_u(option, len, ap);
+		ret = print_option_u(option, len, ap);
 	else if (**str == 'x')
 	{
 		option->flag |= SMALL;
-		print_option_x(option, len, ap);
+		ret = print_option_x(option, len, ap);
 	}
 	else if (**str == 'X')
-		print_option_x(option, len, ap);
+		ret = print_option_x(option, len, ap);
 	else if (**str == '%')
 	{
 		option->flag |= PER;
-		print_option_per(option, len);
+		ret = print_option_per(option, len);
 	}
+	return (ret);
 }
