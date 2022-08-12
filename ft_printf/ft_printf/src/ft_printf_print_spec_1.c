@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:18:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/12 17:06:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:45:13 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	print_option_c(t_option *option, long *len, va_list ap)
 	option->width -= 1;
 	if (!(option->flag & LEFT))
 	{
-		if (ft_print_width(option, len) == -1)
+		if (print_width_c(option, len) == -1)
 			return (-1);
 	}
 	if (write(1, &c, 1) == -1)
 		return (-1);
 	(*len)++;
-	if (ft_print_width(option, len) == -1)
+	if (print_width_c(option, len) == -1)
 		return (-1);
 	return (1);
 }
@@ -45,29 +45,30 @@ int	print_option_s(t_option *option, long *len, va_list ap)
 	option->width -= s_len;
 	if (!(option->flag & LEFT))
 	{
-		if (ft_print_width(option, len) == -1)
+		if (print_width_c(option, len) == -1)
 			return (-1);
 	}
 	if (write(1, s, s_len) == -1)
 		return (-1);
 	*len += s_len;
-	if (ft_print_width(option, len) == -1)
+	if (print_width_c(option, len) == -1)
 		return (-1);
 	return (1);
 }
 
 int	print_option_per(t_option *option, long *len)
 {
+	option->flag |= PER;
 	option->width -= 1;
 	if (!(option->flag & LEFT))
 	{
-		if (ft_print_width(option, len) == -1)
+		if (print_width_c(option, len) == -1)
 			return (-1);
 	}
 	if (write(1, "%", 1) == -1)
 		return (-1);
 	(*len)++;
-	if (ft_print_width(option, len) == -1)
+	if (print_width_c(option, len) == -1)
 		return (-1);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 14:18:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/12 16:59:13 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/12 17:57:17 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	print(const char **str, t_option *option, long *len, va_list ap)
 {
 	int	ret;
 
-	ret = 1;
+	ret = 0;
 	if (**str == 'c')
 		ret = print_option_c(option, len, ap);
 	else if (**str == 's')
@@ -104,9 +104,6 @@ int	print(const char **str, t_option *option, long *len, va_list ap)
 	else if (**str == 'X')
 		ret = print_option_x(option, len, ap);
 	else if (**str == '%')
-	{
-		option->flag |= PER;
 		ret = print_option_per(option, len);
-	}
 	return (ret);
 }

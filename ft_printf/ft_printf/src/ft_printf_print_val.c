@@ -6,43 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 12:18:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/12 17:01:18 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:05:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_print_width(t_option *option, long *len)
-{
-	char	val;
-
-	val = ft_check_insert(option);
-	while ((option->width)-- > 0)
-	{
-		if (write(1, &val, 1) == -1)
-			return (-1);
-		(*len)++;
-	}
-	return (1);
-}
-
-char	ft_check_insert(t_option *option)
-{
-	char	val;
-
-	if (option->flag & ZEROPAD)
-	{
-		if (option->flag & PER)
-			val = ' ';
-		else
-			val = '0';
-	}
-	else
-		val = ' ';
-	return (val);
-}
-
-int	ft_get_num_len(long num, int base)
+int	get_num_len(long num, int base)
 {
 	int		len;
 	long	nbr;
@@ -64,7 +34,7 @@ int	ft_get_num_len(long num, int base)
 	return (++len);
 }
 
-void	ft_get_hex(unsigned long num, char *base, char res[])
+void	get_hex(unsigned long num, char *base, char res[])
 {
 	char	hexa[16];
 	int		i;

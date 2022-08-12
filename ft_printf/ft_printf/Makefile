@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/10 12:23:06 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/08/10 14:38:36 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/08/12 20:02:28 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@
 NAME := libftprintf.a
 
 SRC_DIR = ./src/
-SRC_NAME = ft_printf.c ft_printf_utils_1.c ft_printf_utils_2.c ft_printf_option_1.c \
-			ft_printf_option_2.c
+SRC_NAME = ft_printf.c ft_printf_check_arg.c ft_printf_calc_width.c \
+			ft_printf_print_spec_1.c ft_printf_print_spec_2.c ft_printf_print_spec_3.c \
+			ft_printf_print_width.c ft_printf_print_val.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
 OBJ_DIR = ./obj/
