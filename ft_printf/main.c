@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 10:37:13 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/08/16 10:39:32 by jiyunpar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <limits.h>
 #include "./ft_printf/include/ft_printf.h"
 
-int main(void)
+int	main(void)
 {
-/*
+
 	printf("==============c============\n");
 	char c = 'a';
 	char d = 'b';
@@ -167,8 +179,8 @@ int main(void)
 	printf("----------%%3.5u---------\n");
 	printf(" original: %d\n", printf("%3.5u", ui));
 	printf(" ft: %d\n", ft_printf("%3.5u", ui));
-*/
-/*
+
+
 	printf("==================x=============\n");
 
 	int x = 1000000;
@@ -232,7 +244,7 @@ int main(void)
 	printf("------------%%20.p----------------\n");
 	printf(" original: %d\n", printf("%20.p", &pp));
 	printf(" ft: %d\n", ft_printf("%20.p", &pp));
-*/
+
 
 	printf("==============%%==================\n");
 	printf(" original: %d\n", printf("%%%20.p%%", "123"));
