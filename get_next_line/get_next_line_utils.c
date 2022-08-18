@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/17 19:19:06 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:06:42 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,52 +56,37 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	is_nl(const char *str)
 {
-	int		i;
-	int		len;
-	char	new_c;
+	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
-	len = 0;
-	new_c = (char)c;
-	while (s[i] != 0)
+	while (str[i])
 	{
-		len++;
-		i++;
-	}
-	if (new_c == 0)
-		return ((char *)&s[len]);
-	i = 0;
-	while (s[i] != 0)
-	{
-		if (s[i] == new_c)
-			return ((char *)&s[i]);
+		if (str[i] == '\n')
+			return (1);
 		i++;
 	}
 	return (0);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
+	unsigned char	*new_dest;
+	unsigned char	*new_src;
 	unsigned int	i;
-	size_t			s_len;
-	char			*ptr;
 
-	s_len = ft_strlen(s);
-	if (start >= s_len)
-		len = 0;
-	if (len >= s_len)
-		len = s_len;
-	ptr = (char *)malloc(sizeof(char) * len + 1);
-	if (!ptr)
+	if (!dest && !src)
 		return (0);
+	new_dest = (unsigned char *)dest;
+	new_src = (unsigned char *)src;
 	i = 0;
-	while (i < len && s[start + i] != 0)
+	while (i < n)
 	{
-		ptr[i] = s[start + i];
+		new_dest[i] = new_src[i];
 		i++;
 	}
-	ptr[i] = 0;
-	return (ptr);
+	return (dest);
 }

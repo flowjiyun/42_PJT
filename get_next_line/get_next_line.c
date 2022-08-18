@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/17 19:45:54 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:46:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	delete_list(t_list *list, t_file *cur_file)
 	int		i;
 	t_file	*temp;
 
-	if (!cur_file)
-		return ;
 	if (!cur_file->backup)
 	{
 		i = 0;
@@ -64,6 +62,7 @@ void	delete_list(t_list *list, t_file *cur_file)
 			(cur_file - 1)->next = cur_file->next;
 		else
 			(cur_file - 1)->next = NULL;
+		(list->len)--;
 		free(cur_file->backup);
 		free(cur_file);
 	}
@@ -71,69 +70,83 @@ void	delete_list(t_list *list, t_file *cur_file)
 
 char	*read_file(t_file *cur_file, int fd)
 {
-	char	buf[BUFFER_SIZE + 1];
-	char	*temp;
+	char	*buf;
 	ssize_t	byte;
 
-	buf[0] = 0;
-	temp = cur_file->backup;
-	while (ft_strchr(buf, '\n') == 0)
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (0);
+	buf[0] = '\0';
+	while (!is_nl(buf))
 	{
 		byte = read(fd, buf, BUFFER_SIZE);
-		if (byte == 0)
+		if (byte == EOF_FLAG)
 			break ;
 		if (byte == ERROR)
 		{
-			if (temp)
-				free(temp);
+			if (cur_file->backup)
+				free(cur_file->backup);
 			return (0);
 		}
-		buf[BUFFER_SIZE] = 0;
-		temp = ft_strjoin(temp, buf);
-		if (!temp)
+		buf[byte] = 0;
+		cur_file->backup = ft_strjoin(cur_file->backup, buf);
+		if (!cur_file->backup)
 			return (0);
 	}
-	return (temp);
+	free(buf);
+	return (cur_file->backup);
 }
 
-char	*make_line(char *backup)
+char	*make_line(t_file *cur_file)
 {
 	char	*p;
-	int		i;
 	int		len;
 
-	if (!backup)
-		return (0);
 	len = 0;
-	while (backup[len] != '\n' && len < BUFFER_SIZE)
-		len++;
-	p = (char *)malloc(sizeof(char) * (len + 2));
-	if (!p)
+	if (cur_file->backup[len] == 0)
 		return (0);
-	i = 0;
-	while (i < len)
+	while (cur_file->backup[len] && cur_file->backup[len] != '\n')
+		len++;
+	if (cur_file->backup[len] == '\n')
 	{
-		p[i] = backup[i];
-		i++;
+		p = (char *)malloc(sizeof(char) * (len + 2));
+		if (!p)
+			return (0);
+		ft_memcpy(p, cur_file->backup, len + 1);
 	}
-	p[i++] = '\n';
-	p[i] = '\0';
+	else
+	{
+		p = (char *)malloc(sizeof(char) * (len + 1));
+		if (!p)
+			return (0);
+		ft_memcpy(p, cur_file->backup, len);
+	}
+	p[++len] = '\0';
 	return (p);
 }
 
 char	*update_backup(char *backup)
 {
-	char			*temp;
-	int				i;
-	unsigned int	start;
+	char	*temp;
+	int		i;
+	int		j;		
 
-	if (!backup)
-		return (0);
 	i = 0;
-	while (backup[i] != '\n')
+	while (backup[i] != '\n' && backup[i])
 		i++;
-	start = i + 1;
-	temp = ft_substr(backup, start, BUFFER_SIZE - i - 1);
+	if (!backup[i])
+	{
+		free(backup);
+		return (0);
+	}
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(backup) - i +1));
+	if (!temp)
+		return (0);
+	++i;
+	j = 0;
+	while (backup[i])
+		temp[j++] = backup[i++];
+	temp[j] = '\0';
 	free(backup);
 	return (temp);
 }
@@ -151,7 +164,12 @@ char	*get_next_line(int fd)
 	if (cur_file)
 	{
 		cur_file->backup = read_file(cur_file, fd);
-		line = make_line(cur_file->backup);
+		if (!cur_file->backup)
+		{
+			delete_list(&list, cur_file);
+			return (0);
+		}
+		line = make_line(cur_file);
 		cur_file->backup = update_backup(cur_file->backup);
 	}
 	delete_list(&list, cur_file);

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 18:56:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/17 20:26:38 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/18 19:15:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 
 #include "get_next_line.h"
 
-
-int main()
+int	main(void)
 {
-   int      fd;
-   char		*str;
-   //ssize_t  rd_size;
+	int		fd;
+	char	*str;
+	int		i;
 
-fd = open("./test.txt", O_RDONLY);
-str = get_next_line(fd);
-printf("%s", str);
-str = get_next_line(fd);
-printf("%p", str);
-return 0;
+	i = 0;
+	fd = open("./test.txt", O_RDONLY);
+	while (i < 10)
+	{
+		str = get_next_line(fd);
+		printf("%s", str);
+		i++;
+	}
+	return (0);
 }
