@@ -6,7 +6,7 @@
 /*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/21 16:14:07 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/08/21 19:42:28 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
+# define OPEN_MAX 256
 
 char			*get_next_line(int fd);
 char			*update_backup(char *backup);
