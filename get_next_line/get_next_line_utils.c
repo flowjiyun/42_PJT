@@ -3,90 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/18 18:06:42 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:38:07 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+unsigned int	ft_strlen(const char *str)
 {
-	int		i;
-	size_t	len;
+	unsigned int	len;
 
-	len = 0;
-	i = 0;
-	if (!s)
+	if (!str)
 		return (0);
-	while (s[i] != 0)
-	{
+	len = 0;
+	while (str[len])
 		len++;
-		i++;
-	}
 	return (len);
+}
+
+char	*ft_strdup(char *str)
+{
+	char			*temp;
+	unsigned int	i;
+
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!temp)
+	{
+		free(str);
+		return (NULL);
+	}
+	i = -1;
+	while (str[++i])
+		temp[i] = str[i];
+	temp[i] = '\0';
+	return (temp);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*ptr;
+	char			*temp;
+	unsigned int	i;
+	unsigned int	j;
 
-	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (!ptr)
-		return (0);
-	if (!s1)
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!temp)
 	{
-		s1 = (char *)malloc(sizeof(char));
-		if (!s1)
-			return (0);
-		s1[0] = '\0';
+		free(s1);
+		free(s2);
+		return (NULL);
 	}
 	i = -1;
-	while (s1[++i] != 0)
-		ptr[i] = s1[i];
+	while (s1[++i])
+		temp[i] = s1[i];
 	j = -1;
-	while (s2[++j] != 0)
-		ptr[i + j] = s2[j];
-	ptr[i + j] = 0;
+	while (s2[++j])
+		temp[i + j] = s2[j];
+	temp[i + j] = '\0';
 	free(s1);
-	return (ptr);
+	return (temp);
 }
 
-int	is_nl(const char *str)
+int	is_newline(const char *backup)
 {
 	int	i;
 
-	if (!str)
-		return (0);
 	i = 0;
-	while (str[i])
+	if (!backup)
+		return (-1);
+	while (backup[i] != '\0')
 	{
-		if (str[i] == '\n')
-			return (1);
+		if (backup[i] == '\n')
+			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_memcopy(void *dest, const void *src, size_t size)
 {
 	unsigned char	*new_dest;
 	unsigned char	*new_src;
 	unsigned int	i;
 
-	if (!dest && !src)
-		return (0);
 	new_dest = (unsigned char *)dest;
 	new_src = (unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
+	i = -1;
+	while (++i < size)
 		new_dest[i] = new_src[i];
-		i++;
-	}
-	return (dest);
 }
