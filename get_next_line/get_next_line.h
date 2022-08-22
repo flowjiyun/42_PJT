@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/21 19:42:28 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/08/22 14:56:29 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
-# define OPEN_MAX 256
 
 char			*get_next_line(int fd);
-char			*update_backup(char *backup);
-char			*get_line(char *backup);
-char			*read_file(int fd, char *backup, char *buf);
+char			*update_backup(char **backup);
+char			*get_line(char **backup);
+char			*read_file(int fd, char **backup, char *buf);
 
 int				is_newline(const char *backup);
 unsigned int	ft_strlen(const char *str);
