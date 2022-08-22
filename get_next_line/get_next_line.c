@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/22 15:06:24 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:20:17 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE == 0)
+	if (fd < 0 || fd > FD_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/22 14:56:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:26:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
+# define FD_MAX 256
 
 char			*get_next_line(int fd);
 char			*update_backup(char **backup);
