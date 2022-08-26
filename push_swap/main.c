@@ -6,30 +6,24 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/25 14:01:49 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:26:35 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// check each argv with isdigit to figure out if input is integer
-int	is_valid_input(int argc, char **argv)
-{
-	int	i;
-
-	if (argc == 0)
-		return (1);
-	i = 1;
-}
-
 int	main(int argc, char **argv)
 {
-	if (is_valid_input(argc, argv))
-		write(2, "Error\n", 6);
-	return (0);
-}
+	static t_list_info	a_info;
 
-int	call(int a)
-{
+	if (argc == 1)
+	{
+		write(1, "Error\n", 6);
+		return (0);
+	}
+	init_list(&a_info, argc, argv);
+	print_list(&a_info);
+	clear_list(&a_info);
+	//system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked; rm -rf leaks_result_temp");
 	return (0);
 }

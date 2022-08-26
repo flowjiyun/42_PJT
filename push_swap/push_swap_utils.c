@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 17:39:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/26 13:17:10 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/08/26 17:24:19 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "linked_list.h"
 
-int	check_long_max(const char *str, long value, int sign, int index)
+static int	check_long_max(const char *str, long value, int sign, int index)
 {
 	if ((value > 922337203685477580 || (value == 922337203685477580 \
 	&& (str[index] - '0') > 7)) && sign == 1)
@@ -23,7 +23,7 @@ int	check_long_max(const char *str, long value, int sign, int index)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+static int	ft_atoi(const char *str)
 {
 	int		sign;	
 	long	value;
@@ -50,4 +50,18 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return ((int)(value * sign));
+}
+
+void	init_list(t_list_info *list_info, int argc, char **argv)
+{
+	int		i;
+	t_list	*node;
+
+	list_info->head = make_node(ft_atoi(argv[1]));
+	i = 1;
+	while (++i < argc)
+	{
+		node = make_node(ft_atoi(argv[i]));
+		push_front(list_info, node);
+	}
 }
