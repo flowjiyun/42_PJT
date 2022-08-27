@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_function.c                                    :+:      :+:    :+:   */
+/*   linked_list_function_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/26 17:12:51 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/27 14:54:40 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,4 @@ void	push_back(t_list_info *list_info, t_list *node)
 	node->prev = list_info->tail;
 	list_info->tail->next = node;
 	list_info->tail = node;
-}
-
-void	print_list(t_list_info *list_info)
-{
-	t_list	*cursor;
-
-	cursor = list_info->head;
-	while (cursor != NULL)
-	{
-		printf("%d\n", cursor->data);
-		cursor = cursor->next;
-	}
-}
-
-void	clear_list(t_list_info *list_info)
-{
-	t_list	*temp;
-
-	while (list_info->head != NULL)
-	{
-		temp = list_info->head->next;
-		free(list_info->head);
-		list_info->head = temp;
-	}
 }
