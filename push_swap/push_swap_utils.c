@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/26 17:24:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:06:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ static int	ft_atoi(const char *str)
 		i++;
 	}
 	return ((int)(value * sign));
+}
+
+int	check_valid_input(int argc, char **argv)
+{
+	return (0);
 }
 
 void	init_list(t_list_info *list_info, int argc, char **argv)
