@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/27 17:39:35 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/08/30 18:23:20 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	static t_list_info	a_info;
+	t_list_info	a_info;
+	t_list_info b_info;
 
 	if (argc == 1)
 	{
 		write(1, "Error\n", 6);
 		return (0);
 	}
+	check_valid_input(argc, argv);
 	init_list(&a_info, argc, argv);
 	swap_node_left(a_info.head->next->next, &a_info);
 	print_list(&a_info);

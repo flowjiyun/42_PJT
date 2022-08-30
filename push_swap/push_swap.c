@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/30 14:20:42 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:23:21 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	push_swap(t_list_info *a_info, t_list_info *b_info)
 {
-	
+	t_list
 }
