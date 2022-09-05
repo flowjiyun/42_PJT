@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:22:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/31 18:39:32 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/01 12:48:07 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	merge(int start, int end)
 	}
 
 }
-
+// start : start index
+// end : last index + 1
 void	merge_sort(int start, int end)
 {
 	if (end == start + 1)
