@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/05 16:12:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:59:01 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,19 @@ static int	ft_atoi(const char *str)
 // 	return (0);
 // }
 
+void	init_list_info(t_list_info *list_info)
+{
+	list_info->head = NULL;
+	list_info->tail = NULL;
+	list_info->len = 0;
+}
+
 void	init_list(t_list_info *list_info, int argc, char **argv)
 {
 	int		i;
 	t_list	*node;
 
-	list_info->head = make_node(ft_atoi(argv[1]));
-	i = 1;
+	i = 0;
 	while (++i < argc)
 	{
 		node = make_node(ft_atoi(argv[i]));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/05 16:20:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:06:16 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	// check_valid_input(argc, argv);
+	init_list_info(&a_info);
 	init_list(&a_info, argc, argv);
-	// sa(&a_info);
+	sa(&a_info);
 	print_list(&a_info);
 	clear_list(&a_info);
 

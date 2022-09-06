@@ -6,7 +6,7 @@
 /*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 11:36:52 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/27 17:37:49 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:58:31 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_list_info
 {
 	struct s_list	*head;
 	struct s_list	*tail;
-	int				index;
 	int				len;
 }	t_list_info;
 
