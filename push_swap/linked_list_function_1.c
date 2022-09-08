@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/06 16:11:19 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/09/08 14:07:44 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	pop_back(t_list_info *list_info)
 
 	cursor = list_info->tail;
 	list_info->tail = cursor->prev;
+	list_info->tail->next = cursor->next;
 	free(cursor);
 }
 

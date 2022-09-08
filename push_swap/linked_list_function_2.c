@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/09/05 16:19:38 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:53:12 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	print_list(t_list_info *list_info)
 	cursor = list_info->head;
 	while (cursor != NULL)
 	{
-		printf("%d\n", cursor->data);
+		printf("%d ", cursor->data);
 		cursor = cursor->next;
 	}
+	printf("\n");
 }
 
 void	clear_list(t_list_info *list_info)
