@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/08 11:52:25 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:18:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(int argc, char **argv)
 	init_list_info(&a_info);
 	init_list_info(&b_info);
 	init_list(&a_info, argc, argv);
+	ra(&a_info);
 	// sa(&a_info);
-	pb(&a_info, &b_info);
+	// pb(&a_info, &b_info);
 	print_list(&a_info);
 	print_list(&b_info);
 	clear_list(&a_info);
