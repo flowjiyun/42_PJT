@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/06 15:59:01 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/09/13 14:43:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,23 @@ void	init_list(t_list_info *list_info, int argc, char **argv)
 		node = make_node(ft_atoi(argv[i]));
 		push_front(list_info, node);
 	}
+}
+
+int	*init_ordered_array(t_list_info *list_info)
+{
+	t_list	*cursor;
+	int		*arr;
+	int		i;
+
+	cursor = list_info->head;
+	arr = (int *)malloc(sizeof(int) * list_info->len);
+	if (arr == NULL)
+		exit(1);
+	i = 0;
+	while (cursor != NULL)
+	{
+		arr[i++] = cursor->data;
+		cursor = cursor->next;
+	}
+	return (arr);
 }

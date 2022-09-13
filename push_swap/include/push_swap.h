@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:27:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/08 17:15:34 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:45:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 
 void	init_list(t_list_info *list_info, int argc, char **argv);
 void	init_list_info(t_list_info *list_info);
+int		*init_ordered_array(t_list_info *list_info);
 int		check_valid_input(int argc, char **argv);
 void	sa(t_list_info *list_info);
 void	sb(t_list_info *list_info);
 void	pa(t_list_info *b_info, t_list_info *a_info);
 void	pb(t_list_info *a_info, t_list_info *b_info);
 void	ra(t_list_info *list_info);
+void	rb(t_list_info *list_info);
 
 #endif

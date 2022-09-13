@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/08 14:07:44 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:19:43 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	pop_front(t_list_info *list_info)
 
 	cursor = list_info->head;
 	list_info->head = cursor->next;
+	list_info->len--;
 	free(cursor);
 }
 
@@ -41,6 +42,7 @@ void	pop_back(t_list_info *list_info)
 	cursor = list_info->tail;
 	list_info->tail = cursor->prev;
 	list_info->tail->next = cursor->next;
+	list_info->len--;
 	free(cursor);
 }
 
@@ -58,6 +60,7 @@ void	push_front(t_list_info *list_info, t_list *node)
 		list_info->head->prev = node;
 		list_info->head = node;
 	}
+	list_info->len++;
 }
 
 void	push_back(t_list_info *list_info, t_list *node)
@@ -74,4 +77,5 @@ void	push_back(t_list_info *list_info, t_list *node)
 		list_info->tail->next = node;
 		list_info->tail = node;
 	}
+	list_info->len++;
 }
