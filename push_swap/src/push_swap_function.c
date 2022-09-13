@@ -6,11 +6,12 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:21:29 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/08 17:32:43 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:40:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list.h"
+#include "../include/linked_list.h"
+#include "../include/push_swap.h"
 
 void	sa(t_list_info *list_info)
 {

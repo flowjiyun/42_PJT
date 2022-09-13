@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/13 14:19:43 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:41:47 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list.h"
+#include "../include/linked_list.h"
 
 t_list	*make_node(int data)
 {

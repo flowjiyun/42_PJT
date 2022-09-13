@@ -1,61 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/13 14:43:52 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:39:33 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list.h"
+#include "../include/linked_list.h"
+#include "../libft/libft.h"
 
-static int	check_long_max(const char *str, long value, int sign, int index)
+static void	swap(int *a, int *b)
 {
-	if ((value > 922337203685477580 || (value == 922337203685477580 \
-	&& (str[index] - '0') > 7)) && sign == 1)
-		return (-1);
-	else if ((value > 922337203685477580 || (value == 922337203685477580 \
-	&& (str[index] - '0') > 8)) && sign == -1)
-		return (0);
-	return (1);
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-static int	ft_atoi(const char *str)
+static void	quick_sort(int *arr, int start, int end)
 {
-	int		sign;	
-	long	value;
-	int		i;
+	int	pivot;
+	int	left;
+	int	right;
 
-	sign = 1;
-	value = 0;
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (end <= start + 1)
+		return ;
+	pivot = arr[start];
+	left = start + 1;
+	right = end - 1;
+	while (1)
 	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
+		while (left <= right && arr[left] <= pivot)
+			left++;
+		while (left <= right && arr[right] > pivot)
+			right--;
+		if (left > right)
+			break ;
+		swap(&arr[left], &arr[right]);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		if (check_long_max(str, value, sign, i) == -1)
-			return (-1);
-		else if (check_long_max(str, value, sign, i) == 0)
-			return (0);
-		value = value * 10 + (str[i] - '0');
-		i++;
-	}
-	return ((int)(value * sign));
+	swap(&arr[start], &arr[right]);
+	quick_sort(arr, start, right);
+	quick_sort(arr, right + 1, end);
 }
-
-// int	check_valid_input(int argc, char **argv)
-// {
-// 	return (0);
-// }
 
 void	init_list_info(t_list_info *list_info)
 {
@@ -93,5 +84,6 @@ int	*init_ordered_array(t_list_info *list_info)
 		arr[i++] = cursor->data;
 		cursor = cursor->next;
 	}
+	quick_sort(arr, 0, list_info->len);
 	return (arr);
 }
