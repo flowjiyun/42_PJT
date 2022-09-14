@@ -6,24 +6,25 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/13 18:03:18 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:55:37 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 #include "../include/push_swap.h"
 
-static int	get_median(int start, int end)
+static int	get_median(t_list_info *list_info, int median)
 {
-	int	median;
-
-	median = (start + end) / 2;
+	if (list_info->len % 2 == 0)
+		median = median + (list_info->len / 2);
+	else
+		median = median + (list_info->len / 2 + 1);
 	return (median);
 }
 
-void	sort_min_list_a(t_list_info *list_info)
+static void	sort_min_list_a(t_list_info *list_info)
 {
-	if (list_info == 1)
+	if (list_info->len == 1)
 		return ;
 	else
 	{
@@ -34,24 +35,23 @@ void	sort_min_list_a(t_list_info *list_info)
 	}
 }
 
-void	sort_a(t_list_info *a_info, t_list_info *b_info, int start, int end)
+void	sort_a(t_list_info *a_info, t_list_info *b_info, int median)
 {
-	int	median;
+	int	len;
 
 	if (a_info->len <= 2)
 	{
 		sort_min_list_a(a_info);
 		return ;
 	}
-	median = get_median(start, end);
-	while (a_info->len--)
+	median = get_median(a_info, median);
+	len = a_info->len;
+	while (len--)
 	{
-		if (a_info->tail < median)
+		if (a_info->tail->data <= median)
 			pb(a_info, b_info);
-		ra(a_info);
+		else
+			ra(a_info);
 	}
-}
-
-void	push_swap(t_list_info *a_info, t_list_info *b_info)
-{
+	sort_a(a_info, b_info, median);
 }

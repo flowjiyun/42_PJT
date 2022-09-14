@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 14:46:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/09/13 16:27:07 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/09/14 11:50:51 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME := push_swap
 
 SRC_DIR = ./src/
-SRC_NAME = main.c push_swap_utils_1.c push_swap_utils_2.c push_swap_function.c \
+SRC_NAME = main.c push_swap.c push_swap_utils_1.c push_swap_utils_2.c push_swap_function.c \
 		linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
@@ -31,6 +31,7 @@ LIB = $(LIB_DIR)lib$(LIB_NAME).a
 INCLUDE := -I./include
 
 CFLAGS := -Wall -Wextra -Werror
+CFLAGS_DEBUG := -Wall -Wextra -Werror -g
 
 
 all : $(NAME)
@@ -48,11 +49,11 @@ re :
 		make all
 
 $(NAME) : $(LIB) $(OBJ)
-		$(CC) $(CFLAGS) -o $@ $^
+		$(CC) $(CFLAGS_DEBUG) -o $@ $^
 
 $(LIB) :
 		make -C $(LIB_DIR) all
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 		mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -c $< -o $@

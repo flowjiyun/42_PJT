@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/13 17:49:41 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:56:12 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ int	main(int argc, char **argv)
 	init_list(&a_info, argc, argv);
 	answer = init_ordered_array(&a_info);
 	parse_list(&a_info, answer);
-	printf("%d", a_info.len);
-
+	sort_a(&a_info, &b_info, 0);
+	print_list(&a_info);
+	print_list(&b_info);
+	printf("a_len : %d\n", a_info.len);
+	printf("b_len : %d\n", b_info.len);
 	return (0);
 }
