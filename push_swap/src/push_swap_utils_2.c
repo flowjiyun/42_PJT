@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:27:11 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/13 17:16:32 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:12:44 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,10 @@ void	parse_list(t_list_info *list_info, int	*arr)
 		i++;
 	}
 }
+
+void	init_tool(t_tool *tool, t_list_info *a, t_list_info *b, int *answer)
+{
+	tool->a_info = a;
+	tool->b_info = b;
+	tool->answer = answer;
+}	

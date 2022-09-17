@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/15 16:31:40 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:27:56 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ static void	sort_min_list_a(t_list_info *list_info)
 	}
 }
 
-void	sort_a(t_list_info *a_info, t_list_info *b_info, int median)
+void	sort_a(t_tool *tool, int median)
 {
 	int	len;
 
-	if (a_info->len <= 2)
+	if (tool->a_info->len <= 2)
 	{
 		sort_min_list_a(a_info);
 		return ;
 	}
-	median = get_median(a_info, median);
-	len = a_info->len;
+	median = get_median(tool->a_info, median);
+	len = tool->a_info->len;
 	while (len--)
 	{
-		if (a_info->tail->data <= median)
-			pb(a_info, b_info);
+		if (tool->a_info->tail->data <= median)
+			pb(tool->a_info, tool->b_info);
 		else
-			ra(a_info);
+			ra(tool->a_info);
 	}
-	sort_a(a_info, b_info, median);
+	sort_a(tool, median);
 }
