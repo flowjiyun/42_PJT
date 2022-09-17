@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 14:14:55 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:45:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	main(int argc, char **argv)
 	answer = init_ordered_array(&a_info);
 	parse_list(&a_info, answer);
 	init_tool(&tool, &a_info, &b_info, answer);
+
 	return (0);
 }

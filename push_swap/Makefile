@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 14:46:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/09/14 11:50:51 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/09/17 19:45:23 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME := push_swap
 
 SRC_DIR = ./src/
 SRC_NAME = main.c push_swap.c push_swap_utils_1.c push_swap_utils_2.c push_swap_function.c \
+		sort_stack_a.c sort_stack_b.c
 		linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 

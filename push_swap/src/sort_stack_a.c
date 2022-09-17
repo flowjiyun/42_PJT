@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/15 15:08:02 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 19:37:20 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/09/17 19:44:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 #include "../include/push_swap.h"
 
-static int	get_median_init(int len)
+void	sort_unit_a(t_tool *tool, int len)
+{
+	if (len == 2)
+	{
+		if (tool->a_info->tail->data > tool->a_info->tail->prev->data)
+			sa(tool);
+		else
+			return ;
+	}
+}
+
+static int	get_median_a(int len, int pre_median)
 {
 	int	median;
 
-	if (len / 2 == 1)
-		median = len / 2 + 1;
+	if (len == 3)
+		median = pre_median + (pre_median / 2 + 1);
 	else
-		median = len / 2;
+		median = pre_median + pre_median / 2;
 	return (median);
 }
 
-static int	get_push_len_init(int len)
+static int	get_push_len_a(int len)
 {
 	int	ret;
 
@@ -35,18 +46,18 @@ static int	get_push_len_init(int len)
 	return (ret);
 }
 
-static int	slice_stack_init(t_tool *tool, int len, int median)
+static int	slice_stack_a(t_tool *tool, int len, int median)
 {
 	int	ret;
 	int	count;
 	int	push_len;
 
-	ret = 0;
 	count = 0;
-	push_len = get_push_len_init(len);
+	ret = 0;
+	push_len = get_push_len_a(len);
 	while (len-- & ret < push_len)
 	{
-		if (tool->a_info->tail->data <= median)
+		if (tool->a_info->tail <= median)
 		{
 			pb(tool);
 			ret++;
@@ -62,16 +73,21 @@ static int	slice_stack_init(t_tool *tool, int len, int median)
 	return (ret);
 }
 
-void	push_swap(t_tool *tool)
+void	sort_stack_a(t_tool *tool, int len, int pre_median)
 {
-	int	len;
-	int	push_len;
 	int	median;
+	int	push_len;
+	int	remain;
 
-	len = tool->a_info->len;
-	median = get_median_init(tool->a_info->len);
-	push_len = slice_stack_init(tool, tool->a_info->len, median);
-	sort_stack_a(tool, len - push_len, median);
+	if (len <= 2)
+	{
+		sort_unit_a(tool, len);
+		return ;
+	}
+	median = get_median_a(len, pre_median);
+	push_len = slice_stack_a(tool, len, median);
+	remain = len - push_len;
+	sort_stack_a(tool, remain, median);
 	sort_stack_b(tool, push_len, median);
 	while (push_len--)
 		pa(tool);
