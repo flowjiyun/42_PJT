@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:27:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 18:26:51 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:58:01 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	init_list_info(t_list_info *list_info);
 int		*init_ordered_array(t_list_info *list_info);
 void	parse_list(t_list_info *list_info, int	*arr);
 void	init_tool(t_tool *tool, t_list_info *a, t_list_info *b, int *answer);
+void	push_swap(t_tool *tool);
+void	sort_stack_a(t_tool *tool, int len, int pre_median);
+void	sort_stack_b(t_tool *tool, int len, int pre_median);
 void	sort_a(t_tool *tool, int median);
 void	sa(t_tool *tool);
 void	sb(t_tool *tool);

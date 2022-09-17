@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 19:45:46 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:59:42 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	get_median_b(int len, int pre_median)
 {
 	int	median;
 
-	median = pre_median - pre_median / 2;
+	median = pre_median - len / 2;
 	return (median);
 }
 
@@ -49,9 +49,9 @@ static int	slice_stack_b(t_tool *tool, int len, int median)
 	count = 0;
 	ret = 0;
 	push_len = get_push_len_b(len);
-	while (len-- & ret < push_len)
+	while (len-- && ret < push_len)
 	{
-		if (tool->b_info->tail > median)
+		if (tool->b_info->tail->data > median)
 		{
 			pa(tool);
 			ret++;

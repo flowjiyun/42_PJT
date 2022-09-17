@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_a.c                                           :+:      :+:    :+:   */
+/*   sort_stack_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 19:44:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:00:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	get_median_a(int len, int pre_median)
 	int	median;
 
 	if (len == 3)
-		median = pre_median + (pre_median / 2 + 1);
+		median = pre_median + (len / 2 + 1);
 	else
-		median = pre_median + pre_median / 2;
+		median = pre_median + len / 2;
 	return (median);
 }
 
@@ -55,9 +55,9 @@ static int	slice_stack_a(t_tool *tool, int len, int median)
 	count = 0;
 	ret = 0;
 	push_len = get_push_len_a(len);
-	while (len-- & ret < push_len)
+	while (len-- && ret < push_len)
 	{
-		if (tool->a_info->tail <= median)
+		if (tool->a_info->tail->data <= median)
 		{
 			pb(tool);
 			ret++;

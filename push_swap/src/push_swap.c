@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:08:02 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 19:37:20 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:58:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	slice_stack_init(t_tool *tool, int len, int median)
 	ret = 0;
 	count = 0;
 	push_len = get_push_len_init(len);
-	while (len-- & ret < push_len)
+	while (len-- && ret < push_len)
 	{
 		if (tool->a_info->tail->data <= median)
 		{
