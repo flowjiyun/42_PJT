@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 20:47:09 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/18 13:54:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 	parse_list(&a_info, answer);
 	init_tool(&tool, &a_info, &b_info, answer);
 	push_swap(&tool);
-	print_list(tool.a_info);
-	printf("\n");
-	for (int i = 0; i < a_info.len; i++)
-		printf("%d ", answer[i]);	
+	// print_list(tool.a_info);
+	// printf("\n");
+	// for (int i = 0; i < a_info.len; i++)
+	// 	printf("%d ", answer[i]);
 	return (0);
 }

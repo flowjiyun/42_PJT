@@ -6,12 +6,21 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:08:02 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 19:58:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/18 10:34:43 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 #include "../include/push_swap.h"
+
+void	sort_unit_init(t_tool *tool, int len)
+{
+	if (len == 2)
+	{
+		if (tool->a_info->tail->data > tool->a_info->tail->prev->data)
+			sa(tool);
+	}
+}
 
 static int	get_median_init(int len)
 {
@@ -24,27 +33,12 @@ static int	get_median_init(int len)
 	return (median);
 }
 
-static int	get_push_len_init(int len)
-{
-	int	ret;
-
-	if (len % 2 == 1)
-		ret = len / 2 + 1;
-	else
-		ret = len / 2;
-	return (ret);
-}
-
 static int	slice_stack_init(t_tool *tool, int len, int median)
 {
 	int	ret;
-	int	count;
-	int	push_len;
 
 	ret = 0;
-	count = 0;
-	push_len = get_push_len_init(len);
-	while (len-- && ret < push_len)
+	while (len--)
 	{
 		if (tool->a_info->tail->data <= median)
 		{
@@ -52,13 +46,8 @@ static int	slice_stack_init(t_tool *tool, int len, int median)
 			ret++;
 		}
 		else
-		{
 			ra(tool);
-			count++;
-		}
 	}
-	while (count--)
-		rra(tool);
 	return (ret);
 }
 
@@ -69,6 +58,11 @@ void	push_swap(t_tool *tool)
 	int	median;
 
 	len = tool->a_info->len;
+	if (len <= 2)
+	{
+		sort_unit_init(tool, len);
+		return ;
+	}
 	median = get_median_init(tool->a_info->len);
 	push_len = slice_stack_init(tool, tool->a_info->len, median);
 	sort_stack_a(tool, len - push_len, median);
