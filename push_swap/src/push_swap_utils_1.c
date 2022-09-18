@@ -6,84 +6,80 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/13 16:39:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:38:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 #include "../libft/libft.h"
 
-static void	swap(int *a, int *b)
+void	init_list_info(t_list_info *a_info, t_list_info *b_info)
 {
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	a_info->head = NULL;
+	a_info->tail = NULL;
+	a_info->len = 0;
+	b_info->head = NULL;
+	b_info->tail = NULL;
+	b_info->len = 0;
 }
 
-static void	quick_sort(int *arr, int start, int end)
+static int	check_digit(char **list)
 {
-	int	pivot;
-	int	left;
-	int	right;
+	int	i;
+	int	j;
 
-	if (end <= start + 1)
-		return ;
-	pivot = arr[start];
-	left = start + 1;
-	right = end - 1;
-	while (1)
-	{
-		while (left <= right && arr[left] <= pivot)
-			left++;
-		while (left <= right && arr[right] > pivot)
-			right--;
-		if (left > right)
-			break ;
-		swap(&arr[left], &arr[right]);
+	i = 0;
+	while (list[i] != 0)
+	{	
+		j = 0;
+		while (list[i][j] != 0)
+		{
+			if (list[i][j] >= '0' && list[i][j] <= '9')
+			{
+				j++;
+				continue ;
+			}
+			else
+			{
+				write(1, "Error\n", 6);
+				exit(1);
+			}
+		}
+		i++;
 	}
-	swap(&arr[start], &arr[right]);
-	quick_sort(arr, start, right);
-	quick_sort(arr, right + 1, end);
+	return (1);
 }
 
-void	init_list_info(t_list_info *list_info)
+static char	**check_valid_input(int argc, char **argv)
 {
-	list_info->head = NULL;
-	list_info->tail = NULL;
-	list_info->len = 0;
+	int		i;
+	char	**list;
+
+	i = 0;
+	while (++i < argc)
+	{
+		list = ft_split(argv[i], ' ');
+		if (check_digit(list) == 1)
+			continue ;
+	}
+	return (list);
 }
 
 void	init_list(t_list_info *list_info, int argc, char **argv)
 {
 	int		i;
 	t_list	*node;
+	char	**list;
 
 	i = 0;
-	while (++i < argc)
+	list = check_valid_input(argc, argv);
+	if (list > 0)
 	{
-		node = make_node(ft_atoi(argv[i]));
-		push_front(list_info, node);
+		while (list[i] != 0)
+		{
+			node = make_node(ft_atoi(list[i]));
+			push_front(list_info, node);
+			i++;
+		}
 	}
-}
-
-int	*init_ordered_array(t_list_info *list_info)
-{
-	t_list	*cursor;
-	int		*arr;
-	int		i;
-
-	cursor = list_info->head;
-	arr = (int *)malloc(sizeof(int) * list_info->len);
-	if (arr == NULL)
-		exit(1);
-	i = 0;
-	while (cursor != NULL)
-	{
-		arr[i++] = cursor->data;
-		cursor = cursor->next;
-	}
-	quick_sort(arr, 0, list_info->len);
-	return (arr);
 }

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:21:29 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/18 13:49:59 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/18 14:14:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 void	sa(t_tool *tool)
 {
-	swap_node_left(tool->a_info);
+	swap_node(tool->a_info);
 	write(1, "sa\n", 3);
 }
 
 void	sb(t_tool *tool)
 {
-	swap_node_left(tool->b_info);
+	swap_node(tool->b_info);
 	write(1, "sb\n", 3);
 }
 
