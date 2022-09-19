@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/19 14:30:50 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:39:36 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_list_info(t_list_info *a_info, t_list_info *b_info)
 	b_info->len = 0;
 }
 
-static int	check_valid_input(char **list)
+static int	check_digit(char **list)
 {
 	int	i;
 	int	j;
@@ -52,30 +52,49 @@ static int	check_valid_input(char **list)
 	return (1);
 }
 
-int	init_list(t_list_info *list_info, int argc, char **argv)
+static int	check_valid_input(t_list_info *list_info, char **list)
 {
 	int		i;
-	int		j;
+	long	node_data;
 	t_list	*node;
+
+	if (check_digit(list) == 1)
+	{
+		i = 0;
+		if (list[0] == 0)
+			return (0);
+		while (list[i] != 0)
+		{
+			node_data = ft_atoi(list[i++]);
+			if (node_data > 2147483647 || node_data < -2147483648)
+			{
+				write(1, "Error\n", 6);
+				exit(1);
+			}
+			node = make_node(node_data);
+			push_front(list_info, node);
+		}
+		return (1);
+	}
+	else
+		return (0);
+}
+
+void	init_list(t_list_info *list_info, int argc, char **argv)
+{
+	int		i;
 	char	**list;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (++i < argc)
 	{
 		list = ft_split(argv[i], ' ');
-		if (check_valid_input(list) == 1)
-		{
-			j = 0;
-			while (list[j] != 0)
-			{
-				node = make_node(ft_atoi(list[j++]));
-				push_front(list_info, node);
-			}
-			i++;
+		if (check_valid_input(list_info, list) == 1)
 			continue ;
-		}
 		else
-			return (0);
+		{
+			write(1, "Error\n", 6);
+			exit(1);
+		}
 	}
-	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:39:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/07/19 15:57:03 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:29:29 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_long_max(const char *str, long value, int sign, int index)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		sign;	
 	long	value;
@@ -43,11 +43,11 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (check_long_max(str, value, sign, i) == -1)
-			return (-1);
+			return (2147483648);
 		else if (check_long_max(str, value, sign, i) == 0)
-			return (0);
+			return (2147483649);
 		value = value * 10 + (str[i] - '0');
 		i++;
 	}
-	return ((int)(value * sign));
+	return (value * sign);
 }
