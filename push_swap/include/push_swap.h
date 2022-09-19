@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:27:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/18 14:44:53 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:27:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_tool
 	int			*answer;
 }	t_tool;
 
-void	init_list(t_list_info *list_info, int argc, char **argv);
+int		init_list(t_list_info *list_info, int argc, char **argv);
 void	init_list_info(t_list_info *a_info, t_list_info *b_info);
 int		*init_ordered_array(t_list_info *list_info);
 void	parse_list(t_list_info *list_info, int	*arr);

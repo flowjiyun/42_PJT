@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/18 17:38:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:30:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,21 @@ void	init_list_info(t_list_info *a_info, t_list_info *b_info)
 	b_info->len = 0;
 }
 
-static int	check_digit(char **list)
+static int	check_valid_input(char **list)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (list[i] != 0)
+	i = -1;
+	while (list[++i] != 0)
 	{	
 		j = 0;
+		if (list[i][j] == '-' || list[i][j] == '+')
+		{
+			j++;
+			if (list[i][j] == 0)
+				return (0);
+		}
 		while (list[i][j] != 0)
 		{
 			if (list[i][j] >= '0' && list[i][j] <= '9')
@@ -40,46 +46,36 @@ static int	check_digit(char **list)
 				continue ;
 			}
 			else
-			{
-				write(1, "Error\n", 6);
-				exit(1);
-			}
+				return (0);
 		}
-		i++;
 	}
 	return (1);
 }
 
-static char	**check_valid_input(int argc, char **argv)
+int	init_list(t_list_info *list_info, int argc, char **argv)
 {
 	int		i;
-	char	**list;
-
-	i = 0;
-	while (++i < argc)
-	{
-		list = ft_split(argv[i], ' ');
-		if (check_digit(list) == 1)
-			continue ;
-	}
-	return (list);
-}
-
-void	init_list(t_list_info *list_info, int argc, char **argv)
-{
-	int		i;
+	int		j;
 	t_list	*node;
 	char	**list;
 
-	i = 0;
-	list = check_valid_input(argc, argv);
-	if (list > 0)
+	i = 1;
+	while (i < argc)
 	{
-		while (list[i] != 0)
+		list = ft_split(argv[i], ' ');
+		if (check_valid_input(list) == 1)
 		{
-			node = make_node(ft_atoi(list[i]));
-			push_front(list_info, node);
+			j = 0;
+			while (list[j] != 0)
+			{
+				node = make_node(ft_atoi(list[j++]));
+				push_front(list_info, node);
+			}
 			i++;
+			continue ;
 		}
+		else
+			return (0);
 	}
+	return (1);
 }
