@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/19 16:39:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:10:34 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,19 @@ static int	check_valid_input(t_list_info *list_info, char **list)
 		return (0);
 }
 
+static void	do_free(char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list[i] != 0)
+	{
+		free(list[i]);
+		i++;
+	}
+	free(list);
+}
+
 void	init_list(t_list_info *list_info, int argc, char **argv)
 {
 	int		i;
@@ -90,7 +103,10 @@ void	init_list(t_list_info *list_info, int argc, char **argv)
 	{
 		list = ft_split(argv[i], ' ');
 		if (check_valid_input(list_info, list) == 1)
+		{
+			do_free(list);
 			continue ;
+		}
 		else
 		{
 			write(1, "Error\n", 6);

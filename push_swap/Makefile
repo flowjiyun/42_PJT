@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 14:46:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/09/17 20:04:03 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/09/20 14:21:20 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,11 +50,11 @@ re :
 		make all
 
 $(NAME) : $(LIB) $(OBJ)
-		$(CC) $(CFLAGS_DEBUG) -o $@ $^
+		$(CC) $(CFLAGS) -o $@ $^
 
 $(LIB) :
 		make -C $(LIB_DIR) all
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 		mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

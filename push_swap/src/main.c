@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 17:24:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/19 17:02:41 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/20 14:45:01 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	check_double(t_list_info *a_info)
 	}
 }
 
-static void	check_sorted(t_list_info *a_info, int *answer)
+static int	check_sorted(t_list_info *a_info, int *answer)
 {
 	int		i;
 	t_list	*cursor;
@@ -46,15 +46,16 @@ static void	check_sorted(t_list_info *a_info, int *answer)
 	cursor = a_info->tail;
 	while (i < a_info->len)
 	{
-		if (cursor->data != answer[i])
+		if (cursor->data == answer[i])
 		{
 			i++;
 			cursor = cursor->prev;
 			continue ;
 		}
 		else
-			exit(0);
+			return (0);
 	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -65,17 +66,23 @@ int	main(int argc, char **argv)
 	t_tool		tool;
 
 	if (argc == 1)
-	{
-		write(1, "Error\n", 6);
 		exit(1);
-	}
 	init_list_info(&a_info, &b_info);
 	init_list(&a_info, argc, argv);
 	check_double(&a_info);
 	answer = init_ordered_array(&a_info);
-	check_sorted(&a_info, answer);
+	if (check_sorted(&a_info, answer) == 1)
+		exit(1);
+	print_list(&a_info);
+	printf("\n");
 	parse_list(&a_info, answer);
 	init_tool(&tool, &a_info, &b_info, answer);
+	print_list(&a_info);
+	printf("\n");
 	push_swap(&tool);
+	print_list(&a_info);
+	printf("\n");
+	free(answer);
+	clear_list(tool.a_info);
 	return (0);
 }
