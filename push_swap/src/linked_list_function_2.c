@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/09/18 14:00:38 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/20 22:39:33 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ void	print_list(t_list_info *list_info)
 	while (cursor != NULL)
 	{
 		printf("%d ", cursor->data);
+		cursor = cursor->next;
+	}
+	printf("\n");
+}
+
+void	print_list_rank(t_list_info *list_info)
+{
+	t_list	*cursor;
+
+	cursor = list_info->head;
+	while (cursor != NULL)
+	{
+		printf("%d ", cursor->rank);
 		cursor = cursor->next;
 	}
 	printf("\n");

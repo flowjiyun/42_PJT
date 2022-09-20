@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack_b.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 19:59:42 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/20 22:38:15 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	sort_unit_b(t_tool *tool, int len)
 {
 	if (len == 2)
 	{
-		if (tool->b_info->tail->data < tool->b_info->tail->prev->data)
+		if (tool->b_info->tail->rank < tool->b_info->tail->prev->rank)
 			sb(tool);
 		else
 			return ;
@@ -51,7 +51,7 @@ static int	slice_stack_b(t_tool *tool, int len, int median)
 	push_len = get_push_len_b(len);
 	while (len-- && ret < push_len)
 	{
-		if (tool->b_info->tail->data > median)
+		if (tool->b_info->tail->rank > median)
 		{
 			pa(tool);
 			ret++;

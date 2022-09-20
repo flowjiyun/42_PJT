@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_function.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:21:29 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/18 14:14:05 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/21 00:02:17 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	pa(t_tool *tool)
 
 	if (tool->b_info->head == NULL)
 		return ;
-	node = make_node(tool->b_info->tail->data);
+	node = make_node(tool->b_info->tail->data, tool->b_info->tail->rank);
 	push_back(tool->a_info, node);
 	pop_back(tool->b_info);
 	write(1, "pa\n", 3);
@@ -43,7 +43,7 @@ void	pb(t_tool *tool)
 
 	if (tool->a_info->head == NULL)
 		return ;
-	node = make_node(tool->a_info->tail->data);
+	node = make_node(tool->a_info->tail->data, tool->a_info->tail->rank);
 	push_back(tool->b_info, node);
 	pop_back(tool->a_info);
 	write(1, "pb\n", 3);

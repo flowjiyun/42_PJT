@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 16:27:11 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/18 14:49:54 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/20 22:38:23 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	parse_list(t_list_info *list_info, int	*arr)
 		{
 			if (arr[i] == cursor->data)
 			{
-				cursor->data = i + 1;
+				cursor->rank = i + 1;
 				break ;
 			}
 			cursor = cursor->next;

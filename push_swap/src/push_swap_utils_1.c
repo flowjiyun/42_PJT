@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 17:17:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/20 14:10:34 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/21 00:00:40 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	check_valid_input(t_list_info *list_info, char **list)
 				write(1, "Error\n", 6);
 				exit(1);
 			}
-			node = make_node(node_data);
+			node = make_node(node_data, 0);
 			push_front(list_info, node);
 		}
 		return (1);

@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/17 20:28:01 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/21 00:00:08 by jiyun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 
-t_list	*make_node(int data)
+t_list	*make_node(int data, int rank)
 {
 	t_list	*new_node;
 
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
-		return (NULL);
+		exit(1);
 	new_node->data = data;
+	new_node->rank = rank;
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
