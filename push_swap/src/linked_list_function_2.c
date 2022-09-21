@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/09/20 22:39:33 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:06:12 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,20 @@ void	clear_list(t_list_info *list_info)
 
 void	swap_node(t_list_info *list_info)
 {
-	t_list	*cursor;
-	t_list	*left;
-	t_list	*right;
+	t_list *fixed_node;
+	t_list *cursor;
+	t_list *cursor_l;
 
-	left = list_info->tail->prev;
-	right = list_info->tail;
-	cursor = right;
-	right->next = cursor->prev;
-	right->prev = cursor->prev->prev;
-	left->next = cursor->next;
-	left->prev = cursor;
-	if (left == list_info->head)
-		list_info->head = right;
-	list_info->tail = left;
+	cursor = list_info->tail;
+	cursor_l = cursor->prev;
+	fixed_node = cursor_l->prev;
+	cursor->prev = fixed_node;
+	if (fixed_node != NULL)
+		fixed_node->next = cursor;
+	cursor->next = cursor_l;
+	cursor_l->prev = cursor;
+	cursor_l->next = NULL;
+	if (cursor_l == list_info->head)
+		list_info->head = cursor;
+	list_info->tail = cursor_l;
 }

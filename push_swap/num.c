@@ -2,7 +2,7 @@
 #include<stdlib.h>  //rand(), srand();
 #include<time.h>    //time()
 #include<string.h>  //memset()
-#define SIZE 20
+#define SIZE 10
 void mkArr(int* arr, int size){
         int cnt = 0;
         int test[size];

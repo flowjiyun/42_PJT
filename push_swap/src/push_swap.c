@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:08:02 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/20 23:43:38 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/09/21 12:17:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,12 @@ void	push_swap(t_tool *tool)
 	int	median;
 
 	len = tool->a_info->len;
-	if (len <= 2)
+	if (len <= 3)
 	{
-		sort_unit_init(tool, len);
+		if (len == 3)
+			sort_unit_three_a(tool, 3);
+		else
+			sort_unit_init(tool, len);
 		return ;
 	}
 	median = get_median_init(tool->a_info->len);
