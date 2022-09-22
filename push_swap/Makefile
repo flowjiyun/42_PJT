@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 14:46:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/09/21 19:08:41 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/09/21 19:22:12 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@
 NAME := push_swap
 
 SRC_DIR = ./src/
-SRC_NAME = main.c push_swap.c push_swap_utils_1.c push_swap_utils_2.c push_swap_function.c \
+SRC_NAME = main.c push_swap.c push_swap_utils_1.c push_swap_utils_2.c \
+		push_swap_function_1.c push_swap_function_2.c\
 		sort_stack_a.c sort_stack_b.c \
 		sort_unit_three_a.c sort_unit_three_b.c \
 		linked_list_function_1.c linked_list_function_2.c
@@ -32,7 +33,7 @@ LIB = $(LIB_DIR)lib$(LIB_NAME).a
 
 INCLUDE := -I./include
 
-CFLAGS := -Wall -Wextra -Werror -g
+CFLAGS := -Wall -Wextra -Werror
 CFLAGS_DEBUG := -Wall -Wextra -Werror -g -fsanitize=address
 
 

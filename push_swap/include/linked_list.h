@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyun <jiyun@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 11:36:52 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/21 00:00:54 by jiyun            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:25:27 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	pop_front(t_list_info *list_info);
 void	pop_back(t_list_info *list_info);
 void	push_front(t_list_info *list_info, t_list *node);
 void	push_back(t_list_info *list_info, t_list *node);
-void	print_list(t_list_info *list_info);
-void	print_list_rank(t_list_info *list_info);
 void	clear_list(t_list_info *list_info);
 void	swap_node(t_list_info *list_info);
 

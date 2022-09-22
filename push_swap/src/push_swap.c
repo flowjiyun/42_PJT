@@ -6,14 +6,14 @@
 /*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:08:02 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/21 12:17:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/21 19:26:00 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 #include "../include/push_swap.h"
 
-void	sort_unit_init(t_tool *tool, int len)
+static void	sort_unit_init(t_tool *tool, int len)
 {
 	if (len == 2)
 	{
