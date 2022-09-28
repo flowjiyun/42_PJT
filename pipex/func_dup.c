@@ -10,13 +10,14 @@ int main()
     int fd, fd2;
     char buf[80];
 
-    fd = open("dup.c", O_RDONLY);
+    fd = open("dup.txt", O_RDONLY);
 
+    fd2 = dup(fd);
+    // fd2 = dup2(fd, 5);
     memset(buf, 0x00, 80);
     read(fd, buf, 20);
     printf("fd : %d\n%s\n", fd, buf);
 
-    fd2 = dup(fd);
     memset(buf, 0x00, 80);
     read(fd2, buf, 20);
     printf("fd : %d\n%s\n", fd2, buf);
