@@ -10,7 +10,7 @@ int	main(int argc, char **argv, char **envp)
 	//char *argv[] = {"./show_envp", "HTTP", NULL};
 	//char *envp[] = {"HTTP=badayak.com", NULL};
 
-	//execve("./show_envp", argv, envp);
+	execve("/bin/ls", argv, envp);
 
 	printf("에러");
 	return (0);
