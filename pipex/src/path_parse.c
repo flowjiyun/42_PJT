@@ -6,15 +6,31 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:53:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/30 18:38:08 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:45:41 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linked_list.h"
-#include "../include/libft.h"
-#include <stdio.h>
+#include "../include/pipex.h"
 
-void	get_path_list(t_list_info *list_info, char **arr_path, char **arr_pwd)
+static char	**split_env(char **envp, char *str, size_t byte)
+{
+	int	i;
+	char	*val;
+	char	**arr_val;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(str, envp[i], byte) == 0)
+			val = envp[i];
+		i++; 	
+	}
+	val += (byte + 1);
+	arr_val = ft_split(val, ':'); 
+	return (arr_val);
+}
+
+static void	init_path_list(t_list_info *list_info, char **arr_path, char **arr_pwd)
 {
 	int	i;
 	int	j;
@@ -34,40 +50,12 @@ void	get_path_list(t_list_info *list_info, char **arr_path, char **arr_pwd)
 	}
 }
 
-int	main(int argc, char **argv, char **envp)
+void	get_path_list(t_list_info *list_info, char **envp)
 {
-	int			i;
-	char		*path;
-	char		*pwd;
 	char		**arr_path;
 	char		**arr_pwd;
-	t_list_info	path_list;
 
-	i = 0;
-	(void)argc;
-	(void)argv;
-	while (envp[i])
-	{	
-		if (ft_strncmp("PATH", envp[i], 4) == 0)
-			path = envp[i];
-		if (ft_strncmp("PWD", envp[i], 3) == 0)
-			pwd = envp[i];
-		i++;
-	}
-	path += 5;
-	arr_path = ft_split(path, ':');
-	pwd += 4;
-	arr_pwd = ft_split(pwd, ':');
-	get_path_list(&path_list, arr_path, arr_pwd);	
-	for (int i = 0; arr_path[i]; i++)
-		printf("%s\n", arr_path[i]);
-	for (int i = 0; arr_pwd[i]; i++)
-		printf("%s\n", arr_pwd[i]);
-	printf("---------------------------\n");
-	while (path_list.head)
-	{
-		printf("%s\n", (char *)path_list.head->content);
-		path_list.head = path_list.head->next;
-	}
-	return (0);
+	arr_path = split_env(envp, "PATH", 4);
+	arr_pwd = split_env(envp, "PWD", 3);
+	init_path_list(list_info, arr_path, arr_pwd);
 }

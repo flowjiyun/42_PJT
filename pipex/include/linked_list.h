@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 11:36:52 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/30 18:34:21 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/09/30 19:02:21 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	push_front(t_list_info *list_info, t_list *node);
 void	push_back(t_list_info *list_info, t_list *node);
 void	clear_list(t_list_info *list_info);
 void	swap_node(t_list_info *list_info);
+void	init_list(t_list_info *list_info);
 
 #endif
