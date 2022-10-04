@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/04 13:26:52 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/10/04 10:59:39 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/10/04 13:26:06 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include "libft.h"
-# include "linked_list.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
+#include "../include/pipex.h"
 
-void	get_path_list(t_list_info *list_info, char **envp);
-void	get_arg_list(t_list_info *list_info, char **argv);
+void	get_arg_list(t_list_info *list_info, char **argv)
+{
+	int		i;
+	char	**arr_str;
+	t_list	*node;
 
-#endif
+	i = 0;
+	while (argv[++i])
+	{
+		arr_str = ft_split(argv[i], ' ');
+		node = make_node(arr_str);
+		push_back(list_info, node);
+	}
+}

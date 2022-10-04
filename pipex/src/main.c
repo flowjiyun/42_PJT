@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:20:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/30 19:44:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:34:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_list_info path_list;
-	// t_list_info cmd_list;
+	t_list_info path_list; // list of char * 
+	t_list_info cmd_list; // list of char **
 
-	(void)argc;
-	(void)argv;
-	init_list(&path_list);
-	get_path_list(&path_list, envp);
-	while (path_list.head)
+	if (argc < 5)
 	{
-		printf("%s\n", (char *)path_list.head->content);
-		path_list.head = path_list.head->next;
+		write(2, "Not Enough Arguments\n", 21);
+		exit(1);
 	}
-
+	init_list(&path_list);
+	init_list(&cmd_list);
+	get_path_list(&path_list, envp);
+	get_arg_list(&cmd_list, argv);
+	// while (cmd_list.head)
+	// {
+	// 	printf("%s\n", ((char **)cmd_list.head->content)[0]);
+	// 	cmd_list.head = cmd_list.head->next;
+	// }
 	return (0);
 }
 

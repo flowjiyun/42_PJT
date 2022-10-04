@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_parse.c                                       :+:      :+:    :+:   */
+/*   parse_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:53:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/30 19:45:41 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:02:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	**split_env(char **envp, char *str, size_t byte)
 {
-	int	i;
+	int		i;
 	char	*val;
 	char	**arr_val;
 
@@ -23,17 +23,17 @@ static char	**split_env(char **envp, char *str, size_t byte)
 	{
 		if (ft_strncmp(str, envp[i], byte) == 0)
 			val = envp[i];
-		i++; 	
+		i++;
 	}
 	val += (byte + 1);
-	arr_val = ft_split(val, ':'); 
+	arr_val = ft_split(val, ':');
 	return (arr_val);
 }
 
 static void	init_path_list(t_list_info *list_info, char **arr_path, char **arr_pwd)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_list	*node;
 
 	i = -1;
