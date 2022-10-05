@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 11:42:05 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/04 19:45:45 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/10/05 16:40:31 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/10/05 16:41:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+#include "../include/pipex.h"
+
+void	print_error(void)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
-		|| (c >= '0' && c <= '9'))
-		return (1);
-	else
-		return (0);
+	perror("error");
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/04 13:26:52 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:41:36 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,19 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
+typedef struct s_tool
+{
+	t_list_info	path_list;
+	t_list_info	cmd_list;
+	int			fds[2];
+	int			fdin;
+	int			fdout;
+	int			cmd_num;
+}	t_tool;
+
 void	get_path_list(t_list_info *list_info, char **envp);
-void	get_arg_list(t_list_info *list_info, char **argv);
+void	get_arg_list(t_list_info *list_info, int argc, char **argv);
+char	*check_valid_cmd(t_list_info *path, t_list *cur_cmd);
+void	print_error(void);
 
 #endif

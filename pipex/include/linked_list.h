@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 11:36:52 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/30 19:02:21 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:52:01 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_list_info
 	struct s_list	*head;
 	struct s_list	*tail;
 	int				len;
+	int				flag;
 }	t_list_info;
 
 t_list	*make_node(void *content);
@@ -36,6 +37,6 @@ void	push_front(t_list_info *list_info, t_list *node);
 void	push_back(t_list_info *list_info, t_list *node);
 void	clear_list(t_list_info *list_info);
 void	swap_node(t_list_info *list_info);
-void	init_list(t_list_info *list_info);
+void	init_list(t_list_info *list_info, int flag);
 
 #endif

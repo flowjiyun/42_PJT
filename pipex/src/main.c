@@ -6,69 +6,83 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:20:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/04 13:34:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/05 16:48:17 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+static void	init_tool(t_tool *tool, int argc)
+{
+	init_list(&tool->cmd_list, 1);
+	init_list(&tool->path_list, 0);
+	tool->cmd_num = argc - 3;
+}
+
+static void	set_std_stream(t_tool *tool, int argc, char **argv, int index)
+{
+	if (dup2(tool->fdin, 0) == -1)
+		print_error();
+	if (close(tool->fdin) == -1)
+		print_error();
+	if (index == tool->cmd_num - 1)
+	{
+		tool->fdout = open(argv[argc - 1], O_CREAT | O_TRUNC | O_WRONLY, 0644);
+		if (tool->fdout == -1)
+			print_error();
+	}
+	else
+	{
+		pipe(tool->fds);
+		tool->fdin = tool->fds[0];
+		tool->fdout = tool->fds[1];
+	}
+	if (dup2(tool->fdout, 1) == -1)
+		print_error();
+	if (close(tool->fdout) == -1)
+		print_error();
+}
+
+static void	pipex(t_tool *tool, int argc, char **argv)
+{
+	int		i;
+	int		ret;
+	char	*cmd;
+	t_list	*cur_cmd;
+
+	i = -1;
+	tool->fdin = open(argv[1], O_CREAT | O_RDONLY, 0644);
+	if (tool->fdin == -1)
+		print_error();
+	cur_cmd = tool->cmd_list.head;
+	while (++i < tool->cmd_num)
+	{
+		set_std_stream(tool, argc, argv, i);
+		ret = fork();
+		if (ret == 0)
+		{
+			cmd = check_valid_cmd(&tool->path_list, cur_cmd);
+			execve(cmd, cur_cmd->content, NULL);
+		}
+		cur_cmd = cur_cmd->next;
+	}
+	waitpid(ret, NULL, 0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-	t_list_info path_list; // list of char * 
-	t_list_info cmd_list; // list of char **
+	t_tool		tool;
 
 	if (argc < 5)
 	{
-		write(2, "Not Enough Arguments\n", 21);
+		write(2, "arg error\n", 10);
 		exit(1);
 	}
-	init_list(&path_list);
-	init_list(&cmd_list);
-	get_path_list(&path_list, envp);
-	get_arg_list(&cmd_list, argv);
-	// while (cmd_list.head)
-	// {
-	// 	printf("%s\n", ((char **)cmd_list.head->content)[0]);
-	// 	cmd_list.head = cmd_list.head->next;
-	// }
+	init_tool(&tool, argc);
+	get_path_list(&tool.path_list, envp);
+	get_arg_list(&tool.cmd_list, argc, argv);
+	pipex(&tool, argc, argv);
+	clear_list(&tool.cmd_list);
+	clear_list(&tool.path_list);
 	return (0);
 }
-
-
-	// int command_num;
-
-	// command_num = 10;
-
-	// int fdin;
-	// fdin = open("infile", O_CREAT | O_RDONLY);
-
-	// int ret;
-	// int fdout;
-	// int i;
-
-	// i = 0;
-	// while (i < command_num)
-	// {
-	// 	dup2(fdin, 0); // redirect input 
-	// 	close(fdin); // 0
-	// 	if (i == command_num - 1)
-	// 		fdout = open("outfile", O_CREAT | O_WRONLY);
-	// 	else
-	// 	{
-	// 		int fdpipe[2];
-	// 		pipe(fdpipe);
-	// 		fdout = fdpipe[1];
-	// 		fdin = fdpipe[0];
-	// 	}
-	// 	dup2(fdout, 1);
-	// 	close(fdout);
-
-	// 	ret = fork();
-	// 	//child
-	// 	if (ret == 0)
-	// 	{
-	// 		//execve(parsing argument);
-	// 	}	
-	// 	i++;
-	// }
-	// waitpid(ret, NULL);
