@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/06 13:42:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:51:29 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@
 # define BUFFER_SIZE 1024
 
 char			*get_next_line(int fd);
-char			*update_backup(char **backup);
-char			*get_line(char **backup);
-char			*read_file(int fd, char **backup, char *buf);
 
 int				is_newline(const char *backup);
-unsigned int	ft_strlen(const char *str);
+unsigned int	ft_strlen_1(const char *str);
 char			*ft_strdup(char *str);
-char			*ft_strjoin(char *s1, char *s2);
+char			*ft_strjoin_1(char *s1, char *s2);
 void			ft_memcopy(void *dest, const void *src, size_t size);
 
 #endif

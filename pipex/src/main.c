@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:20:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/06 12:38:34 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:26:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void	set_std_stream(t_tool *tool, int argc, char **argv, int index)
 	}
 	else
 	{
-		pipe(tool->fds);
+		if (pipe(tool->fds) == -1)
+			print_error();
 		tool->fdin = tool->fds[0];
 		tool->fdout = tool->fds[1];
 	}
@@ -43,29 +44,40 @@ static void	set_std_stream(t_tool *tool, int argc, char **argv, int index)
 		print_error();
 }
 
+static int	make_child(t_tool *tool, t_list *cur_cmd)
+{
+	int		ret;
+	char	*cmd;
+
+	ret = fork();
+	if (ret == -1)
+		print_error();
+	if (ret == 0)
+	{
+		cmd = check_valid_cmd(&tool->path_list, cur_cmd);
+		if (!cmd)
+			print_error();
+		if (execve(cmd, cur_cmd->content, NULL) == -1)
+			print_error();
+	}
+	return (ret);
+}
+
 static void	pipex(t_tool *tool, int argc, char **argv)
 {
 	int		i;
 	int		ret;
-	char	*cmd;
 	t_list	*cur_cmd;
 
 	i = -1;
-	tool->fdin = open(argv[1], O_CREAT | O_RDONLY, 0644);
+	tool->fdin = open(argv[1], O_RDONLY);
 	if (tool->fdin == -1)
 		print_error();
 	cur_cmd = tool->cmd_list.head;
 	while (++i < tool->cmd_num)
 	{
 		set_std_stream(tool, argc, argv, i);
-		ret = fork();
-		if (ret == -1)
-			print_error();
-		if (ret == 0)
-		{
-			cmd = check_valid_cmd(&tool->path_list, cur_cmd);
-			execve(cmd, cur_cmd->content, NULL);
-		}
+		ret = make_child(tool, cur_cmd);
 		cur_cmd = cur_cmd->next;
 	}
 	if (waitpid(ret, NULL, 0) == -1)
@@ -76,9 +88,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_tool		tool;
 
-	if (argc < 5)
+	if (argc != 5)
 	{
-		write(2, "arg error\n", 10);
+		write(1, "arg error\n", 10);
 		exit(1);
 	}
 	init_tool(&tool, argc);

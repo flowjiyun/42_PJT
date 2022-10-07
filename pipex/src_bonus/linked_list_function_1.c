@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/30 16:09:16 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:32:21 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linked_list.h"
+#include "../include/pipex.h"
 
 t_list	*make_node(void *content)
 {
@@ -18,7 +18,7 @@ t_list	*make_node(void *content)
 
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
-		exit(1);
+		print_error();
 	new_node->content = content;
 	new_node->next = NULL;
 	new_node->prev = NULL;

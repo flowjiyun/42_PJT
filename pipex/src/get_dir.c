@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:30:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/05 15:18:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:26:33 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*get_dir(t_list *cur_path, t_list *cur_cmd)
 
 static int	is_accessible(char *dir)
 {
-	if (access(dir, X_OK) == 0)
+	if (access(dir, X_OK | F_OK) == 0)
 		return (1);
 	else
 		return (0);
@@ -47,6 +47,5 @@ char	*check_valid_cmd(t_list_info *path, t_list *cur_cmd)
 			cur_path = cur_path->next;
 		}
 	}
-	perror("bad cmd");
-	exit(1);
+	return (NULL);
 }

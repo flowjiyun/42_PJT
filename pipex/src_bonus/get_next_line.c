@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/22 15:30:38 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:50:42 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/get_next_line.h"
 
-char	*read_file(int fd, char **backup, char *buf)
+static char	*read_file(int fd, char **backup, char *buf)
 {
 	ssize_t	byte;
 
@@ -32,7 +32,7 @@ char	*read_file(int fd, char **backup, char *buf)
 		if (!(*backup))
 			*backup = ft_strdup(buf);
 		else
-			*backup = ft_strjoin(*backup, buf);
+			*backup = ft_strjoin_1(*backup, buf);
 		if (!(*backup))
 			return (NULL);
 	}
@@ -40,7 +40,7 @@ char	*read_file(int fd, char **backup, char *buf)
 	return (*backup);
 }
 
-char	*get_line(char **backup)
+static char	*get_line(char **backup)
 {
 	char			*temp;
 	unsigned int	len;
@@ -69,14 +69,14 @@ char	*get_line(char **backup)
 	return (temp);
 }
 
-char	*update_backup(char **backup)
+static char	*update_backup(char **backup)
 {
 	char			*temp;
 	unsigned int	index;
 	unsigned int	i;
 
 	index = is_newline(*backup) + 1;
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(*backup) + 1));
+	temp = (char *)malloc(sizeof(char) * (ft_strlen_1(*backup) + 1));
 	if (!temp)
 	{
 		free(*backup);
@@ -85,7 +85,7 @@ char	*update_backup(char **backup)
 	if (index >= 1)
 	{
 		i = -1;
-		while (index <= ft_strlen(*backup))
+		while (index <= ft_strlen_1(*backup))
 			temp[++i] = (*backup)[index++];
 	}	
 	else

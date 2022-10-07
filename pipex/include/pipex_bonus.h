@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 15:08:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 16:49:02 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 # include "linked_list.h"
+# include "get_next_line.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -26,16 +27,21 @@ typedef struct s_tool
 	int			fdin;
 	int			fdout;
 	int			cmd_num;
+	int			heredoc;
 }	t_tool;
 
-void	get_path_list(t_list_info *list_info, char **envp);
-void	get_arg_list(t_list_info *list_info, int argc, char **argv);
-char	*check_valid_cmd(t_list_info *path, t_list *cur_cmd);
-void	print_error(void);
+void			get_path_list(t_list_info *list_info, char **envp);
+void			get_arg_list(t_list_info *list_info, int argc, char **argv);
+char			*check_valid_cmd(t_list_info *path, t_list *cur_cmd);
+void			print_error(void);
+void			make_heredoc(int argc, char **argv);
+int				check_heredoc(char **argv, t_list_info *path, t_list_info *cmd);
+void			make_heredoc(int argc, char **argv);
 
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*get_next_line(int fd);
+char			**ft_split(char const *s, char c);
+char			*ft_strjoin(char *s1, char *s2);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t			ft_strlen(const char *s);
 
 #endif

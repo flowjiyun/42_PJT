@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:40:31 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/05 16:41:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:37:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 void	print_error(void)
 {

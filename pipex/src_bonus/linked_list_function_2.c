@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/10/05 16:14:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:32:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/linked_list.h"
+#include "../include/pipex.h"
 
 static void	do_free(t_list *list)
 {

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:53:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/05 16:14:58 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:27:20 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ static void	init_path_list(t_list_info *list, char **arr_path, char **arr_pwd)
 {
 	int		i;
 	int		j;
+	char	*root;
 	t_list	*node;
 
+	root = "/";
 	i = -1;
 	while (arr_path[++i])
 	{
@@ -48,6 +50,8 @@ static void	init_path_list(t_list_info *list, char **arr_path, char **arr_pwd)
 		node = make_node(arr_pwd[j]);
 		push_back(list, node);
 	}
+	node = make_node(root);
+	push_back(list, node);
 }
 
 void	get_path_list(t_list_info *list_info, char **envp)
