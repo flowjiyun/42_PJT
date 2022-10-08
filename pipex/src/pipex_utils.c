@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 10:17:41 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 13:22:40 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:08:35 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -35,7 +35,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (!ptr)
-		exit(1);
+		print_error("malloc");
 	i = 0;
 	while (s1[i] != 0)
 	{

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 16:50:14 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:12:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "get_next_line.h"
 
 unsigned int	ft_strlen_1(const char *str)
 {
@@ -48,7 +48,7 @@ char	*ft_strjoin_1(char *s1, char *s2)
 	unsigned int	i;
 	unsigned int	j;
 
-	temp = (char *)malloc(sizeof(char) * (ft_strlen_1(s1) + ft_strlen_1(s2) + 1));
+	temp = malloc(sizeof(char) * (ft_strlen_1(s1) + ft_strlen_1(s2) + 1));
 	if (!temp)
 	{
 		free(s1);

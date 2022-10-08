@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:20:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 17:27:56 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:21:24 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,26 @@ static void	init_tool(t_tool *tool, int argc)
 static void	set_std_stream(t_tool *tool, int argc, char **argv, int index)
 {
 	if (dup2(tool->fdin, 0) == -1)
-		print_error();
+		print_error("dup2");
 	if (close(tool->fdin) == -1)
-		print_error();
+		print_error("close");
 	if (index == tool->cmd_num - 1)
 	{
 		tool->fdout = open(argv[argc - 1], O_CREAT | O_APPEND | O_WRONLY, 0644);
 		if (tool->fdout == -1)
-			print_error();
+			print_error("open");
 	}
 	else
 	{
 		if (pipe(tool->fds) == -1)
-			print_error();
+			print_error("pipe");
 		tool->fdin = tool->fds[0];
 		tool->fdout = tool->fds[1];
 	}
 	if (dup2(tool->fdout, 1) == -1)
-		print_error();
+		print_error("dup2");
 	if (close(tool->fdout) == -1)
-		print_error();
+		print_error("close");
 }
 
 static int	make_child(t_tool *tool, t_list *cur_cmd)
@@ -52,14 +52,14 @@ static int	make_child(t_tool *tool, t_list *cur_cmd)
 
 	ret = fork();
 	if (ret == -1)
-		print_error();
+		print_error("fork");
 	if (ret == 0)
 	{
 		cmd = check_valid_cmd(&tool->path_list, cur_cmd);
 		if (!cmd)
-			print_error();
+			print_error("access");
 		if (execve(cmd, cur_cmd->content, NULL) == -1)
-			print_error();
+			print_error("execve");
 	}
 	return (ret);
 }
@@ -73,7 +73,7 @@ static void	pipex(t_tool *tool, int argc, char **argv)
 	i = -1;
 	tool->fdin = open(argv[1], O_RDONLY);
 	if (tool->fdin == -1)
-		print_error();
+		print_error("open");
 	if (tool->heredoc == 1)
 		cur_cmd = tool->cmd_list.head->next;
 	else
@@ -85,7 +85,7 @@ static void	pipex(t_tool *tool, int argc, char **argv)
 		cur_cmd = cur_cmd->next;
 	}
 	if (waitpid(ret, NULL, 0) == -1)
-		print_error();
+		print_error("waitpid");
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -94,7 +94,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc < 5)
 	{
-		write(1, "arg error\n", 10);
+		write(2, "arg error\n", 10);
 		exit(1);
 	}
 	init_tool(&tool, argc);

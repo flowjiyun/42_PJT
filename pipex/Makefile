@@ -32,19 +32,19 @@ LIB = $(LIB_DIR)lib$(LIB_NAME).a
 INCLUDE := -I./include
 
 CFLAGS := -Wall -Wextra -Werror
-CFLAGS_DEBUG := -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all : all_check
 
 all_check : $(OBJ)
 		touch $@
-		$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $^
+		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -o $(NAME) $^
 		
 bonus : bonus_check
 
 bonus_check : $(OBJ_BONUS)
 		touch $@
-		$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME_BONUS) $^
+		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -o $(NAME_BONUS) $^
 
 clean :
 		rm -rf $(OBJ_DIR)
@@ -52,7 +52,10 @@ clean :
 
 fclean : clean
 		rm -f $(NAME)
-		rm -f $(NAME_BONUS)
+		rm -f all_check
+		rm -f bonus_check
+		rm -f outfile
+		rm -f here_doc
 
 re :
 		make fclean
@@ -60,8 +63,8 @@ re :
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 		mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -c $< -o $@
 
 $(OBJ_BONUS_DIR)%.o : $(SRC_BONUS_DIR)%.c
 		mkdir -p $(OBJ_BONUS_DIR)
-		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -c $< -o $@

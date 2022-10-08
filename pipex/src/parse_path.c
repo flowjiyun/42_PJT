@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:53:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 13:27:20 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:08:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 static char	**split_env(char **envp, char *str, size_t byte)
 {
@@ -37,7 +37,11 @@ static void	init_path_list(t_list_info *list, char **arr_path, char **arr_pwd)
 	char	*root;
 	t_list	*node;
 
-	root = "/";
+	root = (char *)malloc(2);
+	if (!root)
+		print_error("malloc");
+	root[0] = '/';
+	root[1] = 0;
 	i = -1;
 	while (arr_path[++i])
 	{

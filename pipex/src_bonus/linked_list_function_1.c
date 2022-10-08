@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 10:32:21 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:21:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex_bonus.h"
 
 t_list	*make_node(void *content)
 {
@@ -18,7 +18,7 @@ t_list	*make_node(void *content)
 
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
-		print_error();
+		print_error("malloc");
 	new_node->content = content;
 	new_node->next = NULL;
 	new_node->prev = NULL;

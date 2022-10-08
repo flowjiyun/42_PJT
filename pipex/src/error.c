@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 16:40:31 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/05 16:41:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:00:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
-void	print_error(void)
+void	print_error(char *str)
 {
-	perror("error");
+	perror(str);
 	exit(1);
 }

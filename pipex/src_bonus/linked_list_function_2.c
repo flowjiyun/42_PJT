@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/10/07 10:32:50 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:33:34 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex_bonus.h"
 
 static void	do_free(t_list *list)
 {

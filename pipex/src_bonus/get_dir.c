@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:30:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 15:45:43 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:32:44 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 static char	*get_dir(t_list *cur_path, t_list *cur_cmd)
 {

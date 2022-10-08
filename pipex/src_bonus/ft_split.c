@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 13:28:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 14:37:51 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:09:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 static unsigned int	count_word(char const *s, char c)
 {
@@ -51,7 +51,7 @@ static char	*make_word(char const *s, char c)
 	word_len = get_word_len(s, c);
 	word = (char *)malloc(sizeof(char) * (word_len + 1));
 	if (!word)
-		return (0);
+		print_error("malloc");
 	while (i < word_len)
 	{
 		word[i] = s[i];
@@ -86,7 +86,7 @@ char	**ft_split(char const *s, char c)
 	word_cnt = count_word(s, c);
 	list = (char **)malloc(sizeof(char *) * (word_cnt + 1));
 	if (!list)
-		return (0);
+		print_error("malloc");
 	while (i < word_cnt)
 	{
 		while (s[j] != 0 && s[j] == c)

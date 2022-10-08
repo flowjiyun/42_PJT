@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:59:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/05 15:15:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:32:11 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 void	get_arg_list(t_list_info *list_info, int argc, char **argv)
 {

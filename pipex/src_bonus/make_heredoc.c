@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   make_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:30:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 16:52:06 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:23:10 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex_bonus.h"
+#include "pipex_bonus.h"
 
 int	check_heredoc(char **argv, t_list_info *path, t_list_info *cmd)
 {
@@ -37,21 +37,21 @@ int	check_heredoc(char **argv, t_list_info *path, t_list_info *cmd)
 void	make_heredoc(int argc, char **argv)
 {
 	int		fd;
-	int		i;
+	int 	i;
 	char	*c;
 
-	fd = open("heredoc", O_CREAT | O_TRUNC | O_RDWR, 0666);
+	fd = open("here_doc", O_CREAT | O_TRUNC | O_RDWR, 0666);
 	if (fd == -1)
-		print_error();
-	i = -1;
+		print_error("open");
 	while (1)
 	{
+		i = -1;
 		while (++i < argc - 5)
 			write(1, "pipe ", 5);
 		write(1, "heredoc> ", 9);
 		c = get_next_line(0);
-		if ((ft_strncmp(c, argv[1], ft_strlen(argv[1])) == 0)
-			&& (ft_strlen(c) == ft_strlen(argv[1]) + 1))
+		if ((ft_strncmp(c, argv[2], ft_strlen(argv[2])) == 0)
+			&& (ft_strlen(c) == ft_strlen(argv[2]) + 1))
 			break ;
 		write(fd, c, ft_strlen(c));
 	}

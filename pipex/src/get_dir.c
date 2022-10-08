@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_dir.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 15:30:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 15:26:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:31:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex.h"
 
 static char	*get_dir(t_list *cur_path, t_list *cur_cmd)
 {
@@ -44,6 +44,7 @@ char	*check_valid_cmd(t_list_info *path, t_list *cur_cmd)
 			return (cmd);
 		else
 		{
+			free(cmd);
 			cur_path = cur_path->next;
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 16:49:02 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/08 17:00:28 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_tool
 void			get_path_list(t_list_info *list_info, char **envp);
 void			get_arg_list(t_list_info *list_info, int argc, char **argv);
 char			*check_valid_cmd(t_list_info *path, t_list *cur_cmd);
-void			print_error(void);
+void			print_error(char *str);
 void			make_heredoc(int argc, char **argv);
 int				check_heredoc(char **argv, t_list_info *path, t_list_info *cmd);
 void			make_heredoc(int argc, char **argv);
