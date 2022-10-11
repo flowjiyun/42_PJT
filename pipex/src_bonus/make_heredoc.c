@@ -3,41 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   make_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:30:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/08 17:23:10 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:39:10 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-int	check_heredoc(char **argv, t_list_info *path, t_list_info *cmd)
+int	check_heredoc(char **argv)
 {
-	char	*ret;
-
 	if ((ft_strncmp(argv[1], "here_doc", 8) == 0)
 		&& (ft_strlen(argv[1]) == ft_strlen("here_doc")))
-	{
-		ret = check_valid_cmd(path, cmd->head);
-		if (!ret)
-		{
-			free(ret);
-			return (1);
-		}
-		else
-		{
-			free(ret);
-			return (0);
-		}
-	}
-	return (0);
+		return (1);
+	else
+		return (0);
 }
 
 void	make_heredoc(int argc, char **argv)
 {
 	int		fd;
-	int 	i;
+	int		i;
 	char	*c;
 
 	fd = open("here_doc", O_CREAT | O_TRUNC | O_RDWR, 0666);

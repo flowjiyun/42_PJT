@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_path_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:53:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/08 17:20:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/11 16:30:20 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "pipex_bonus.h"
 
 static char	**split_env(char **envp, char *str, size_t byte)
 {

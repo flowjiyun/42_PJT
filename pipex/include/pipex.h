@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/08 17:00:37 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:27:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ typedef struct s_tool
 	t_list_info	path_list;
 	t_list_info	cmd_list;
 	int			fds[2];
-	int			fdin;
-	int			fdout;
+	int			curr_pipe_in;
+	int			curr_pipe_out;
+	int			prev_pipe_in;
 	int			cmd_num;
 }	t_tool;
 
