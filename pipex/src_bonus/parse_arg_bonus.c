@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_arg_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 10:59:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/08 16:33:51 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:11:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

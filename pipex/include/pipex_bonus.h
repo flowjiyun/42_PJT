@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/11 15:31:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:36:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_tool
 {
@@ -38,6 +39,8 @@ void			print_error(char *str);
 void			make_heredoc(int argc, char **argv);
 int				check_heredoc(char **argv);
 void			make_heredoc(int argc, char **argv);
+void			init_tool(t_tool *tool, int argc);
+void			pipex(t_tool *tool, int argc, char **argv);
 
 char			*get_next_line(int fd);
 char			**ft_split(char const *s, char c);

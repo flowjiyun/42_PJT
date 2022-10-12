@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:12:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/11 13:27:48 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:11:15 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 typedef struct s_tool
 {
@@ -33,6 +34,8 @@ void	get_path_list(t_list_info *list_info, char **envp);
 void	get_arg_list(t_list_info *list_info, int argc, char **argv);
 char	*check_valid_cmd(t_list_info *path, t_list *cur_cmd);
 void	print_error(char *str);
+void	pipex(t_tool *tool, int argc, char **argv);
+void	init_tool(t_tool *tool, int argc);
 
 char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char *s1, char *s2);

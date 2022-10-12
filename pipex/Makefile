@@ -5,13 +5,13 @@ NAME = pipex
 NAME_BONUS = pipex
 
 SRC_DIR = ./src/
-SRC_NAME = main.c parse_path.c parse_arg.c get_dir.c error.c \
+SRC_NAME = main.c pipex.c parse_path.c parse_arg.c get_dir.c error.c \
 		ft_split.c pipex_utils.c \
 		linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
 SRC_BONUS_DIR = ./src_bonus/
-SRC_BONUS_NAME = main_bonus.c parse_path_bonus.c parse_arg_bonus.c get_dir.c error.c \
+SRC_BONUS_NAME = main_bonus.c pipex_bonus.c parse_path_bonus.c parse_arg_bonus.c get_dir.c error.c \
 		ft_split.c pipex_utils.c make_heredoc.c \
 		get_next_line.c get_next_line_utils.c \
  		linked_list_function_1.c linked_list_function_2.c
@@ -38,13 +38,13 @@ all : all_check
 
 all_check : $(OBJ)
 		touch $@
-		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -o $(NAME) $^
+		$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $^
 		
 bonus : bonus_check
 
 bonus_check : $(OBJ_BONUS)
 		touch $@
-		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -o $(NAME_BONUS) $^
+		$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME_BONUS) $^
 
 clean :
 		rm -rf $(OBJ_DIR)
@@ -63,8 +63,8 @@ re :
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 		mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJ_BONUS_DIR)%.o : $(SRC_BONUS_DIR)%.c
 		mkdir -p $(OBJ_BONUS_DIR)
-		$(CC) $(CFLAGS_DEBUG) $(INCLUDE) -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
