@@ -6,11 +6,11 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 13:48:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/13 13:48:55 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/13 14:04:24 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY : all clean fclean re
+.PHONY : all bonus clean fclean re
 
 NAME = pipex
 
