@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 19:20:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/12 13:41:11 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:54:20 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 		make_heredoc(argc, argv);
 	}
 	pipex(&tool, argc, argv);
-	if (unlink("here_doc") == -1)
+	if ((tool.heredoc == 1) && (unlink("here_doc") == -1))
 		print_error("unlink");
 	clear_list(&tool.cmd_list);
 	clear_list(&tool.path_list);

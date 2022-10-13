@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:30:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/12 13:44:59 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:53:35 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,20 @@ static void	set_pipe(t_tool *tool, int argc, char **argv, int i)
 {
 	if (i == tool->cmd_num - 1)
 	{
-		tool->curr_pipe_out = open(argv[argc - 1], O_CREAT
-				| O_APPEND | O_WRONLY, 0666);
-		if (tool->curr_pipe_out == -1)
-			print_error("open");
+		if (tool->heredoc == 1)
+		{
+			tool->curr_pipe_out = open(argv[argc - 1], O_CREAT
+					| O_APPEND | O_WRONLY, 0666);
+			if (tool->curr_pipe_out == -1)
+				print_error("open");
+		}
+		else
+		{
+			tool->curr_pipe_out = open(argv[argc - 1], O_CREAT
+					| O_TRUNC | O_WRONLY, 0666);
+			if (tool->curr_pipe_out == -1)
+				print_error("open");
+		}
 	}
 	else
 	{

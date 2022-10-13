@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/10/13 13:48:54 by jiyunpar          #+#    #+#              #
+#    Updated: 2022/10/13 13:48:55 by jiyunpar         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 .PHONY : all clean fclean re
 
 NAME = pipex
@@ -25,10 +37,6 @@ OBJ_BONUS_DIR = ./obj_bonus/
 OBJ_BONUS_NAME = $(SRC_BONUS_NAME:.c=.o)
 OBJ_BONUS = $(addprefix $(OBJ_BONUS_DIR),$(OBJ_BONUS_NAME))
 
-LIB_DIR = ./libft/
-LIB_NAME = ft
-LIB = $(LIB_DIR)lib$(LIB_NAME).a
-
 INCLUDE := -I./include
 
 CFLAGS := -Wall -Wextra -Werror
@@ -37,14 +45,14 @@ CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
 all : all_check
 
 all_check : $(OBJ)
-		touch $@
 		$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $^
+		touch $@
 		
 bonus : bonus_check
 
 bonus_check : $(OBJ_BONUS)
-		touch $@
 		$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME_BONUS) $^
+		touch $@
 
 clean :
 		rm -rf $(OBJ_DIR)
