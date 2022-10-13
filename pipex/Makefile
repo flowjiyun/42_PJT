@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 13:48:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/13 14:04:24 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/13 19:42:24 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJ_BONUS = $(addprefix $(OBJ_BONUS_DIR),$(OBJ_BONUS_NAME))
 
 INCLUDE := -I./include
 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g
 CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all : all_check
@@ -63,6 +63,7 @@ fclean : clean
 		rm -f all_check
 		rm -f bonus_check
 		rm -f outfile
+		rm -f infile
 		rm -f here_doc
 
 re :

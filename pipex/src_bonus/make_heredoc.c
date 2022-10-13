@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 15:30:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/11 15:39:10 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:55:00 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ void	make_heredoc(int argc, char **argv)
 		c = get_next_line(0);
 		if ((ft_strncmp(c, argv[2], ft_strlen(argv[2])) == 0)
 			&& (ft_strlen(c) == ft_strlen(argv[2]) + 1))
+		{
+			free(c);
 			break ;
+		}
 		write(fd, c, ft_strlen(c));
+		free(c);
 	}
 	close(fd);
 }

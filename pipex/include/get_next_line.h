@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/07 16:51:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/13 18:49:39 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # define FD_MAX 256
 # define BUFFER_SIZE 1024
 
