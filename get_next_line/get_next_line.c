@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/08/22 19:20:17 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/13 19:39:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,40 @@ char	*get_line(char **backup)
 	return (temp);
 }
 
-char	*update_backup(char **backup)
+static char	*ft_substr(char *str, int start, unsigned int size)
+{
+	unsigned int	i;
+	char			*ret;
+
+	if (!size)
+		return (NULL);
+	ret = (char *)malloc(sizeof(char) * (size + 1));
+	if (!ret)
+		return (NULL);
+	i = -1;
+	while (++i < size)
+		ret[i] = str[start++];
+	ret[i] = '\0';
+	return (ret);
+}
+
+static char	*update_backup(char **backup)
 {
 	char			*temp;
-	unsigned int	index;
-	unsigned int	i;
+	unsigned int	index_s;
 
-	index = is_newline(*backup) + 1;
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(*backup) + 1));
-	if (!temp)
+	if (is_newline(*backup) == -1)
 	{
 		free(*backup);
 		return (NULL);
 	}
-	if (index >= 1)
-	{
-		i = -1;
-		while (index <= ft_strlen(*backup))
-			temp[++i] = (*backup)[index++];
-	}	
 	else
-		temp[0] = '\0';
-	free(*backup);
-	return (temp);
+	{
+		index_s = is_newline(*backup) + 1;
+		temp = ft_substr(*backup, index_s, (ft_strlen(*backup) - index_s));
+		free(*backup);
+		return (temp);
+	}
 }
 
 char	*get_next_line(int fd)
@@ -116,7 +127,5 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	backup = update_backup(&backup);
-	if (!backup)
-		return (NULL);
 	return (line);
 }
