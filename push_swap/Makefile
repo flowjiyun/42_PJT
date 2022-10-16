@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+         #
+#    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 14:46:54 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/09/21 19:22:12 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/16 23:38:50 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_NAME = main.c push_swap.c push_swap_utils_1.c push_swap_utils_2.c \
 		push_swap_function_1.c push_swap_function_2.c\
 		sort_stack_a.c sort_stack_b.c \
 		sort_unit_three_a.c sort_unit_three_b.c \
+		sort_unit_three_a_extra.c sort_unit_three_b_extra.c
 		linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 

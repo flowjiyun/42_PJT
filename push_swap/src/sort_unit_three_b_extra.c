@@ -1,68 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_unit_three_b.c                                :+:      :+:    :+:   */
+/*   sort_unit_three_b_extra.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:25:07 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/16 23:21:24 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:39:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linked_list.h"
 #include "../include/push_swap.h"
 
-int	get_max_b(t_tool *tool, int len)
-{
-	int		i;
-	int		max;
-	t_list	*cursor;
-
-	i = 0;
-	max = 0;
-	cursor = tool->b_info->tail;
-	while (i < len)
-	{
-		if (max < cursor->rank)
-			max = cursor->rank;
-		cursor = cursor->prev;
-		i++;
-	}
-	return (max);
-}
-
-int	get_min_b(t_tool *tool, int len)
-{
-	int		i;
-	long	min;
-	t_list	*cursor;
-
-	i = 0;
-	min = 2147483649;
-	cursor = tool->b_info->tail;
-	while (i < len)
-	{
-		if (min > cursor->rank)
-			min = cursor->rank;
-		cursor = cursor->prev;
-		i++;
-	}
-	return ((int)min);
-}
-
 static void	remain_condition_b(t_tool *tool)
 {
 	if (tool->b_info->tail->rank > tool->b_info->tail->prev->rank)
 	{
-		sb(tool);
 		rb(tool);
+		sb(tool);
+		rrb(tool);
 	}
 	else
+	{
+		sb(tool);
 		rb(tool);
+		sb(tool);
+		rrb(tool);
+	}
 }
 
-void	sort_unit_three_b(t_tool *tool, int len)
+static void	max_condition_b(t_tool *tool)
+{
+	if (tool->b_info->tail->rank > tool->b_info->tail->prev->rank)
+	{
+		rb(tool);
+		sb(tool);
+		rrb(tool);
+		sb(tool);
+	}
+	else
+	{
+		sb(tool);
+		rb(tool);
+		sb(tool);
+		rrb(tool);
+		sb(tool);
+	}
+}
+
+void	sort_unit_three_b_extra(t_tool *tool, int len)
 {
 	int	min;
 	int	max;
@@ -75,15 +62,7 @@ void	sort_unit_three_b(t_tool *tool, int len)
 			sb(tool);
 	}
 	else if (max == tool->b_info->tail->prev->prev->rank)
-	{
-		if (tool->b_info->tail->rank > tool->b_info->tail->prev->rank)
-			rrb(tool);
-		else
-		{
-			sb(tool);
-			rrb(tool);
-		}
-	}
+		max_condition_b(tool);
 	else
 		remain_condition_b(tool);
 	return ;

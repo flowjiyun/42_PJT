@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:27:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/21 12:15:58 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:39:43 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	sort_stack_a(t_tool *tool, int len, int pre_median);
 void	sort_stack_b(t_tool *tool, int len, int pre_median);
 void	sort_unit_three_a(t_tool *tool, int len);
 void	sort_unit_three_b(t_tool *tool, int len);
+void	sort_unit_three_a_extra(t_tool *tool, int len);
+void	sort_unit_three_b_extra(t_tool *tool, int len);
 void	sa(t_tool *tool);
 void	sb(t_tool *tool);
 void	pa(t_tool *tool);
@@ -41,5 +43,9 @@ void	ra(t_tool *tool);
 void	rb(t_tool *tool);
 void	rra(t_tool *tool);
 void	rrb(t_tool *tool);
+int		get_max_b(t_tool *tool, int len);
+int		get_min_b(t_tool *tool, int len);
+int		get_max_a(t_tool *tool, int len);
+int		get_min_a(t_tool *tool, int len);
 
 #endif
