@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_stack_a.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:09:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/09/21 19:26:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/16 23:47:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ void	sort_stack_a(t_tool *tool, int len, int pre_median)
 
 	if (len <= 3)
 	{
-		if (len == 3)
+		if ((tool->a_info->len == 3) && (len == 3))
 			sort_unit_three_a(tool, len);
+		else if ((tool->a_info->len != 3) && (len == 3))
+			sort_unit_three_a_extra(tool, len);
 		else
 			sort_unit_a(tool, len);
 		return ;
