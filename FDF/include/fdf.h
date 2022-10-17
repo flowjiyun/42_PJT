@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/17 16:02:50 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:48:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include <keysymdef.h>
 
 typedef struct s_data
 {
