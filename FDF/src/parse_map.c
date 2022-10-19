@@ -1,39 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/19 16:24:24 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/10/19 15:54:21 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/10/19 16:11:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <mlx.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <math.h>
+#include "fdf.h"
 
-typedef struct s_img_data
-{
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_img_data;
-
-typedef struct s_mlx
-{
-	void		*screen;
-	void		*window;
-	t_img_data	data;
-	char		***map;
-}	t_mlx;
-
-#endif
