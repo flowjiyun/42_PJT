@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/17 14:45:10 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/19 22:34:34 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = fdf
 NAME_BONUS = fdf
 
 SRC_DIR = ./src/
-SRC_NAME = main.c
+SRC_NAME = main.c check_file.c \
+			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
 # SRC_BONUS_DIR = ./src_bonus/
