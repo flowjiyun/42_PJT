@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
+#    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/19 22:34:34 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/20 15:12:14 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ NAME = fdf
 NAME_BONUS = fdf
 
 SRC_DIR = ./src/
-SRC_NAME = main.c check_file.c \
-			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c
+SRC_NAME = main.c check_file.c parse_map.c \
+			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
+			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
 # SRC_BONUS_DIR = ./src_bonus/
@@ -41,13 +42,14 @@ MLX_LIB = libmlx.dylib
 
 INCLUDE := -I./include -I./mlx
 
-CFLAGS := -Wall -Wextra -Werror 
+CFLAGS := -Wall -Wextra -Werror -g
 CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all : all_check
 
 all_check : $(OBJ) $(MLX_LIB)
 		$(CC) $(CFLAGS) $(INCLUDE) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
+# $(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $^
 		touch $@
 		
 bonus : bonus_check
@@ -76,7 +78,7 @@ $(MLX_LIB) :
 		cp $(MLX_LIB_DIR)$(MLX_LIB) .
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
-		mkdir -p $(OBJ_DIR)
+		@mkdir -p $(OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDE) -I./mlx -c $< -o $@
 
 $(OBJ_BONUS_DIR)%.o : $(SRC_BONUS_DIR)%.c

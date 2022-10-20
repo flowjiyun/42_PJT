@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/19 23:29:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:52:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <mlx.h>
+// # include <mlx.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -39,15 +39,9 @@ typedef struct s_map
 	int	*arr_depth;
 	int	*arr_color;
 }	t_map;
-typedef struct s_var
-{
-	char	**map;
-	int		map_width;
-	int		map_height;
-
-}	t_var;
 
 int		check_valid_file(char *file_path);
+void	read_map(char *file, t_list_info *list, t_map *map);
 
 char	*get_next_line_short(int fd);
 char	**ft_split(char const *s, char c);

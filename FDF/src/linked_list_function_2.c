@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/10/08 16:32:01 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/20 13:50:33 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fdf.h"
 
-static void	do_free(t_list *list)
-{
-	int		i;
-	char	**cur_content;
+// static void	do_free(t_list *list)
+// {
+// 	int		i;
+// 	char	**cur_content;
 
-	i = 0;
-	cur_content = list->content;
-	while (cur_content[i] != NULL)
-	{
-		free(cur_content[i]);
-		i++;
-	}
-	free(cur_content);
-}
+// 	i = 0;
+// 	cur_content = list->content;
+// 	while (cur_content[i] != NULL)
+// 	{
+// 		free(cur_content[i]);
+// 		i++;
+// 	}
+// 	free(cur_content);
+// }
 
 void	clear_list(t_list_info *list_info)
 {
@@ -34,10 +34,11 @@ void	clear_list(t_list_info *list_info)
 	while (list_info->head != NULL)
 	{
 		temp = list_info->head->next;
-		if (list_info->flag == 1)
-			do_free(list_info->head);
-		else
-			free(list_info->head->content);
+		// if (list_info->flag == 1)
+		// 	do_free(list_info->head);
+		// else
+		free(list_info->head->content_1);
+		free(list_info->head->content_2);
 		free(list_info->head);
 		list_info->head = temp;
 	}
