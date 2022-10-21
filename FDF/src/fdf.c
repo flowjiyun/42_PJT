@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:02:55 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:04:30 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 // 2. change 3d coordinate with angle
 // 3. projection to 2d(isometric view)
 // 4. draw line with converted 2 point
+//		->bresenham algorithm
 
 static t_point	*get_point(int x, int y, t_map *map)
 {
@@ -37,7 +38,16 @@ static t_point	*get_point(int x, int y, t_map *map)
 	return (point);
 }
 
-static t_point *project_point(t_point *point, )
+static t_point	*project_point(t_point *point, t_var *var)
+{
+	point->x *= var->offset;
+	point->y *= var->offset;
+	point->z *= var->offset;
+	rotate_x(&(point->y), &(point->z), var->angle_x);
+	rotate_y(&(point->x), &(point->z), var->angle_y);
+	rotate_z(&(point->x), &(point->y), var->angle_z);
+	return (point);
+}
 
 void	do_fdf(t_mlx *mlx, t_list_info *list, t_map *map)
 {

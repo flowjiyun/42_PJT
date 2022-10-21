@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:06:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:06:00 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ typedef struct s_map
 
 typedef struct s_var
 {
-	int	offset;
+	int		offset;
+	double	angle_x;
+	double	angle_y;
+	double	angle_z;
 }	t_var;
 
 typedef struct s_point
@@ -62,6 +65,9 @@ void	read_map(char *file, t_list_info *list, t_map *map);
 void	get_coordinate(t_list_info *list, t_map *map);
 void	init_mlx(t_mlx *mlx);
 void	init_var(t_var *var, t_map *map);
+void	rotate_x(int *y, int *z, double angle_x);
+void	rotate_y(int *x, int *z, double angle_y);
+void	rotate_z(int *x, int *y, double angle_z);
 
 char	*get_next_line_short(int fd);
 char	**ft_split(char const *s, char c);

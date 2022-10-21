@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 13:53:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 19:11:07 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 20:03:08 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,7 @@ void	init_var(t_var *var, t_map *map)
 	offset_x = WND_WIDTH / map->width / 2;
 	offset_y = WND_HEIGHT / map->height / 2;
 	var->offset = (int)fmin(offset_x, offset_y);
+	var->angle_x = 0;
+	var->angle_y = 0;
+	var->angle_z = 0;
 }
