@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/20 15:12:14 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/21 14:06:04 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME = fdf
 NAME_BONUS = fdf
 
 SRC_DIR = ./src/
-SRC_NAME = main.c check_file.c parse_map.c \
+SRC_NAME = main.c check_file.c parse_map.c get_coordinate.c \
+			init_mlx.c \
 			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
@@ -49,7 +50,6 @@ all : all_check
 
 all_check : $(OBJ) $(MLX_LIB)
 		$(CC) $(CFLAGS) $(INCLUDE) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
-# $(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $^
 		touch $@
 		
 bonus : bonus_check

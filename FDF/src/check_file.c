@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:49:03 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/20 15:11:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:13:15 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 int	check_valid_file(char *file_path)
 {

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils_3.c                                      :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/19 22:26:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 13:29:03 by jiyunpar         ###   ########.fr       */
+/*   Created: 2022/10/21 13:53:55 by jiyunpar          #+#    #+#             */
+/*   Updated: 2022/10/21 14:04:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
-void	terminate(char *str)
+void	init_mlx(t_mlx *mlx)
 {
-	if (errno == 0)
-	{
-		write(2, str, ft_strlen(str));
-	}
-	else
-		perror(str);
-	exit(1);
+	mlx->display = mlx_init();
+	if (!mlx->display)
+		terminate("ERROR : MLX INITIALIZE");
+	mlx->window = mlx_new_window(mlx->display, WND_WIDTH, WND_HEIGHT, "fdf");
+	if (!mlx->window)
+		terminate("ERROR : MLZ INITIALIZE");
 }

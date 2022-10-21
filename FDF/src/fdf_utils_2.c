@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:02:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/20 09:11:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 13:47:00 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ char	*get_next_line_short(int fd)
 	temp = str;
 	while (read(fd, temp, 1) > 0 && *temp++ != '\n')
 		;
-	if (read(fd, temp, 1) == -1)
-		terminate("ERROR : READ");
 	if (temp > str)
 	{
 		*temp = 0;

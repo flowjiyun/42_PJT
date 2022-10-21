@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/20 14:55:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 14:05:33 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 // void	my_mlx_pixel_put(t_img_data *data, int x, int y, int color)
 // {
@@ -32,10 +32,11 @@
 
 int	main(int argc, char **argv)
 {
-	// t_mlx		mlx;
+	t_mlx		mlx;
 	t_list_info	list;
 	t_map		map;
 	// t_list		*cur;
+	// int i = 0;
 
 	errno = 0;
 	if (argc != 2)
@@ -44,13 +45,22 @@ int	main(int argc, char **argv)
 		terminate("ERROR : BAD FILE TYPE\n./fdf [file].fdf");
 	init_list(&list, 0);
 	read_map(argv[1], &list, &map);
+	get_coordinate(&list, &map);
+	init_mlx(&mlx);
+	// for (int i = 0; i < map.width * map.height; i++)
+	// {
+	// 	printf("%d, %d\n", map.arr_depth[i], map.arr_color[i]);
+	// }
 	// printf("%d, %d\n", map.width, map.height);
 	// cur = list.head;
 	// while (cur)
 	// {
 	// 	printf("%s, %s\n", cur->content_1, cur->content_2);
 	// 	cur = cur->next;
+	// 	i++;
 	// }
+	// printf("%d\n", i);
+	mlx_loop(mlx.display);
 	clear_list(&list);
 	return (0);
 }
