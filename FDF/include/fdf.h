@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 14:05:07 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:06:39 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <mlx.h>
 # include "linked_list.h"
 
-# define WND_WIDTH 1280
-# define WND_HEIGHT 720
+# define WND_WIDTH 1080
+# define WND_HEIGHT 500
 
 typedef struct s_mlx
 {
@@ -32,7 +32,7 @@ typedef struct s_mlx
 	void	*img;
 	void	*addr;
 	int		bits_per_pixel;
-	int		line_length;
+	int		size_line;
 	int		endian;
 }	t_mlx;
 
@@ -44,10 +44,24 @@ typedef struct s_map
 	int	*arr_color;
 }	t_map;
 
+typedef struct s_var
+{
+	int	offset;
+}	t_var;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_point;
+
 int		check_valid_file(char *file_path);
 void	read_map(char *file, t_list_info *list, t_map *map);
 void	get_coordinate(t_list_info *list, t_map *map);
 void	init_mlx(t_mlx *mlx);
+void	init_var(t_var *var, t_map *map);
 
 char	*get_next_line_short(int fd);
 char	**ft_split(char const *s, char c);

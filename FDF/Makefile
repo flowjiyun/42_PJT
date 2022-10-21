@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/21 14:06:04 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/21 19:02:52 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME_BONUS = fdf
 
 SRC_DIR = ./src/
 SRC_NAME = main.c check_file.c parse_map.c get_coordinate.c \
-			init_mlx.c \
+			init_struct.c \
 			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))

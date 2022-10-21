@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 14:05:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/21 19:11:44 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	t_mlx		mlx;
 	t_list_info	list;
 	t_map		map;
+	t_var		var;
 	// t_list		*cur;
 	// int i = 0;
 
@@ -47,6 +48,9 @@ int	main(int argc, char **argv)
 	read_map(argv[1], &list, &map);
 	get_coordinate(&list, &map);
 	init_mlx(&mlx);
+	init_var(&var, &map);
+	// do_fdf(&mlx, &list, &map);
+	printf("%d\n", var.offset);
 	// for (int i = 0; i < map.width * map.height; i++)
 	// {
 	// 	printf("%d, %d\n", map.arr_depth[i], map.arr_color[i]);
