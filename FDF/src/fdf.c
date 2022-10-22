@@ -6,19 +6,21 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 20:04:30 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/22 23:43:01 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-// 0. get 2 point to draw line
-// 1. Apply offset to point via. map size
-// 2. change 3d coordinate with angle
+// 0. get 2 point to draw line ok
+// 1. Apply offset to point via. map size ok
+// 2. change 3d coordinate with angle ok
 // 3. projection to 2d(isometric view)
 // 4. draw line with converted 2 point
 //		->bresenham algorithm
-
+// u = x*cos(α) + y*cos(α+120°) + z*cos(α-120°)
+// v = x*sin(α) + y*sin(α+120°) + z*sin(α-120°)'
+// α = 30 degree
 static t_point	*get_point(int x, int y, t_map *map)
 {
 	t_point	*point;
@@ -38,6 +40,17 @@ static t_point	*get_point(int x, int y, t_map *map)
 	return (point);
 }
 
+static void	convert_isometric(int *x, int *y, int *z)
+{
+	int	prev_x;
+	int	prev_y;
+
+	prev_x = *x;
+	prev_y = *y;
+	*x = prev_x * cos(M_PI / 60) + prev_y * cos(M_PI / 60);
+	*y = prev_y * sin(M_PI / 60) - prev_y * sin(M_PI / 60) - *z;
+}
+
 static t_point	*project_point(t_point *point, t_var *var)
 {
 	point->x *= var->offset;
@@ -46,10 +59,19 @@ static t_point	*project_point(t_point *point, t_var *var)
 	rotate_x(&(point->y), &(point->z), var->angle_x);
 	rotate_y(&(point->x), &(point->z), var->angle_y);
 	rotate_z(&(point->x), &(point->y), var->angle_z);
+	convert_isometric(&(point->x), &(point->y), &(point->z));
 	return (point);
 }
 
-void	do_fdf(t_mlx *mlx, t_list_info *list, t_map *map)
+static void	my_mlx_pixel_put(t_point *point, t_mlx *mlx)
+{
+	char	*dst;
+
+	dst = mlx->addr + (point->y * mlx->size_line + point->x * (mlx->bits_per_pixel / 8));
+	*(unsigned int *)dst = 0xFFFFFF;
+}
+
+void	do_fdf(t_mlx *mlx, t_list_info *list, t_map *map, t_var *var)
 {
 	int	x;
 	int	y;
@@ -60,10 +82,10 @@ void	do_fdf(t_mlx *mlx, t_list_info *list, t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-
+			my_mlx_pixel_put(project_point(get_point(x, y, map), var), mlx);
 			x++;
 		}
 		y++;
-
 	}
+	mlx_put_image_to_window()
 }
