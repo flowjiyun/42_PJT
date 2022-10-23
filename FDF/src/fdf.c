@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/22 23:43:01 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/23 22:06:27 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static t_point	*get_point(int x, int y, t_map *map)
 	point->x = x;
 	point->y = y;
 	i = map->width * y + x;
-	point->z = map->arr_depth;
-	if (map->arr_color == -1)
+	point->z = map->arr_depth[i];
+	if (map->arr_color[i] == -1)
 		point->color = 0xFFFFFF;
 	else
 		point->color = map->arr_color[i];
@@ -48,18 +48,24 @@ static void	convert_isometric(int *x, int *y, int *z)
 	prev_x = *x;
 	prev_y = *y;
 	*x = prev_x * cos(M_PI / 60) + prev_y * cos(M_PI / 60);
-	*y = prev_y * sin(M_PI / 60) - prev_y * sin(M_PI / 60) - *z;
+	*y = prev_x * sin(M_PI / 60) - prev_y * sin(M_PI / 60) - *z;
 }
 
-static t_point	*project_point(t_point *point, t_var *var)
+static t_point	*project_point(t_point *point, t_var *var, t_map *map)
 {
 	point->x *= var->offset;
 	point->y *= var->offset;
-	point->z *= var->offset;
+	point->z *= var->offset / 5;
+	point->x -= (map->width * var->offset) / 2;
+	point->y -= (map->height * var->offset) / 2;
 	rotate_x(&(point->y), &(point->z), var->angle_x);
 	rotate_y(&(point->x), &(point->z), var->angle_y);
 	rotate_z(&(point->x), &(point->y), var->angle_z);
 	convert_isometric(&(point->x), &(point->y), &(point->z));
+	point->x += WND_WIDTH / 2;
+	point->y += WND_HEIGHT / 2;
+	point->y += map->height * var->offset / 2;
+	printf("%d, %d, %d\n", point->x, point->y, point->z);
 	return (point);
 }
 
@@ -67,11 +73,14 @@ static void	my_mlx_pixel_put(t_point *point, t_mlx *mlx)
 {
 	char	*dst;
 
-	dst = mlx->addr + (point->y * mlx->size_line + point->x * (mlx->bits_per_pixel / 8));
-	*(unsigned int *)dst = 0xFFFFFF;
+	if ((0 <= point->x && point->x < WND_WIDTH) && (0 <= point->y && point->y <= WND_HEIGHT))
+	{
+		dst = mlx->addr + (point->y * mlx->size_line + point->x * (mlx->bits_per_pixel / 8));
+		*((unsigned int *)dst) = point->color;
+	}
 }
 
-void	do_fdf(t_mlx *mlx, t_list_info *list, t_map *map, t_var *var)
+void	do_fdf(t_mlx *mlx, t_map *map, t_var *var)
 {
 	int	x;
 	int	y;
@@ -82,10 +91,10 @@ void	do_fdf(t_mlx *mlx, t_list_info *list, t_map *map, t_var *var)
 		x = 0;
 		while (x < map->width)
 		{
-			my_mlx_pixel_put(project_point(get_point(x, y, map), var), mlx);
+			my_mlx_pixel_put(project_point(get_point(x, y, map), var, map), mlx);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window()
+	mlx_put_image_to_window(mlx->display, mlx->window, mlx->img, 0, 0);
 }

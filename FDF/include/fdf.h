@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/21 20:06:00 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/23 21:35:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include "linked_list.h"
 
-# define WND_WIDTH 1080
-# define WND_HEIGHT 500
+# define WND_WIDTH 1400
+# define WND_HEIGHT 1050
 
 typedef struct s_mlx
 {
@@ -68,6 +68,7 @@ void	init_var(t_var *var, t_map *map);
 void	rotate_x(int *y, int *z, double angle_x);
 void	rotate_y(int *x, int *z, double angle_y);
 void	rotate_z(int *x, int *y, double angle_z);
+void	do_fdf(t_mlx *mlx, t_map *map, t_var *var);
 
 char	*get_next_line_short(int fd);
 char	**ft_split(char const *s, char c);
