@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
+#    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/23 18:27:29 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/24 14:18:02 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ MLX_LIB = libmlx.dylib
 
 INCLUDE := -I./include -I./mlx
 
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS :=  -g -fsanitize=address
 CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all : all_check

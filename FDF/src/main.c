@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/23 19:01:09 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:57:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ int	main(int argc, char **argv)
 	init_mlx(&mlx);
 	init_var(&var, &map);
 	do_fdf(&mlx, &map, &var);
-	printf("%d\n", var.offset);
-	for (int i = 0; i < map.width * map.height; i++)
-	{
-		printf("%d,%d\n", map.arr_depth[i], map.arr_color[i]);
-	}
-	printf("%d,%d\n", map.width, map.height);
-	cur = list.head;
-	while (cur)
-	{
-		printf("%s,%s\n", (char *)cur->content_1, (char *)cur->content_2);
-		cur = cur->next;
-		i++;
-	}
-	printf("%d\n", i);
+	// printf("%d\n", var.offset);
+	// for (int i = 0; i < map.width * map.height; i++)
+	// {
+	// 	printf("%d,%d\n", map.arr_depth[i], map.arr_color[i]);
+	// }
+	// printf("%d,%d\n", map.width, map.height);
+	// cur = list.head;
+	// while (cur)
+	// {
+	// 	printf("%s,%s\n", (char *)cur->content_1, (char *)cur->content_2);
+	// 	cur = cur->next;
+	// 	i++;
+	// }
+	// printf("%d\n", i);
 	mlx_loop(mlx.display);
 	clear_list(&list);
 	return (0);
