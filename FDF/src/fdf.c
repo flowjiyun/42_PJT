@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 16:16:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:10:28 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ static t_point	*project_point(t_point *point, t_mlx *mlx)
 {
 	point->x *= mlx->var->offset;
 	point->y *= mlx->var->offset;
-	point->z *= (mlx->var->offset / mlx->var->z_modify);
+	point->z *= mlx->var->offset;
+	point->z /= mlx->var->z_modify;
 	point->x -= (mlx->map->width * mlx->var->offset) / 2;
 	point->y -= (mlx->map->height * mlx->var->offset) / 2;
 	rotate_x(&(point->y), &(point->z), mlx->var->angle_x);
 	rotate_y(&(point->x), &(point->z), mlx->var->angle_y);
 	rotate_z(&(point->x), &(point->y), mlx->var->angle_z);
-	convert_isometric(&(point->x), &(point->y), &(point->z));
+	if (mlx->var->isometric == 0)
+		convert_isometric(&(point->x), &(point->y), &(point->z));
 	point->x += (WND_WIDTH / 2 + mlx->var->x_translate);
 	point->y += (WND_HEIGHT / 2 + mlx->var->y_translate);
 	point->y += mlx->map->height * mlx->var->offset / 2;

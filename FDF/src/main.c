@@ -3,61 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 17:18:17 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:22:28 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-static void	translate(int keycode, t_mlx *mlx)
-{
-	if (keycode == D)
-		mlx->var->x_translate += 10;
-	else if (keycode == A)
-		mlx->var->x_translate -= 10;
-	else if (keycode == S)
-		mlx->var->y_translate += 10;
-	else if (keycode == W)
-		mlx->var->y_translate -= 10;
-	do_fdf(mlx);
-}
-
-static void	rotate(int keycode, t_mlx *mlx)
-{
-	if (keycode == UP)
-		mlx->var->angle_x += M_PI / 180.0;
-	else if (keycode == DOWN)
-		mlx->var->angle_x -= M_PI / 180.0;
-	else if (keycode == LEFT)
-		mlx->var->angle_y += M_PI / 180.0;
-	else if (keycode == RIGHT)
-		mlx->var->angle_y -= M_PI / 180.0;
-	do_fdf(mlx);
-}
-
-static void	exit_window(int keycode, t_mlx *mlx)
-{
-	if (keycode == ESC)
-	{
-		mlx_destroy_window(mlx->display, mlx->window);
-		exit(0);
-	}
-	do_fdf(mlx);
-}
-
-int	key_hook(int keycode, t_mlx *mlx)
-{
-	if (keycode == D || keycode == A || keycode == S || keycode == W)
-		translate(keycode, mlx);
-	else if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
-		rotate(keycode, mlx);
-	else if (keycode == ESC)
-		exit_window(keycode, mlx);
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {

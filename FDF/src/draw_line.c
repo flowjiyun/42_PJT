@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 12:16:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 15:43:47 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:45:44 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	plot_line(t_point *start, t_point *end, t_mlx *mlx)
 	init_delta_step(&delta, start, end, &step);
 	error[0] = delta.x + delta.y;
 	cur = start;
-	while (cur->x != end->x && cur->y != end->y)
+	while (cur->x != end->x || cur->y != end->y)
 	{
 		my_mlx_pixel_put(cur, mlx);
 		error[1] = 2 * error[0];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 16:48:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/25 22:26:06 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ typedef struct s_map
 
 typedef struct s_var
 {
-	int		offset;
 	int		x_translate;
 	int		y_translate;
-	int		z_modify;
+	int		isometric;
+	double	offset;
+	double	z_modify;
 	double	angle_x;
 	double	angle_y;
 	double	angle_z;
@@ -75,7 +76,15 @@ typedef enum e_key
 	UP = 126,
 	DOWN = 125,
 	LEFT = 124,
-	RIGHT = 123
+	RIGHT = 123,
+	ZERO = 29,
+	NINE = 25,
+	PLUS = 24,
+	MINUS = 27,
+	OPEN = 33,
+	CLOSE = 30,
+	P = 35,
+	O = 31
 }	t_key;
 
 int		check_valid_file(char *file_path);
@@ -88,6 +97,14 @@ void	rotate_y(int *x, int *z, double angle_y);
 void	rotate_z(int *x, int *y, double angle_z);
 void	do_fdf(t_mlx *mlx);
 void	plot_line(t_point *start, t_point *end, t_mlx *mlx);
+
+int		key_hook(int keycode, t_mlx *mlx);
+void	view(int keycode, t_mlx *mlx);
+void	exit_window(int keycode, t_mlx *mlx);
+void	translate(int keycode, t_mlx *mlx);
+void	rotate(int keycode, t_mlx *mlx);
+void	zoom(int keycode, t_mlx *mlx);
+void	depth(int keycode, t_mlx *mlx);
 
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
