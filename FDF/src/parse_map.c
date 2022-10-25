@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:54:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/24 16:32:27 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:09:44 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void	make_list(char *line, t_list_info *list_info)
 		}
 		free(arr_map_val);
 	}
-	// printf("%d\n", i);
 	free_2d(arr_map_line);
 }
 
@@ -81,11 +80,10 @@ void	read_map(char *file, t_list_info *list, t_map *map)
 	line_count = 0;
 	while (1)
 	{
-		line = get_next_line_short(fd);
+		line = get_next_line(fd);
 		if (!line)
 			break ;
 		line[ft_strlen(line) - 1] = 0;
-		//  printf("%s|\n", line);
 		if (line_count == 0)
 			map->width = get_map_width(line);
 		make_list(line, list);

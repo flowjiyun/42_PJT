@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/24 14:18:02 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/25 12:23:54 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ NAME_BONUS = fdf
 
 SRC_DIR = ./src/
 SRC_NAME = main.c check_file.c parse_map.c get_coordinate.c \
-			init_struct.c rotate.c fdf.c \
+			init_struct.c rotate.c fdf.c draw_line.c \
+			get_next_line.c get_next_line_utils.c \
 			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
@@ -43,7 +44,7 @@ MLX_LIB = libmlx.dylib
 
 INCLUDE := -I./include -I./mlx
 
-CFLAGS :=  -g -fsanitize=address
+CFLAGS :=  -Wall -Wextra -Werror -g
 CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
 
 all : all_check
