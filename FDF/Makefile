@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/26 10:22:25 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/26 13:32:43 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,17 +20,19 @@ SRC_DIR = ./src/
 SRC_NAME = main.c check_file.c parse_map.c get_coordinate.c \
 			init_struct.c rotate.c fdf.c draw_line.c \
 			get_next_line.c get_next_line_utils.c \
-			key_hook_1.c key_hook_2.c put_string.c\
+			key_hook.c \
 			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
-# SRC_BONUS_DIR = ./src_bonus/
-# SRC_BONUS_NAME = main_bonus.c pipex_bonus.c parse_path_bonus.c parse_arg_bonus.c get_dir.c error.c \
-# 		ft_split.c pipex_utils.c make_heredoc.c \
-# 		get_next_line.c get_next_line_utils.c \
-#  		linked_list_function_1.c linked_list_function_2.c
-# SRC_BONUS = $(addprefix $(SRC_BONUS_DIR),$(SRC_BONUS_NAME))
+SRC_BONUS_DIR = ./src_bonus/
+SRC__BONUS_NAME = main_bonus.c check_file.c parse_map.c get_coordinate.c \
+			init_struct.c rotate.c fdf_bonus.c draw_line.c \
+			get_next_line.c get_next_line_utils.c \
+			key_hook_1_bonus.c key_hook_2_bonus.c put_string_bonus.c\
+			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
+			linked_list_function_1.c linked_list_function_2.c
+SRC_BONUS = $(addprefix $(SRC_BONUS_DIR),$(SRC_BONUS_NAME))
 
 OBJ_DIR = ./obj/
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -39,9 +41,9 @@ OBJ = $(addprefix $(OBJ_DIR),$(OBJ_NAME))
 MLX_LIB_DIR = ./mlx/
 MLX_LIB = libmlx.dylib
 
-# OBJ_BONUS_DIR = ./obj_bonus/
-# OBJ_BONUS_NAME = $(SRC_BONUS_NAME:.c=.o)
-# OBJ_BONUS = $(addprefix $(OBJ_BONUS_DIR),$(OBJ_BONUS_NAME))
+OBJ_BONUS_DIR = ./obj_bonus/
+OBJ_BONUS_NAME = $(SRC_BONUS_NAME:.c=.o)
+OBJ_BONUS = $(addprefix $(OBJ_BONUS_DIR),$(OBJ_BONUS_NAME))
 
 INCLUDE := -I./include -I./mlx
 
@@ -56,8 +58,8 @@ all_check : $(OBJ) $(MLX_LIB)
 		
 bonus : bonus_check
 
-bonus_check : $(OBJ_BONUS)
-		$(CC) $(CFLAGS) $(INCLUDE) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
+bonus_check : $(OBJ_BONUS) $(MLX_LIB)
+		$(CC) $(CFLAGS) $(INCLUDE) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
 		touch $@
 
 clean :
@@ -81,8 +83,8 @@ $(MLX_LIB) :
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 		@mkdir -p $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDE) -I./mlx -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(OBJ_BONUS_DIR)%.o : $(SRC_BONUS_DIR)%.c
 		mkdir -p $(OBJ_BONUS_DIR)
-		$(CC) $(CFLAGS) $(INCLUDE) -I./mlx -c $< -o $@
+		$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

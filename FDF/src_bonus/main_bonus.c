@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:05:44 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:17:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/fdf_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	init_var(&var, &map);
 	init_mlx(&mlx, &map, &var);
 	do_fdf(&mlx);
+	put_string_img(&mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_loop(mlx.display);
 	return (0);

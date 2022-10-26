@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 12:51:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:17:07 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/fdf_bonus.h"
 
 // 0. get 2 point to draw line ok
 // 1. Apply offset to point via. map size ok
@@ -63,7 +63,8 @@ static t_point	*project_point(t_point *point, t_mlx *mlx)
 	rotate_x(&(point->y), &(point->z), mlx->var->angle_x);
 	rotate_y(&(point->x), &(point->z), mlx->var->angle_y);
 	rotate_z(&(point->x), &(point->y), mlx->var->angle_z);
-	convert_isometric(&(point->x), &(point->y), &(point->z));
+	if (mlx->var->isometric == 0)
+		convert_isometric(&(point->x), &(point->y), &(point->z));
 	point->x += (WND_WIDTH / 2 + mlx->var->x_translate);
 	point->y += (WND_HEIGHT / 2 + mlx->var->y_translate);
 	point->y += mlx->map->height * mlx->var->offset / 2;
@@ -75,6 +76,8 @@ void	do_fdf(t_mlx *mlx)
 	int	x;
 	int	y;
 
+	if (mlx->img)
+		mlx_destroy_image(mlx->display, mlx->img);
 	mlx->img = mlx_new_image(mlx->display, WND_WIDTH, WND_HEIGHT);
 	mlx->addr = mlx_get_data_addr(mlx->img, &mlx->bits_per_pixel,
 			&mlx->size_line, &mlx->endian);

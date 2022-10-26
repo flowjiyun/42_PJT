@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_string.c                                       :+:      :+:    :+:   */
+/*   put_string_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:18:35 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 12:19:53 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:18:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/fdf_bonus.h"
 
 void	put_string_img(t_mlx *mlx)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook_1.c                                       :+:      :+:    :+:   */
+/*   key_hook_1_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:21:56 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 12:33:25 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:17:43 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/fdf_bonus.h"
 
 void	translate(int keycode, t_mlx *mlx)
 {

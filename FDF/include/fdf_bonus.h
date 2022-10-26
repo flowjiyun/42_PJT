@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:02:58 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:01:54 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -68,7 +68,23 @@ typedef struct s_mlx
 
 typedef enum e_key
 {
+	A = 0,
+	S = 1,
+	D = 2,
+	W = 13,
 	ESC = 53,
+	UP = 126,
+	DOWN = 125,
+	LEFT = 124,
+	RIGHT = 123,
+	ZERO = 29,
+	NINE = 25,
+	PLUS = 24,
+	MINUS = 27,
+	OPEN = 33,
+	CLOSE = 30,
+	P = 35,
+	O = 31
 }	t_key;
 
 int		check_valid_file(char *file_path);
@@ -81,9 +97,15 @@ void	rotate_y(int *x, int *z, double angle_y);
 void	rotate_z(int *x, int *y, double angle_z);
 void	do_fdf(t_mlx *mlx);
 void	plot_line(t_point *start, t_point *end, t_mlx *mlx);
+void	put_string_img(t_mlx *mlx);
 
 int		key_hook(int keycode, t_mlx *mlx);
+void	view(int keycode, t_mlx *mlx);
 void	exit_window(int keycode, t_mlx *mlx);
+void	translate(int keycode, t_mlx *mlx);
+void	rotate(int keycode, t_mlx *mlx);
+void	zoom(int keycode, t_mlx *mlx);
+void	depth(int keycode, t_mlx *mlx);
 
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
