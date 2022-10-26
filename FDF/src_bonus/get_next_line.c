@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 16:17:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:23:40 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		termiante("ERROR : MALLOC");
+		terminate("ERROR : MALLOC");
 	buf[0] = '\0';
 	backup = read_file(fd, &backup, buf);
 	if (!backup)
