@@ -6,21 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:17:07 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:14:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf_bonus.h"
-
-// 0. get 2 point to draw line ok
-// 1. Apply offset to point via. map size ok
-// 2. change 3d coordinate with angle ok
-// 3. projection to 2d(isometric view)
-// 4. draw line with converted 2 point
-//		->bresenham algorithm
-// u = x*cos(α) + y*cos(α+120°) + z*cos(α-120°)
-// v = x*sin(α) + y*sin(α+120°) + z*sin(α-120°)'
-// α = 120 degree
 
 static t_point	*get_point(int x, int y, t_mlx *mlx)
 {
@@ -31,7 +21,7 @@ static t_point	*get_point(int x, int y, t_mlx *mlx)
 	if (!point)
 		terminate("ERROR : POINT INIT FAIL");
 	point->x = x;
-	point->y = y;
+		point->y = y;
 	i = mlx->map->width * y + x;
 	point->z = mlx->map->arr_depth[i];
 	if (mlx->map->arr_color[i] == -1)
@@ -43,13 +33,15 @@ static t_point	*get_point(int x, int y, t_mlx *mlx)
 
 static void	convert_isometric(int *x, int *y, int *z)
 {
-	int	prev_x;
-	int	prev_y;
+	int		prev_x;
+	int		prev_y;
+	double	alpha;
 
+	alpha = M_PI / 60 * 4;
 	prev_x = *x;
 	prev_y = *y;
-	*x = prev_x * cos(M_PI / 60 * 4) - prev_y * cos(M_PI / 60 * 4);
-	*y = prev_x * sin(M_PI / 60 * 4) + prev_y * sin(M_PI / 60 * 4) - *z;
+	*x = prev_x * cos(alpha) - prev_y * cos(alpha);
+	*y = prev_x * sin(alpha) + prev_y * sin(alpha) - *z;
 }
 
 static t_point	*project_point(t_point *point, t_mlx *mlx)

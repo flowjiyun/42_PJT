@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/26 13:32:43 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/26 13:53:11 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,20 +17,20 @@ NAME = fdf
 NAME_BONUS = fdf
 
 SRC_DIR = ./src/
-SRC_NAME = main.c check_file.c parse_map.c get_coordinate.c \
+SRC_NAME = main.c check_file.c read_map.c get_coordinate.c \
 			init_struct.c rotate.c fdf.c draw_line.c \
 			get_next_line.c get_next_line_utils.c \
 			key_hook.c \
-			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
+			fdf_utils_1.c fdf_utils_2.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))
 
 SRC_BONUS_DIR = ./src_bonus/
-SRC__BONUS_NAME = main_bonus.c check_file.c parse_map.c get_coordinate.c \
+SRC_BONUS_NAME = main_bonus.c check_file.c read_map.c get_coordinate.c \
 			init_struct.c rotate.c fdf_bonus.c draw_line.c \
 			get_next_line.c get_next_line_utils.c \
 			key_hook_1_bonus.c key_hook_2_bonus.c put_string_bonus.c\
-			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
+			fdf_utils_1.c fdf_utils_2.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC_BONUS = $(addprefix $(SRC_BONUS_DIR),$(SRC_BONUS_NAME))
 

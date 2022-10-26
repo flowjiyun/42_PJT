@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:35:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/13 19:36:34 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:17:29 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/fdf_bonus.h"
 
 static char	*read_file(int fd, char **backup, char *buf)
 {
@@ -20,12 +20,7 @@ static char	*read_file(int fd, char **backup, char *buf)
 	{
 		byte = read(fd, buf, BUFFER_SIZE);
 		if (byte == -1)
-		{	
-			if (*backup)
-				free(*backup);
-			free(buf);
-			return (NULL);
-		}
+			terminate("ERROR : READ");
 		if (byte == 0)
 			break ;
 		buf[byte] = '\0';
@@ -54,7 +49,7 @@ static char	*get_line(char **backup)
 	{
 		temp = (char *)malloc(sizeof(char) * (len + 2));
 		if (!temp)
-			return (NULL);
+			terminate("ERROR : READ");
 		ft_memcopy(temp, *backup, len + 1);
 		++len;
 	}
@@ -62,7 +57,7 @@ static char	*get_line(char **backup)
 	{
 		temp = (char *)malloc(sizeof(char) * (len + 1));
 		if (!temp)
-			return (NULL);
+			terminate("ERROR : READ");
 		ft_memcopy(temp, *backup, len);
 	}
 	temp[len] = '\0';
@@ -78,7 +73,7 @@ static char	*ft_substr(char *str, int start, unsigned int size)
 		return (NULL);
 	ret = (char *)malloc(sizeof(char) * (size + 1));
 	if (!ret)
-		return (NULL);
+		terminate("ERROR : READ");
 	i = -1;
 	while (++i < size)
 		ret[i] = str[start++];
@@ -115,7 +110,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		termiante("ERROR : MALLOC");
 	buf[0] = '\0';
 	backup = read_file(fd, &backup, buf);
 	if (!backup)

@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 08:57:51 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:12:51 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/fdf.h"
 
 unsigned int	ft_strlen_1(const char *str)
 {
@@ -31,10 +31,7 @@ char	*ft_strdup(char *str)
 
 	temp = (char *)malloc(sizeof(char) * (ft_strlen_1(str) + 1));
 	if (!temp)
-	{
-		free(str);
-		return (NULL);
-	}
+		terminate("ERROR : MALLOC");
 	i = -1;
 	while (str[++i])
 		temp[i] = str[i];
@@ -50,11 +47,7 @@ char	*ft_strjoin_1(char *s1, char *s2)
 
 	temp = malloc(sizeof(char) * (ft_strlen_1(s1) + ft_strlen_1(s2) + 1));
 	if (!temp)
-	{
-		free(s1);
-		free(s2);
-		return (NULL);
-	}
+		terminate("ERROR : MALLOC");
 	i = -1;
 	while (s1[++i])
 		temp[i] = s1[i];

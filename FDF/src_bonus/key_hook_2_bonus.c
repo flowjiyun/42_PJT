@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:24:18 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:17:47 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:01:23 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	view(int keycode, t_mlx *mlx)
 	mlx->var->angle_x = 0;
 	mlx->var->angle_y = 0;
 	mlx->var->angle_z = 0;
-	do_fdf(mlx);
 }
 
 void	exit_window(int keycode, t_mlx *mlx)

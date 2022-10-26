@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:01:54 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:04:19 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "get_next_line.h"
 
 # define WND_WIDTH 1400
-# define WND_HEIGHT 1050
+# define WND_HEIGHT 1000
 
 typedef struct s_map
 {
@@ -87,27 +87,48 @@ typedef enum e_key
 	O = 31
 }	t_key;
 
+/*---------------------check_file.c-----------------------*/
 int		check_valid_file(char *file_path);
+
+/*---------------------read_map.c-----------------------*/
 void	read_map(char *file, t_list_info *list, t_map *map);
+
+/*---------------------get_coordinate.c---------------------*/
 void	get_coordinate(t_list_info *list, t_map *map);
+
+/*---------------------init_struct.c-----------------------*/
 void	init_mlx(t_mlx *mlx, t_map *map, t_var *var);
 void	init_var(t_var *var, t_map *map);
+
+/*---------------------rotate.c-----------------------*/
 void	rotate_x(int *y, int *z, double angle_x);
 void	rotate_y(int *x, int *z, double angle_y);
 void	rotate_z(int *x, int *y, double angle_z);
+
+/*---------------------fdf_bonus.c-----------------------*/
 void	do_fdf(t_mlx *mlx);
+
+/*---------------------draw_line.c-----------------------*/
 void	plot_line(t_point *start, t_point *end, t_mlx *mlx);
+
+/*---------------------put_string_bonus.c-----------------------*/
 void	put_string_img(t_mlx *mlx);
 
+/*---------------------key_hook_1_bonus.c-----------------------*/
 int		key_hook(int keycode, t_mlx *mlx);
-void	view(int keycode, t_mlx *mlx);
-void	exit_window(int keycode, t_mlx *mlx);
 void	translate(int keycode, t_mlx *mlx);
 void	rotate(int keycode, t_mlx *mlx);
 void	zoom(int keycode, t_mlx *mlx);
 void	depth(int keycode, t_mlx *mlx);
 
+/*---------------------key_hook_2_bonus.c-----------------------*/
+void	exit_window(int keycode, t_mlx *mlx);
+void	view(int keycode, t_mlx *mlx);
+
+/*---------------------fdf_util_1.c-----------------------*/
 char	**ft_split(char const *s, char c);
+
+/*---------------------fdf_util_2.c-----------------------*/
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(char *str);
 void	free_2d(char **data);

@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:53:59 by jiyun             #+#    #+#             */
-/*   Updated: 2022/10/26 13:17:54 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:37:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list_bonus.h"
+#include "linked_list.h"
 
 void	clear_list(t_list_info *list_info)
 {

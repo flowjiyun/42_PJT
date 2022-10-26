@@ -6,11 +6,22 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:02:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 08:58:50 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 13:52:16 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
+
+void	terminate(char *str)
+{
+	if (errno == 0)
+	{
+		write(2, str, ft_strlen(str));
+	}
+	else
+		perror(str);
+	exit(1);
+}
 
 void	free_2d(char **data)
 {
