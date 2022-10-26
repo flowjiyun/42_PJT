@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+         #
+#    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/25 22:23:57 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/26 10:22:25 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_DIR = ./src/
 SRC_NAME = main.c check_file.c parse_map.c get_coordinate.c \
 			init_struct.c rotate.c fdf.c draw_line.c \
 			get_next_line.c get_next_line_utils.c \
-			key_hook_1.c key_hook_2.c \
+			key_hook_1.c key_hook_2.c put_string.c\
 			fdf_utils_1.c fdf_utils_2.c fdf_utils_3.c \
 			linked_list_function_1.c linked_list_function_2.c
 SRC = $(addprefix $(SRC_DIR),$(SRC_NAME))

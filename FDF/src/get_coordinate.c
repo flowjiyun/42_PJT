@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 09:01:32 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/24 17:06:01 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 08:20:45 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static int	ft_atoi_hex(char *str)
 
 	val = 0;
 	i = 2;
-	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'A' && str[i] <= 'F') || (str[i] >= 'a' && str[i] <= 'f'))
+	while ((str[i] >= '0' && str[i] <= '9')
+		|| (str[i] >= 'A' && str[i] <= 'F') || (str[i] >= 'a' && str[i] <= 'f'))
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			val = val * 16 + str[i] - '0';

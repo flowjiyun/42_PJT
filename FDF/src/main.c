@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 22:22:28 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:21:47 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ int	main(int argc, char **argv)
 	init_list(&list, 0);
 	read_map(argv[1], &list, &map);
 	get_coordinate(&list, &map);
+	clear_list(&list);
 	init_var(&var, &map);
 	init_mlx(&mlx, &map, &var);
 	do_fdf(&mlx);
+	put_string_img(&mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_loop(mlx.display);
-	clear_list(&list);
 	return (0);
 }

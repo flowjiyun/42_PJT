@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:02:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 12:09:28 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 08:58:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 void	free_2d(char **data)
 {

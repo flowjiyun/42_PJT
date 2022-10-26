@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:49:43 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/20 14:01:57 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 08:58:52 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 static unsigned int	count_word(char const *s, char c)
 {

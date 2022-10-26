@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 22:26:06 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:21:15 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	rotate_y(int *x, int *z, double angle_y);
 void	rotate_z(int *x, int *y, double angle_z);
 void	do_fdf(t_mlx *mlx);
 void	plot_line(t_point *start, t_point *end, t_mlx *mlx);
+void	put_string_img(t_mlx *mlx);
 
 int		key_hook(int keycode, t_mlx *mlx);
 void	view(int keycode, t_mlx *mlx);

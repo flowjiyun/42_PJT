@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 10:36:06 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 09:53:44 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 08:57:51 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "get_next_line.h"
 
 unsigned int	ft_strlen_1(const char *str)
 {

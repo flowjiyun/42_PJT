@@ -6,11 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 15:54:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/25 12:09:44 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 08:58:37 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 static int	get_map_width(char *line)
 {
@@ -37,12 +37,28 @@ static int	get_val_length(char **list)
 	return (ret);
 }
 
+static void	make_list_node(char **arr_map_val,
+	t_list_info *list_info)
+{
+	t_list	*node;
+
+	if (get_val_length(arr_map_val) == 1)
+	{
+		node = make_node(arr_map_val[0], NULL);
+		push_back(list_info, node);
+	}
+	else
+	{
+		node = make_node(arr_map_val[0], arr_map_val[1]);
+		push_back(list_info, node);
+	}
+}
+
 static void	make_list(char *line, t_list_info *list_info)
 {
 	char	**arr_map_line;
 	char	**arr_map_val;
 	int		i;
-	t_list	*node;
 
 	arr_map_line = ft_split(line, ' ');
 	if (!arr_map_line)
@@ -53,16 +69,7 @@ static void	make_list(char *line, t_list_info *list_info)
 		arr_map_val = ft_split(arr_map_line[i], ',');
 		if (!arr_map_val)
 			terminate("ERROR : SPLIT FAIL");
-		if (get_val_length(arr_map_val) == 1)
-		{
-			node = make_node(arr_map_val[0], NULL);
-			push_back(list_info, node);
-		}
-		else
-		{
-			node = make_node(arr_map_val[0], arr_map_val[1]);
-			push_back(list_info, node);
-		}
+		make_list_node(arr_map_val, list_info);
 		free(arr_map_val);
 	}
 	free_2d(arr_map_line);

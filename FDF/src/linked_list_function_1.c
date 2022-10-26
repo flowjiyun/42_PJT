@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_function_1.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiyunpar <jiyunpar@student.42seou.kr>      +#+  +:+       +#+        */
+/*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/19 23:32:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/26 09:09:46 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../include/fdf.h"
 
 t_list	*make_node(void *content_1, void *content_2)
 {
