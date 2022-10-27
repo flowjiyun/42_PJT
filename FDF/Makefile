@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/26 13:53:11 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/27 13:59:30 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,22 @@ OBJ_BONUS = $(addprefix $(OBJ_BONUS_DIR),$(OBJ_BONUS_NAME))
 
 INCLUDE := -I./include -I./mlx
 
-CFLAGS :=  -Wall -Wextra -Werror -g
-CFLAGS_DEBUG := -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 all : all_check
+
+debugs : 
+	make DEBUG=2
+
+debug :
+	make DEBUG=1
+
+ifeq ($(DEBUG), 1)
+    CFLAGS	+=	-g3 -save-temps=obj
+endif
+ifeq ($(DEBUG), 2)
+    CFLAGS	+=	-g3 -fsanitize=address -save-temps=obj
+endif
 
 all_check : $(OBJ) $(MLX_LIB)
 		$(CC) $(CFLAGS) $(INCLUDE) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
