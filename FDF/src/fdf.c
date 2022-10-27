@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 14:42:23 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 14:13:53 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:45:56 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	convert_isometric(int *x, int *y, int *z)
 	int		prev_y;
 	double	alpha;
 
-	alpha = M_PI / 60 * 4;
+	alpha = M_PI / 6;
 	prev_x = *x;
 	prev_y = *y;
 	*x = prev_x * cos(alpha) - prev_y * cos(alpha);

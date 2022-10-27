@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/10/27 13:59:30 by jiyunpar         ###   ########.fr        #
+#    Updated: 2022/10/27 15:42:55 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,13 +65,13 @@ ifeq ($(DEBUG), 2)
 endif
 
 all_check : $(OBJ) $(MLX_LIB)
-		$(CC) $(CFLAGS) $(INCLUDE) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
+		$(CC) $(CFLAGS) $(INCLUDE) -framework OpenGL -framework AppKit -o $(NAME) $^
 		touch $@
 		
 bonus : bonus_check
 
 bonus_check : $(OBJ_BONUS) $(MLX_LIB)
-		$(CC) $(CFLAGS) $(INCLUDE) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
+		$(CC) $(CFLAGS) $(INCLUDE) -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
 		touch $@
 
 clean :
