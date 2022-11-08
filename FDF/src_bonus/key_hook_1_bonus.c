@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 22:21:56 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:17:43 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/11/08 15:40:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,17 @@ void	zoom(int keycode, t_mlx *mlx)
 void	depth(int keycode, t_mlx *mlx)
 {
 	if (keycode == OPEN)
+	{
 		mlx->var->z_modify += 0.05;
+		if (mlx->var->z_modify > 2)
+			mlx->var->z_modify = 2;
+	}
 	else if (keycode == CLOSE)
+	{
 		mlx->var->z_modify -= 0.05;
+		if (mlx->var->z_modify < 0.5)
+			mlx->var->z_modify = 0.5;
+	}
 }
 
 int	key_hook(int keycode, t_mlx *mlx)
