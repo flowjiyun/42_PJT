@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 14:04:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/12/26 08:29:18 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	depth(int keycode, t_mlx *mlx);
 /*---------------------key_hook_2_bonus.c-----------------------*/
 void	exit_window(int keycode, t_mlx *mlx);
 void	view(int keycode, t_mlx *mlx);
+int		win_close(t_mlx *mlx);
 
 /*---------------------fdf_util_1.c-----------------------*/
 char	**ft_split(char const *s, char c);

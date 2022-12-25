@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:50:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:53:57 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/12/26 08:23:19 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	plot_line(t_point *start, t_point *end, t_mlx *mlx);
 /*---------------------key_hook.c-----------------------*/
 int		key_hook(int keycode, t_mlx *mlx);
 void	exit_window(int keycode, t_mlx *mlx);
+int		win_close(t_mlx *mlx);
 
 /*---------------------fdf_util_1.c-----------------------*/
 char	**ft_split(char const *s, char c);

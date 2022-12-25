@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 13:29:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/10/26 13:05:44 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2022/12/26 08:20:32 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	init_var(&var, &map);
 	init_mlx(&mlx, &map, &var);
 	do_fdf(&mlx);
+	mlx_hook(mlx.window, 17, 0, win_close, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_loop(mlx.display);
 	return (0);
