@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:26:57 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/05 21:03:50 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:05:39 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,26 @@ typedef struct s_fork
 	pthread_mutex_t	usaged_lock;
 }	t_fork;
 
+typedef struct s_meal
+{
+	int				*num_of_meal;
+	pthread_mutex_t	count_lock;
+}	t_meal;
+
 typedef struct s_philo
 {
-	pthread_t		*philosophers;
-	int				*state;
-	pthread_mutex_t	state_lock;
+	int				thread_id;
+	pthread_t		*thread;
 	t_fork			*fork;
 	t_input			*input;
 }	t_philo;
 
 bool	is_valid_input(char **argv);
-bool	set_input(t_input *input, int argc, char **argv);
-bool	set_fork(t_fork *fork, t_input *input);
-bool	set_philo(t_philo *philo, t_fork *fork, t_input *input);
+t_input	*set_input(int argc, char **argv);
+t_fork	*set_fork(t_input *input);
+t_philo	**set_philo(t_fork *fork, t_input *input);
 void	*routine(void *arg);
-bool	create_philo(t_philo *philo);
-bool	wait_philo(t_philo *philo);
+bool	create_philo(t_philo **philo_arr, int num_of_philo);
+bool	wait_philo(t_philo **philo_arr, int num_of_philo);
 
 #endif
