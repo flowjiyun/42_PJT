@@ -30,23 +30,84 @@ t_input	*set_input(int argc, char **argv)
 	return (input);
 }
 
-t_fork	*set_fork(t_input *input)
+static bool	init_data_type(void *shared_data_type, int num_of_philo, int byte)
 {
-	t_fork	*fork;
+	bool	**bool_type;
+	int		**int_type;
 
-	fork = malloc(sizeof(t_fork));
-	if (!fork)
-		return (NULL);
-	fork->is_occupied = malloc(sizeof(bool) * input->num_of_philo);
-	if (!fork->is_occupied)
-		return (NULL);
-	memset(fork->is_occupied, 0, sizeof(bool) * input->num_of_philo);
-	if (pthread_mutex_init(&(fork->usaged_lock), NULL) != 0)
-		return (NULL);
-	return (fork);
+	if (byte == 1)
+	{
+		bool_type = (bool **)shared_data_type;
+		*bool_type = malloc(byte * num_of_philo);
+		if (!(*bool_type))
+			return (false);
+		memset(*bool_type, 0, byte * num_of_philo);
+	}
+	else
+	{
+		int_type = (int **)shared_data_type;
+		*int_type = malloc(byte * num_of_philo);
+		if (!(*int_type))
+			return (false);
+		memset(*int_type, 0, byte * num_of_philo);
+	}
+	return (true);
 }
 
-t_philo	**set_philo(t_fork *fork, t_input *input)
+static bool	init_mutex_lock(t_shared_data **shared_data)
+{
+	if (pthread_mutex_init(&((*shared_data)->created_flag_lock), NULL) != 0)
+		return (false);
+	if (pthread_mutex_init(&((*shared_data)->fork_flag_lock), NULL) != 0)
+		return (false);
+	if (pthread_mutex_init(&((*shared_data)->dead_flag_lock), NULL) != 0)
+		return (false);
+	if (pthread_mutex_init(&((*shared_data)->meal_count_lock), NULL) != 0)
+		return (false);
+	return (true);
+}
+
+bool	destroy_mutex(t_shared_data *shared_data)
+{
+	if (pthread_mutex_destroy(&shared_data->created_flag_lock) == false)
+		return (false);
+	if (pthread_mutex_destroy(&shared_data->fork_flag_lock) == false)
+		return (false);
+	if (pthread_mutex_destroy(&shared_data->dead_flag_lock) == false)
+		return (false);
+	if (pthread_mutex_destroy(&shared_data->meal_count_lock) == false)
+		return (false);
+	return (true);
+}
+
+t_shared_data	*set_shared_data(t_input *input)
+{
+	t_shared_data	*shared_data;
+	int				philo_num;
+
+	shared_data = malloc(sizeof(t_shared_data));
+	if (!shared_data)
+		return (NULL);
+	philo_num = input->num_of_philo;
+	if (init_data_type(&(shared_data->is_philo_created), philo_num,
+			sizeof(bool)) == false)
+		return (NULL);
+	if (init_data_type(&(shared_data->is_occupied), philo_num,
+			sizeof(bool)) == false)
+		return (NULL);
+	if (init_data_type(&(shared_data->is_philo_dead), philo_num,
+			sizeof(bool)) == false)
+		return (NULL);
+	if (init_data_type(&(shared_data->num_of_meal), philo_num,
+			sizeof(int)) == false)
+		return (NULL);
+	if (init_mutex_lock(&shared_data) == false)
+		return (NULL);
+	shared_data->start_flag = false;
+	return (shared_data);
+}
+
+t_philo	**set_philo(t_shared_data *shared_data, t_input *input)
 {
 	t_philo	**philo_arr;
 	int		i;
@@ -64,7 +125,7 @@ t_philo	**set_philo(t_fork *fork, t_input *input)
 		philo_arr[i]->thread = malloc(sizeof(pthread_t));
 		if (!philo_arr[i]->thread)
 			return (NULL);
-		philo_arr[i]->fork = fork;
+		philo_arr[i]->shared_data = shared_data;
 		philo_arr[i]->input = input;
 		++i;
 	}
