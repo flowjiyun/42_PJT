@@ -31,6 +31,21 @@ bool	is_all_philo_created(t_shared_data *shared_data, int num_of_philo)
 	return (true);
 }
 
+void	set_start_timeval(t_philo **philo_arr, int num_of_philo)
+{
+	int				i;
+	struct timeval	start_time;
+
+	i = 0;
+	gettimeofday(&start_time, NULL);
+	while (i < num_of_philo)
+	{
+		philo_arr[i]->simulation_start_time = start_time;
+		philo_arr[i]->prev_eat_time;
+		++i;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_philo			**philo_arr;
@@ -74,9 +89,10 @@ int	main(int argc, char **argv)
 	{
 		if (is_all_philo_created(shared_data, input->num_of_philo) == true)
 		{
-			gettimeofday(&shared_data->simulation_start_time, NULL);
+			set_start_timeval(philo_arr, input->num_of_philo);
+			pthread_mutex_lock(&shared_data->start_flag_lock);
 			shared_data->start_flag = true;
-			printf("sec : %ld, microsec : %d\n", shared_data->simulation_start_time.tv_sec, shared_data->simulation_start_time.tv_usec);
+			pthread_mutex_unlock(&shared_data->start_flag_lock);
 			// terminate_philo(philo_arr, input->num_of_philo);
 			// destroy_mutex(shared_data);
 			// return (0);

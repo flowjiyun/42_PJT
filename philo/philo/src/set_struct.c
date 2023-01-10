@@ -64,6 +64,8 @@ static bool	init_mutex_lock(t_shared_data **shared_data)
 		return (false);
 	if (pthread_mutex_init(&((*shared_data)->meal_count_lock), NULL) != 0)
 		return (false);
+	if (pthread_mutex_init(&((*shared_data)->start_flag_lock), NULL) != 0)
+		return (false);
 	return (true);
 }
 
@@ -92,7 +94,7 @@ t_shared_data	*set_shared_data(t_input *input)
 	if (init_data_type(&(shared_data->is_philo_created), philo_num,
 			sizeof(bool)) == false)
 		return (NULL);
-	if (init_data_type(&(shared_data->is_occupied), philo_num,
+	if (init_data_type(&(shared_data->is_fork_occupied), philo_num,
 			sizeof(bool)) == false)
 		return (NULL);
 	if (init_data_type(&(shared_data->is_philo_dead), philo_num,

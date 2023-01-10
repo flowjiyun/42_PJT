@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:26:57 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/09 15:53:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:28:39 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 # include <sys/time.h>
 # include "libft.h"
 
+# define HAS_FORK_MESSAGE "%ld %d has taken a fork\n"
+# define EATING_MESSAGE "%ld %d is eating\n"
+# define SLEEPING_MESSAGE "%ld %d sleeping\n"
+# define THINKING_MESSAGE "%ld %d has thinking\n"
+# define DIED_MESSAGE "%ld %d died\n"
+
 enum
 {
-	HUNGRY = 0,
+	HAS_FORK = 0,
 	EATING,
+	SLEEPING,
 	THINKING,
-	SLEEPING
+	DIED
 };
 
 typedef struct s_shared_data	t_shared_data;
@@ -43,14 +50,14 @@ typedef struct s_shared_data
 {
 	bool			*is_philo_created;
 	pthread_mutex_t	created_flag_lock;
-	bool			*is_occupied;
+	bool			*is_fork_occupied;
 	pthread_mutex_t	fork_flag_lock;
 	bool			*is_philo_dead;
 	pthread_mutex_t	dead_flag_lock;
 	int				*num_of_meal;
 	pthread_mutex_t	meal_count_lock;
-	struct timeval	simulation_start_time;
 	bool			start_flag;
+	pthread_mutex_t	start_flag_lock;
 }	t_shared_data;
 typedef struct s_philo
 {
@@ -58,6 +65,8 @@ typedef struct s_philo
 	pthread_t		*thread;
 	t_shared_data	*shared_data;
 	t_input			*input;
+	struct timeval	simulation_start_time;
+	struct timeval	prev_eat_time;
 }	t_philo;
 
 bool			is_valid_input(char **argv);
