@@ -55,25 +55,23 @@ void	pick_right_fork(int id, int philo_num, bool *fork_arr,
 	}
 }
 
-long	get_cur_time(t_philo *philo)
+long	get_cur_time(struct timeval base_timeval)
 {
 	struct timeval	cur_timeval;
-	struct timeval	start_timeval;	
 	long			cur_time;
-	long			start_time;
+	long			base_time;
 
-	start_timeval = philo->simulation_start_time;
 	gettimeofday(&cur_timeval, NULL);
 	cur_time = cur_timeval.tv_sec * 1000 + cur_timeval.tv_usec / 1000;
-	start_time = start_timeval.tv_sec * 1000 + start_timeval.tv_usec / 1000;
-	return (cur_time - start_time);
+	base_time = base_timeval.tv_sec * 1000 + base_timeval.tv_usec / 1000;
+	return (cur_time - base_time);
 }
 
 void	print_status(t_philo *philo, int status)
 {
 	long	cur_time;
 
-	cur_time = get_cur_time(philo);
+	cur_time = get_cur_time(philo->simulation_start_time);
 	if (status == HAS_FORK)
 		printf(HAS_FORK_MESSAGE, cur_time, philo->thread_id);
 	else if (status == EATING)
@@ -144,9 +142,13 @@ void	eating(t_philo *philo)
 }
 
 void	sleeping(t_philo *philo)
-{
+{	
+	struct timeval	cur_timeval;
+
 	print_status(philo, SLEEPING);
 	usleep(philo->input->time_to_sleep);
+	gettimeofday(&cur_timeval, NULL);
+
 }
 
 void	ready_simulation(t_philo *philo)
