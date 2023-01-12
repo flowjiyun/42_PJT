@@ -23,39 +23,7 @@
   2. 홀수번째 철학자는 오른쪽 포크를 먼저 든다
 */
 
-void	pick_left_fork(int id, int philo_num, bool *fork_arr,
-	pthread_mutex_t fork_flag_lock)
-{
-	while (true)
-	{
-		pthread_mutex_lock(&fork_flag_lock);
-		if (fork_arr[id] == false)
-		{
-			fork_arr[id] = true;
-			pthread_mutex_unlock(&fork_flag_lock);
-			break ;
-		}
-		pthread_mutex_unlock(&fork_flag_lock);
-	}
-}
-
-void	pick_right_fork(int id, int philo_num, bool *fork_arr,
-	pthread_mutex_t fork_flag_lock)
-{
-	while (true)
-	{
-		pthread_mutex_lock(&fork_flag_lock);
-		if (fork_arr[(id + (philo_num - 1)) % philo_num] == false)
-		{
-			fork_arr[(id + (philo_num - 1)) % philo_num] = true;
-			pthread_mutex_unlock(&fork_flag_lock);
-			break ;
-		}
-		pthread_mutex_unlock(&fork_flag_lock);
-	}
-}
-
-long	get_cur_time(struct timeval base_timeval)
+long	get_time_from_base(struct timeval base_timeval)
 {
 	struct timeval	cur_timeval;
 	long			cur_time;
@@ -67,63 +35,186 @@ long	get_cur_time(struct timeval base_timeval)
 	return (cur_time - base_time);
 }
 
+void	ft_usleep(useconds_t sleep_time)
+{
+	struct timeval	timeval_after_usleep;
+	struct timeval	cur_time;
+	long			expected_time;
+	long			time_after_usleep;
+
+	gettimeofday(&cur_time, NULL);
+	expected_time = (cur_time.tv_sec * 1000000 + cur_time.tv_usec)
+		+ sleep_time;
+	usleep(sleep_time * 0.8);
+	while (true)
+	{
+		gettimeofday(&timeval_after_usleep, NULL);
+		time_after_usleep = timeval_after_usleep.tv_sec * 1000000
+			+ timeval_after_usleep.tv_usec;
+		if (expected_time <= time_after_usleep)
+			break ;
+	}
+}
+
 void	print_status(t_philo *philo, int status)
 {
 	long	cur_time;
 
-	cur_time = get_cur_time(philo->simulation_start_time);
+	cur_time = get_time_from_base(philo->simulation_start_timeval);
 	if (status == HAS_FORK)
-		printf(HAS_FORK_MESSAGE, cur_time, philo->thread_id);
+		printf(HAS_FORK_MESSAGE, cur_time, philo->thread_id + 1);
 	else if (status == EATING)
-		printf(EATING_MESSAGE, cur_time, philo->thread_id);
+		printf(EATING_MESSAGE, cur_time, philo->thread_id + 1);
 	else if (status == SLEEPING)
-		printf(SLEEPING_MESSAGE, cur_time, philo->thread_id);
+		printf(SLEEPING_MESSAGE, cur_time, philo->thread_id + 1);
 	else if (status == THINKING)
-		printf(THINKING_MESSAGE, cur_time, philo->thread_id);
+		printf(THINKING_MESSAGE, cur_time, philo->thread_id + 1);
 	else
-		printf(DIED_MESSAGE, cur_time, philo->thread_id);
+		printf(DIED_MESSAGE, cur_time, philo->thread_id + 1);
+}
+
+bool	check_philo_dead(t_philo *philo)
+{
+	long	time;
+
+	time = get_time_from_base(philo->prev_eat_timeval);
+	// printf("check %i dead time : %ld\n", philo->thread_id + 1, time);
+	if (time >= philo->input->time_to_die)
+	{
+		pthread_mutex_lock(&philo->shared_data->dead_flag_lock);
+		// printf("dead time : %ld\n", time);
+		philo->shared_data->is_philo_dead[philo->thread_id] = true;
+		pthread_mutex_unlock(&philo->shared_data->dead_flag_lock);
+		return (true);
+	}
+	return (false);
+}
+
+int	pick_left_fork(t_philo *philo)
+{
+	int				id;
+	int				philo_num;
+	bool			*is_fork_occupied;
+	pthread_mutex_t	*fork_flag_lock;
+
+	id = philo->thread_id;
+	philo_num = philo->input->num_of_philo;
+	is_fork_occupied = philo->shared_data->is_fork_occupied;
+	fork_flag_lock = philo->shared_data->fork_flag_lock;
+	while (true)
+	{
+		if (check_philo_dead(philo) == true)
+		{
+			print_status(philo, DIED);
+			return (-1);
+		}
+		pthread_mutex_lock(&fork_flag_lock[id]);
+		if (is_fork_occupied[id] == false)
+		{
+			is_fork_occupied[id] = true;
+			pthread_mutex_unlock(&fork_flag_lock[id]);
+			break ;
+		}
+		pthread_mutex_unlock(&fork_flag_lock[id]);
+	}
+	return (0);
+}
+
+int	pick_right_fork(t_philo *philo)
+{
+	int				id;
+	int				philo_num;
+	bool			*is_fork_occupied;
+	pthread_mutex_t	*fork_flag_lock;
+
+	id = philo->thread_id;
+	philo_num = philo->input->num_of_philo;
+	is_fork_occupied = philo->shared_data->is_fork_occupied;
+	fork_flag_lock = philo->shared_data->fork_flag_lock;
+	while (true)
+	{
+		if (check_philo_dead(philo) == true)
+		{
+			print_status(philo, DIED);
+			return (-1);
+		}
+		pthread_mutex_lock(&fork_flag_lock[(id + (philo_num - 1)) % philo_num]);
+		if (is_fork_occupied[(id + (philo_num - 1)) % philo_num] == false)
+		{
+			is_fork_occupied[(id + (philo_num - 1)) % philo_num] = true;
+			pthread_mutex_unlock(&fork_flag_lock[(id + (philo_num - 1)) % philo_num]);
+			break ;
+		}
+		pthread_mutex_unlock(&fork_flag_lock[(id + (philo_num - 1)) % philo_num]);
+	}
+	return (0);
+}
+
+void	put_left_fork(t_philo *philo)
+{
+	int				id;
+	int				philo_num;
+	bool			*is_fork_occupied;
+	pthread_mutex_t	*fork_flag_lock;
+
+	id = philo->thread_id;
+	philo_num = philo->input->num_of_philo;
+	is_fork_occupied = philo->shared_data->is_fork_occupied;
+	fork_flag_lock = philo->shared_data->fork_flag_lock;
+	pthread_mutex_lock(&fork_flag_lock[id]);
+	is_fork_occupied[id] = false;
+	pthread_mutex_unlock(&fork_flag_lock[id]);
+}
+
+void	put_right_fork(t_philo *philo)
+{
+	int				id;
+	int				philo_num;
+	bool			*is_fork_occupied;
+	pthread_mutex_t	*fork_flag_lock;
+
+	id = philo->thread_id;
+	philo_num = philo->input->num_of_philo;
+	is_fork_occupied = philo->shared_data->is_fork_occupied;
+	fork_flag_lock = philo->shared_data->fork_flag_lock;
+	pthread_mutex_lock(&fork_flag_lock[(id + (philo_num - 1)) % philo_num]);
+	is_fork_occupied[(id + (philo_num - 1)) % philo_num] = false;
+	pthread_mutex_unlock(&fork_flag_lock[(id + (philo_num - 1)) % philo_num]);
 }
 
 void	putdown_fork(t_philo *philo)
 {
-	int				id;
-	int				philo_num;
-	bool			*fork_arr;
-	pthread_mutex_t	fork_flag_lock;
-
-	id = philo->thread_id;
-	philo_num = philo->input->num_of_philo;
-	fork_arr = philo->shared_data->is_fork_occupied;
-	fork_flag_lock = philo->shared_data->fork_flag_lock;
-	pthread_mutex_lock(&fork_flag_lock);
-	fork_arr[id] = false;
-	fork_arr[(id + (philo_num - 1)) % philo_num] = false;
-	pthread_mutex_unlock(&fork_flag_lock);
-}
-
-void	pickup_fork(t_philo *philo)
-{
-	int				id;
-	int				philo_num;
-	bool			*fork_arr;
-	pthread_mutex_t	fork_flag_lock;
-
-	id = philo->thread_id;
-	philo_num = philo->input->num_of_philo;
-	fork_arr = philo->shared_data->is_fork_occupied;
-	fork_flag_lock = philo->shared_data->fork_flag_lock;
 	if (philo->thread_id % 2 == 0)
 	{
-		pick_left_fork(id, philo_num, fork_arr, fork_flag_lock);
-		pick_right_fork(id, philo_num, fork_arr, fork_flag_lock);
+		put_left_fork(philo);
+		put_right_fork(philo);
+	}
+	else
+	{
+		put_right_fork(philo);
+		put_left_fork(philo);
+	}
+}
+
+int	pickup_fork(t_philo *philo)
+{
+	if (philo->thread_id % 2 == 0)
+	{
+		if (pick_left_fork(philo) == -1)
+			return (-1);
+		if (pick_right_fork(philo) == -1)
+			return (-1);
 		print_status(philo, HAS_FORK);
 	}
 	else
 	{
-		pick_right_fork(id, philo_num, fork_arr, fork_flag_lock);
-		pick_left_fork(id, philo_num, fork_arr, fork_flag_lock);
+		if (pick_right_fork(philo) == -1)
+			return (-1);
+		if (pick_left_fork(philo) == -1)
+			return (-1);
 		print_status(philo, HAS_FORK);
 	}
+	return (0);
 }
 
 void	thinking(t_philo *philo)
@@ -133,31 +224,31 @@ void	thinking(t_philo *philo)
 
 void	eating(t_philo *philo)
 {
-	struct timeval	cur_time;
-
-	print_status(philo, EATING);
-	usleep(philo->input->time_to_eat);
-	gettimeofday(&cur_time, NULL);
-	philo->prev_eat_time = cur_time;
-}
-
-void	sleeping(t_philo *philo)
-{	
 	struct timeval	cur_timeval;
 
-	print_status(philo, SLEEPING);
-	usleep(philo->input->time_to_sleep);
+	print_status(philo, EATING);
 	gettimeofday(&cur_timeval, NULL);
+	philo->prev_eat_timeval = cur_timeval;
+	ft_usleep(philo->input->time_to_eat * 1000);
+}
 
+int	sleeping(t_philo *philo)
+{
+	print_status(philo, SLEEPING);
+	ft_usleep(philo->input->time_to_sleep * 1000);
+	if (check_philo_dead(philo) == true)
+	{
+		print_status(philo, DIED);
+		return (-1);
+	}
+	return (0);
 }
 
 void	ready_simulation(t_philo *philo)
 {
-	// 쓰레드 생성 표시 남기기
 	pthread_mutex_lock(&philo->shared_data->created_flag_lock);
 	philo->shared_data->is_philo_created[philo->thread_id] = true;
 	pthread_mutex_unlock(&philo->shared_data->created_flag_lock);
-	// 다른쓰레드 모두 생성될 때 까지 대기
 	while (true)
 	{
 		pthread_mutex_lock(&philo->shared_data->start_flag_lock);
@@ -170,25 +261,31 @@ void	ready_simulation(t_philo *philo)
 	}
 }
 
-// 철학자 죽음 감지 로직 추가 필요
-// is_philo_dead
-// 1. 처음 시뮬레이션 시작해서 밥을 특정 시간동안 못먹으면 죽음
-// 2. 밥을 먹고 나서 부터 다음 밥을 먹는 시간까지 특정 시간을 넘어가면 죽음
-// 3. 사망하면 사망 플래그 세움
-// 철학자 생각하는 중
 void	*routine(void *arg)
 {
 	t_philo			*philo;
 
 	philo = (t_philo *)arg;
 	ready_simulation(philo);
+	if (philo->input->num_of_philo % 2 != 0)
+	{
+		if (philo->thread_id % 2 == 0)
+			ft_usleep(philo->input->time_to_eat);
+	}
+	else
+	{
+		if (philo->thread_id % 2 != 0)
+			ft_usleep(philo->input->time_to_eat);
+	}
 	while (true)
 	{
+		if (pickup_fork(philo) == -1)
+			break ;
+		eating(philo);
+		putdown_fork(philo);
+		if (sleeping(philo) == -1)
+			break ;
 		thinking(philo);
-		// pickup_fork(philo);
-		// eating(philo);
-		// putdown_fork(philo);
-		// sleeping(philo);
 	}
 	return (NULL);
 }

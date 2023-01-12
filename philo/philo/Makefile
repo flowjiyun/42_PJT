@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/10 15:57:05 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/12 14:13:32 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBFT				=	$(LIBFT_DIR)/libft.a
 INCLUDE				=	-I./include
 # INCLUDE				=	-I/opt/homebrew/opt/readline/include -I./include
 CFLAGS				=	-pthread#-Wall -Wextra -Werror -pthread
-
+# CFLAGS				=	 -pthread -fsanitize=thread -g
 %.o : %.c
 # @printf "\033[Kcompile 🦑 $(notdir $<)🔥\r"
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@

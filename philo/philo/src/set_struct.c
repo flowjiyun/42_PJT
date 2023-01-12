@@ -54,12 +54,21 @@ static bool	init_data_type(void *shared_data_type, int num_of_philo, int byte)
 	return (true);
 }
 
-static bool	init_mutex_lock(t_shared_data **shared_data)
+static bool	init_mutex_lock(t_shared_data **shared_data, int philo_num)
 {
+	int	i;
+
+	i = 0;
 	if (pthread_mutex_init(&((*shared_data)->created_flag_lock), NULL) != 0)
 		return (false);
-	if (pthread_mutex_init(&((*shared_data)->fork_flag_lock), NULL) != 0)
-		return (false);
+	(*shared_data)->fork_flag_lock = malloc(sizeof(pthread_mutex_t)
+			* philo_num);
+	while (i < philo_num)
+	{
+		if (pthread_mutex_init(&((*shared_data)->fork_flag_lock[i]), NULL) != 0)
+			return (false);
+		++i;
+	}
 	if (pthread_mutex_init(&((*shared_data)->dead_flag_lock), NULL) != 0)
 		return (false);
 	if (pthread_mutex_init(&((*shared_data)->meal_count_lock), NULL) != 0)
@@ -69,15 +78,24 @@ static bool	init_mutex_lock(t_shared_data **shared_data)
 	return (true);
 }
 
-bool	destroy_mutex(t_shared_data *shared_data)
+bool	destroy_mutex(t_shared_data *shared_data, int philo_num)
 {
+	int	i;
+
+	i = 0;
 	if (pthread_mutex_destroy(&shared_data->created_flag_lock) == false)
 		return (false);
-	if (pthread_mutex_destroy(&shared_data->fork_flag_lock) == false)
-		return (false);
+	while (i < philo_num)
+	{
+		if (pthread_mutex_destroy(&shared_data->fork_flag_lock[i]) == false)
+			return (false);
+		++i;
+	}
 	if (pthread_mutex_destroy(&shared_data->dead_flag_lock) == false)
 		return (false);
 	if (pthread_mutex_destroy(&shared_data->meal_count_lock) == false)
+		return (false);
+	if (pthread_mutex_destroy(&shared_data->start_flag_lock) == false)
 		return (false);
 	return (true);
 }
@@ -103,7 +121,7 @@ t_shared_data	*set_shared_data(t_input *input)
 	if (init_data_type(&(shared_data->num_of_meal), philo_num,
 			sizeof(int)) == false)
 		return (NULL);
-	if (init_mutex_lock(&shared_data) == false)
+	if (init_mutex_lock(&shared_data, philo_num) == false)
 		return (NULL);
 	shared_data->start_flag = false;
 	return (shared_data);
