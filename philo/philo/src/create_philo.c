@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:34:54 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/06 16:16:54 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:45:29 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ bool	create_philo(t_philo **philo_arr, int num_of_philo)
 	{
 		if (pthread_create(philo_arr[i]->thread, NULL,
 				routine, philo_arr[i]) != 0)
+			return (false);
+		if (pthread_detach(*(philo_arr[i]->thread)) != 0)
 			return (false);
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:26:57 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/12 10:33:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:04:16 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ enum
 
 typedef struct s_shared_data	t_shared_data;
 typedef struct s_input			t_input;
+typedef struct s_time			t_time;
 
 typedef struct s_input
 {
@@ -46,18 +47,21 @@ typedef struct s_input
 	int	num_must_eat;	
 }	t_input;
 
+typedef struct s_time
+{
+	struct timeval	simulation_start_timeval;
+	struct timeval	prev_eat_timeval;
+}	t_time;
+
 typedef struct s_shared_data
 {
-	bool			*is_philo_created;
-	pthread_mutex_t	created_flag_lock;
-	bool			*is_fork_occupied;
+	pthread_mutex_t	start_flag_lock;
+	pthread_mutex_t	time_lock;
 	pthread_mutex_t	*fork_flag_lock;
 	bool			*is_philo_dead;
 	pthread_mutex_t	dead_flag_lock;
 	int				*num_of_meal;
 	pthread_mutex_t	meal_count_lock;
-	bool			start_flag;
-	pthread_mutex_t	start_flag_lock;
 }	t_shared_data;
 typedef struct s_philo
 {
@@ -65,8 +69,7 @@ typedef struct s_philo
 	pthread_t		*thread;
 	t_shared_data	*shared_data;
 	t_input			*input;
-	struct timeval	simulation_start_timeval;
-	struct timeval	prev_eat_timeval;
+	t_time			*time;
 }	t_philo;
 
 bool			is_valid_input(char **argv);
@@ -78,7 +81,10 @@ bool			create_philo(t_philo **philo_arr, int num_of_philo);
 bool			terminate_philo(t_philo **philo_arr, int num_of_philo);
 bool			wait_philo(t_philo **philo_arr, int num_of_philo);
 bool			destroy_mutex(t_shared_data *shared_data, int num_of_philo);
-bool			is_all_philo_created(t_shared_data *shared_data,
-					int num_of_philo);
+long			get_time_from_base(struct timeval base_timeval);
+void			ft_usleep(useconds_t sleep_time);
+void			print_status(t_philo *philo, int status);
+int				monitoring(t_philo	**philo_arr, t_shared_data *shared_data,
+					int num_of_philo, int argc);
 
 #endif

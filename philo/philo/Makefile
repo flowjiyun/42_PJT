@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/12 14:13:32 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/13 15:44:41 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME				:=	philo
 
-SRC					:=	main check_input create_philo set_struct wait_philo routine
+SRC					:=	main check_input create_philo set_struct routine monitoring utils
 SRC_M				:=	$(addprefix src/, $(addsuffix .c, $(SRC)))
 
 SRCS				:=	$(SRC_M)
