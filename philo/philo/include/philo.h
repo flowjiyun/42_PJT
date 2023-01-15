@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:26:57 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/13 12:04:16 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:50:43 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,19 @@ t_input			*set_input(int argc, char **argv);
 t_shared_data	*set_shared_data(t_input *input);
 t_philo			**set_philo(t_shared_data *shared_data, t_input *input);
 void			*routine(void *arg);
-bool			create_philo(t_philo **philo_arr, int num_of_philo);
-bool			terminate_philo(t_philo **philo_arr, int num_of_philo);
-bool			wait_philo(t_philo **philo_arr, int num_of_philo);
-bool			destroy_mutex(t_shared_data *shared_data, int num_of_philo);
+int				create_philo(t_philo **philo_arr, int num_of_philo);
+int				destroy_mutex(t_shared_data *shared_data, int num_of_philo);
 long			get_time_from_base(struct timeval base_timeval);
-void			ft_usleep(useconds_t sleep_time);
-void			print_status(t_philo *philo, int status);
+int				ft_usleep(useconds_t sleep_time);
+void			free_all(t_philo **philo_arr, t_shared_data *shared_data,
+					t_input *input);
+int				print_status(t_philo *philo, int status);
 int				monitoring(t_philo	**philo_arr, t_shared_data *shared_data,
 					int num_of_philo, int argc);
+int				sleeping(t_philo *philo);
+int				eating(t_philo *philo);
+int				thinking(t_philo *philo);
+int				pickup_fork(t_philo *philo);
+int				putdown_fork(t_philo *philo);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:34:54 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/13 15:45:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/15 19:21:46 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	create_philo(t_philo **philo_arr, int num_of_philo)
+int	create_philo(t_philo **philo_arr, int num_of_philo)
 {
 	int	i;
 
@@ -21,10 +21,10 @@ bool	create_philo(t_philo **philo_arr, int num_of_philo)
 	{
 		if (pthread_create(philo_arr[i]->thread, NULL,
 				routine, philo_arr[i]) != 0)
-			return (false);
+			return (-1);
 		if (pthread_detach(*(philo_arr[i]->thread)) != 0)
-			return (false);
+			return (-1);
 		++i;
 	}
-	return (true);
+	return (0);
 }

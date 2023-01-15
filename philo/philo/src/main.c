@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 15:55:36 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/05 17:09:16 jiyunpar         ###   ########.fr       */
+/*   Created: 2023/01/15 20:16:56 by jiyunpar          #+#    #+#             */
+/*   Updated: 2023/01/15 20:54:50 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	set_start_timeval(t_philo **philo_arr, int num_of_philo)
+static int	set_start_timeval(t_philo **philo_arr, int num_of_philo)
 {
 	int				i;
 	struct timeval	start_timeval;
@@ -29,50 +29,61 @@ int	set_start_timeval(t_philo **philo_arr, int num_of_philo)
 	return (0);
 }
 
+static int	init_struct(t_input **input, t_shared_data **shared_data,
+	t_philo ***philo_arr)
+{
+	*shared_data = set_shared_data(*input);
+	if (!*shared_data)
+		return (-1);
+	*philo_arr = set_philo(*shared_data, *input);
+	if (!*philo_arr)
+		return (-1);
+	return (0);
+}
+
+static int	do_monitor(t_philo **philo_arr, t_shared_data *shared_data,
+	t_input *input, int argc)
+{
+	const int	num_of_philo = input->num_of_philo;
+	int			monitoring_signal;
+
+	monitoring_signal = monitoring(philo_arr, shared_data, num_of_philo, argc);
+	if (monitoring_signal == -1)
+	{
+		destroy_mutex(shared_data, num_of_philo);
+		free_all(philo_arr, shared_data, input);
+		return (-1);
+	}
+	else
+	{
+		destroy_mutex(shared_data, num_of_philo);
+		free_all(philo_arr, shared_data, input);
+		return (0);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_philo			**philo_arr;
 	t_input			*input;
 	t_shared_data	*shared_data;
-	int				monitoring_signal;
 
 	if ((argc != 5 && argc != 6) || is_valid_input(argv) == false)
-	{
-		ft_putendl_fd("Error : argument error", 2);
 		return (1);
-	}
 	input = set_input(argc, argv);
 	if (!input)
-	{
-		ft_putendl_fd("Error : set_input error", 2);
 		return (1);
-	}
-	shared_data = set_shared_data(input);
-	if (!shared_data)
-	{
-		ft_putendl_fd("Error : set_fork error", 2);
+	if (init_struct(&input, &shared_data, &philo_arr) != 0)
 		return (1);
-	}
-	philo_arr = set_philo(shared_data, input);
-	if (!philo_arr)
-	{
-		ft_putendl_fd("Error : set_philo error", 2);
+	if (pthread_mutex_lock(&shared_data->start_flag_lock) != 0)
 		return (1);
-	}
-	pthread_mutex_lock(&shared_data->start_flag_lock);
-	if (create_philo(philo_arr, input->num_of_philo) == false)
-	{
-		ft_putendl_fd("Error : create_philo error", 2);
+	if (create_philo(philo_arr, input->num_of_philo) != 0)
 		return (1);
-	}
 	if (set_start_timeval(philo_arr, input->num_of_philo) != 0)
 		return (1);
-	pthread_mutex_unlock(&shared_data->start_flag_lock);
-	monitoring_signal = monitoring(philo_arr, shared_data,
-			input->num_of_philo, argc);
-	if (monitoring_signal == -1)
+	if (pthread_mutex_unlock(&shared_data->start_flag_lock) != 0)
 		return (1);
-	else
-		destroy_mutex(shared_data, input->num_of_philo);
+	if (do_monitor(philo_arr, shared_data, input, argc) != 0)
+		return (1);
 	return (0);
 }

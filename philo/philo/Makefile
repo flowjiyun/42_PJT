@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/13 15:44:41 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/15 20:13:55 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 
 NAME				:=	philo
 
-SRC					:=	main check_input create_philo set_struct routine monitoring utils
+SRC					:=	main check_input create_philo set_struct routine monitoring utils \
+						print_status action
 SRC_M				:=	$(addprefix src/, $(addsuffix .c, $(SRC)))
 
 SRCS				:=	$(SRC_M)
@@ -27,7 +28,7 @@ LIBFT_DIR			=	./libft
 LIBFT				=	$(LIBFT_DIR)/libft.a
 INCLUDE				=	-I./include
 # INCLUDE				=	-I/opt/homebrew/opt/readline/include -I./include
-CFLAGS				=	-pthread#-Wall -Wextra -Werror -pthread
+CFLAGS				=	-Wall -Wextra -Werror -pthread
 # CFLAGS				=	 -pthread -fsanitize=thread -g
 %.o : %.c
 # @printf "\033[Kcompile 🦑 $(notdir $<)🔥\r"

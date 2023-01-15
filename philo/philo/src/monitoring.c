@@ -6,13 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:53:00 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/13 15:50:05 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:18:24 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	any_philo_dead(t_philo **philo_arr, t_shared_data *shared_data,
+static int	any_philo_dead(t_philo **philo_arr, t_shared_data *shared_data,
 	int num_of_philo)
 {
 	int		i;
@@ -24,9 +24,12 @@ int	any_philo_dead(t_philo **philo_arr, t_shared_data *shared_data,
 	while (i < num_of_philo)
 	{
 		time = get_time_from_base(philo_arr[i]->time->prev_eat_timeval);
+		if (time < 0)
+			return (-1);
 		if (time >= philo_arr[i]->input->time_to_die)
 		{
-			print_status(philo_arr[i], DIED);
+			if (print_status(philo_arr[i], DIED) != 0)
+				return (-1);
 			if (pthread_mutex_unlock(&shared_data->time_lock) != 0)
 				return (-1);
 			return (0);
@@ -38,8 +41,8 @@ int	any_philo_dead(t_philo **philo_arr, t_shared_data *shared_data,
 	return (1);
 }
 
-int	all_philo_eat_enough(t_philo **philo_arr, t_shared_data *shared_data,
-	int num_of_philo)
+static int	all_philo_eat_enough(t_philo **philo_arr,
+	t_shared_data *shared_data, int num_of_philo)
 {
 	int			i;
 	const int	max_eat = philo_arr[0]->input->num_must_eat;
