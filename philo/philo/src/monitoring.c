@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:53:00 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/15 20:18:24 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:15:36 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	any_philo_dead(t_philo **philo_arr, t_shared_data *shared_data,
 	int num_of_philo)
 {
 	int		i;
-	long	time;
+	unsigned long	time;
 
 	i = 0;
 	if (pthread_mutex_lock(&shared_data->time_lock) != 0)
@@ -73,11 +73,15 @@ int	monitoring(t_philo	**philo_arr, t_shared_data *shared_data,
 
 	while (true)
 	{
-		eat_signal = all_philo_eat_enough(philo_arr, shared_data, num_of_philo);
-		if ((argc == 6) && eat_signal == 0)
-			return (0);
-		else if ((argc == 6) && eat_signal == -1)
-			return (-1);
+		if (argc == 6)
+		{
+			eat_signal = all_philo_eat_enough(philo_arr, shared_data,
+					num_of_philo);
+			if (eat_signal == 0)
+				return (0);
+			else if (eat_signal == -1)
+				return (-1);
+		}
 		dead_signal = any_philo_dead(philo_arr, shared_data, num_of_philo);
 		if (dead_signal == 0)
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:07:13 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/15 20:07:43 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:54:14 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ int	pickup_fork(t_philo *philo)
 	const int		right = (left + (philo_num - 1)) % philo_num;
 
 	fork_flag_lock = philo->shared_data->fork_flag_lock;
+	if (left == right)
+	{
+		if (ft_usleep(philo->input->time_to_die * 1000) != 0)
+			return (-1);
+		return (1);
+	}
 	if (pthread_mutex_lock(&fork_flag_lock[left]) != 0)
 		return (-1);
 	if (pthread_mutex_lock(&fork_flag_lock[right]) != 0)

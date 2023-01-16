@@ -6,11 +6,22 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:16:56 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/15 20:54:50 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:30:03 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	clean_all(t_philo **philo_arr, t_shared_data *t_shared_data,
+	t_input *input)
+{
+	// (void)philo_arr;
+	if (wait_philo(philo_arr, input->num_of_philo) != 0)
+		return (-1);
+	destroy_mutex(t_shared_data, input->num_of_philo);
+	free_all(philo_arr, t_shared_data, input);
+	return (0);
+}
 
 static int	set_start_timeval(t_philo **philo_arr, int num_of_philo)
 {
@@ -49,15 +60,14 @@ static int	do_monitor(t_philo **philo_arr, t_shared_data *shared_data,
 
 	monitoring_signal = monitoring(philo_arr, shared_data, num_of_philo, argc);
 	if (monitoring_signal == -1)
-	{
-		destroy_mutex(shared_data, num_of_philo);
-		free_all(philo_arr, shared_data, input);
 		return (-1);
-	}
 	else
 	{
-		destroy_mutex(shared_data, num_of_philo);
-		free_all(philo_arr, shared_data, input);
+		if (pthread_mutex_lock(&shared_data->dead_flag_lock) != 0)
+			return (-1);
+		shared_data->is_philo_dead = true;
+		if (pthread_mutex_unlock(&shared_data->dead_flag_lock) != 0)
+			return (-1);
 		return (0);
 	}
 }
@@ -84,6 +94,8 @@ int	main(int argc, char **argv)
 	if (pthread_mutex_unlock(&shared_data->start_flag_lock) != 0)
 		return (1);
 	if (do_monitor(philo_arr, shared_data, input, argc) != 0)
+		return (1);
+	if (clean_all(philo_arr, shared_data, input) != 0)
 		return (1);
 	return (0);
 }

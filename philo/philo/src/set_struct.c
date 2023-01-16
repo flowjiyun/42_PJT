@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:30:32 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/15 20:17:27 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:34:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	init_mutex_lock(t_shared_data **shared_data, int philo_num)
 		return (-1);
 	if (pthread_mutex_init(&((*shared_data)->time_lock), NULL) != 0)
 		return (-1);
+	if (pthread_mutex_init(&((*shared_data)->check_died_lock), NULL) != 0)
+		return (-1);
 	(*shared_data)->fork_flag_lock = malloc(sizeof(pthread_mutex_t)
 			* philo_num);
 	while (i < philo_num)
@@ -69,9 +71,7 @@ t_shared_data	*set_shared_data(t_input *input)
 	if (!shared_data)
 		return (NULL);
 	philo_num = input->num_of_philo;
-	if (init_data_type(&(shared_data->is_philo_dead), philo_num,
-			sizeof(bool)) != 0)
-		return (NULL);
+	shared_data->is_philo_dead = false;
 	if (init_data_type(&(shared_data->num_of_meal), philo_num,
 			sizeof(int)) != 0)
 		return (NULL);
@@ -122,6 +122,6 @@ t_input	*set_input(int argc, char **argv)
 	if (argc == 6)
 		input->num_must_eat = ft_atoi(argv[5]);
 	else
-		input->num_must_eat = -1;
+		input->num_must_eat = 0;
 	return (input);
 }
