@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:16:56 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/16 16:30:03 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:12:18 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	clean_all(t_philo **philo_arr, t_shared_data *t_shared_data,
 	t_input *input)
 {
-	// (void)philo_arr;
 	if (wait_philo(philo_arr, input->num_of_philo) != 0)
 		return (-1);
 	destroy_mutex(t_shared_data, input->num_of_philo);
