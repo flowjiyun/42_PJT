@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:46:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/16 16:37:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:10:03 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	destroy_mutex(t_shared_data *shared_data, int philo_num)
 	return (0);
 }
 
-unsigned long	get_time_from_base(struct timeval base_timeval)
+long	get_time_from_base(struct timeval base_timeval)
 {
 	struct timeval	cur_timeval;
-	unsigned long	cur_time;
-	unsigned long	base_time;
+	long			cur_time;
+	long			base_time;
 
 	if (gettimeofday(&cur_timeval, NULL) != 0)
 		return (-1);
@@ -67,15 +67,13 @@ int	ft_usleep(useconds_t sleep_time)
 {
 	struct timeval	timeval_after_usleep;
 	struct timeval	cur_time;
-	unsigned long	expected_time;
-	unsigned long	time_after_usleep;
+	long			expected_time;
+	long			time_after_usleep;
 
 	if (gettimeofday(&cur_time, NULL) != 0)
 		return (-1);
 	expected_time = (cur_time.tv_sec * 1000000L + cur_time.tv_usec)
 		+ sleep_time;
-	// if (usleep(sleep_time * 8 / 10) != 0)
-	// 	return (-1);
 	while (true)
 	{
 		if (gettimeofday(&timeval_after_usleep, NULL) != 0)

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:53:00 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/16 14:15:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:09:14 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	any_philo_dead(t_philo **philo_arr, t_shared_data *shared_data,
 	int num_of_philo)
 {
 	int		i;
-	unsigned long	time;
+	long	time;
 
 	i = 0;
 	if (pthread_mutex_lock(&shared_data->time_lock) != 0)

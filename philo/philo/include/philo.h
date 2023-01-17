@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:26:57 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/16 14:20:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:12:09 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_time			t_time;
 typedef struct s_input
 {
 	int				num_of_philo;
-	unsigned long	time_to_die;
+	long			time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_must_eat;	
@@ -80,7 +80,7 @@ t_philo			**set_philo(t_shared_data *shared_data, t_input *input);
 void			*routine(void *arg);
 int				create_philo(t_philo **philo_arr, int num_of_philo);
 int				destroy_mutex(t_shared_data *shared_data, int num_of_philo);
-unsigned long	get_time_from_base(struct timeval base_timeval);
+long			get_time_from_base(struct timeval base_timeval);
 int				ft_usleep(useconds_t sleep_time);
 void			free_all(t_philo **philo_arr, t_shared_data *shared_data,
 					t_input *input);
