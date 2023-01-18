@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:26:57 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/17 14:12:09 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:25:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_shared_data
 {
 	pthread_mutex_t	start_flag_lock;
 	pthread_mutex_t	time_lock;
-	pthread_mutex_t	check_died_lock;
 	pthread_mutex_t	*fork_flag_lock;
 	bool			is_philo_dead;
 	pthread_mutex_t	dead_flag_lock;
@@ -93,5 +92,7 @@ int				eating(t_philo *philo);
 int				thinking(t_philo *philo);
 int				pickup_fork(t_philo *philo);
 int				putdown_fork(t_philo *philo);
+bool			is_died_after_pick_fork(t_philo *philo);
+bool			is_died(t_philo *philo);
 
 #endif

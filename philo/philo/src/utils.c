@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:46:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/17 14:10:03 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:17:54 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	destroy_mutex(t_shared_data *shared_data, int philo_num)
 	if (pthread_mutex_destroy(&shared_data->start_flag_lock) != 0)
 		return (-1);
 	if (pthread_mutex_destroy(&shared_data->time_lock) != 0)
-		return (-1);
-	if (pthread_mutex_destroy(&shared_data->check_died_lock) != 0)
 		return (-1);
 	i = 0;
 	while (i < philo_num)
@@ -74,6 +72,8 @@ int	ft_usleep(useconds_t sleep_time)
 		return (-1);
 	expected_time = (cur_time.tv_sec * 1000000L + cur_time.tv_usec)
 		+ sleep_time;
+	if (usleep(sleep_time * 0.8) != 0)
+		return (-1);
 	while (true)
 	{
 		if (gettimeofday(&timeval_after_usleep, NULL) != 0)

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:30:32 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/16 13:34:53 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/18 11:37:47 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static int	init_mutex_lock(t_shared_data **shared_data, int philo_num)
 	if (pthread_mutex_init(&((*shared_data)->start_flag_lock), NULL) != 0)
 		return (-1);
 	if (pthread_mutex_init(&((*shared_data)->time_lock), NULL) != 0)
-		return (-1);
-	if (pthread_mutex_init(&((*shared_data)->check_died_lock), NULL) != 0)
 		return (-1);
 	(*shared_data)->fork_flag_lock = malloc(sizeof(pthread_mutex_t)
 			* philo_num);
