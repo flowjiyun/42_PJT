@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/16 16:20:05 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/18 13:37:01 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,16 +22,12 @@ SRCS				:=	$(SRC_M)
 
 OBJS				:=	$(SRCS:.c=.o)
 
-# LIB_READ_LINE		=	-L${HOME}/.brew/opt/readline/lib -lreadline
-# LIB_READ_LINE		=	-L/opt/homebrew/opt/readline/lib -lreadline
 LIBFT_DIR			=	./libft
 LIBFT				=	$(LIBFT_DIR)/libft.a
 INCLUDE				=	-I./include
-# INCLUDE				=	-I/opt/homebrew/opt/readline/include -I./include
-CFLAGS				=	-Wall -Wextra -Werror -pthread
+CFLAGS				=	-Wall -Wextra -Werror -pthread -g3
 # CFLAGS				=	 -pthread -fsanitize=thread -g
 %.o : %.c
-# @printf "\033[Kcompile 🦑 $(notdir $<)🔥\r"
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 all	: .all_check
