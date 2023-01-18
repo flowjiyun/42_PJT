@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/18 13:37:01 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/18 13:57:47 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS				:=	$(SRCS:.c=.o)
 LIBFT_DIR			=	./libft
 LIBFT				=	$(LIBFT_DIR)/libft.a
 INCLUDE				=	-I./include
-CFLAGS				=	-Wall -Wextra -Werror -pthread -g3
+CFLAGS				=	-Wall -Wextra -Werror -pthread
 # CFLAGS				=	 -pthread -fsanitize=thread -g
 %.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
