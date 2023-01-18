@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 20:07:13 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/16 16:54:14 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:40:37 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,21 @@ int	pickup_fork(t_philo *philo)
 		return (-1);
 	if (pthread_mutex_lock(&fork_flag_lock[right]) != 0)
 		return (-1);
-	if (print_status(philo, HAS_FORK) != 0)
-		return (-1);
+	if (is_died(philo) == false)
+	{
+		if (print_status(philo, HAS_FORK) != 0)
+			return (-1);
+	}
 	return (0);
 }
 
 int	thinking(t_philo *philo)
 {
-	if (print_status(philo, THINKING) != 0)
-		return (-1);
+	if (is_died(philo) == false)
+	{
+		if (print_status(philo, THINKING) != 0)
+			return (-1);
+	}
 	return (0);
 }
 
@@ -74,8 +80,11 @@ int	eating(t_philo *philo)
 	++philo->shared_data->num_of_meal[id];
 	if (pthread_mutex_unlock(&philo->shared_data->meal_count_lock) != 0)
 		return (-1);
-	if (print_status(philo, EATING) != 0)
-		return (-1);
+	if (is_died(philo) == false)
+	{
+		if (print_status(philo, EATING) != 0)
+			return (-1);
+	}
 	if (ft_usleep(philo->input->time_to_eat * 1000) != 0)
 		return (-1);
 	return (0);
@@ -83,8 +92,11 @@ int	eating(t_philo *philo)
 
 int	sleeping(t_philo *philo)
 {
-	if (print_status(philo, SLEEPING) != 0)
-		return (-1);
+	if (is_died(philo) == false)
+	{
+		if (print_status(philo, SLEEPING) != 0)
+			return (-1);
+	}
 	if (ft_usleep(philo->input->time_to_sleep * 1000) != 0)
 		return (-1);
 	return (0);

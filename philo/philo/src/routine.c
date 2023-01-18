@@ -6,13 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:33:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/17 14:38:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/18 13:24:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static bool	is_died(t_philo *philo)
+bool	is_died(t_philo *philo)
 {
 	if (pthread_mutex_lock(&philo->shared_data->dead_flag_lock) != 0)
 		return (false);
@@ -27,7 +27,7 @@ static bool	is_died(t_philo *philo)
 	return (false);
 }
 
-static bool	is_died_after_pick_fork(t_philo *philo)
+bool	is_died_after_pick_fork(t_philo *philo)
 {
 	if (pthread_mutex_lock(&philo->shared_data->dead_flag_lock) != 0)
 		return (false);
