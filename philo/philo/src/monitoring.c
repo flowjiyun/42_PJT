@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:53:00 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/17 14:09:14 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:37:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int	monitoring(t_philo	**philo_arr, t_shared_data *shared_data,
 			return (0);
 		else if (dead_signal == -1)
 			return (-1);
+		ft_usleep(100);
 	}
 }
