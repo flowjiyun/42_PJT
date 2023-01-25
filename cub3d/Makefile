@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/20 14:42:31 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/25 20:43:30 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MLX_DIR				=	./mlx/
 LIB_DIR				=	-L$(LIBFT_DIR) -L$(MLX_DIR)
 LIB					= 	-lft -lmlx
 
-INCLUDE				=	-I./include -I$(MLX_DIR) -I$(LIB_DIR)
+INCLUDE				=	-I./include -I$(MLX_DIR) -I$(LIBFT_DIR)
 
 CFLAGS				=	-Wall -Wextra -Werror
 
@@ -54,10 +54,12 @@ endif
 
 .all_check	: $(OBJS)
 	@make -C $(LIBFT_DIR) re
-	@make -C $(MLX_LIB)
-	@$(CC) $(CFLAGS) $(INCLUDE) $(LIB_DIR) $(LIB) \
+	@make -C $(MLX_DIR)
+#	@$(CC) $(CFLAGS) $(INCLUDE) $(LIB_DIR) $(LIB) \
 			-framework OpenGL -framework AppKit -o $(NAME) $^
-	@touch $@
+	$(CC) $(CFLAGS) $(LIB_DIR) $(LIB) -o $(NAME) $^
+	install_name_tool -change libmlx.dylib @executable_path/${MLX_DIR}/libmlx.dylib ${NAME}
+	touch $@
 
 clean	:
 	@rm -rf $(OBJS)
