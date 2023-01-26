@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 10:36:05 by jiyunpar          #+#    #+#              #
-#    Updated: 2022/12/21 16:47:15 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/26 19:09:12 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC_NAME = isalpha isdigit isalnum isascii isprint \
 			substr strjoin strtrim split itoa strmapi terminate assert\
 			striteri putchar_fd putstr_fd putendl_fd putnbr_fd \
 			strcmp strjoin_left_free strjoin_right_free strjoin_no_free \
-			malloc pipe write fork dup2 close chdir
+			malloc pipe write fork dup2 close chdir is_newline get_next_line \
+			linked_list_function_1 linked_list_function_2
 
 SRC = $(addprefix ft_, $(addsuffix .c, $(SRC_NAME)))
 OBJ = $(SRC:.c=.o)

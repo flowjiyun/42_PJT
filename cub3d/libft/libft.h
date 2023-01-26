@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 12:07:12 by jiyunpar          #+#    #+#             */
-/*   Updated: 2022/12/22 15:24:17 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/26 19:14:33 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,33 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdbool.h>
+
+# define BUFFER_SIZE 1024
+# define FD_MAX 256
+
+typedef struct s_node
+{
+	struct s_node	*next;
+	struct s_node	*prev;	
+	void			*content;
+}	t_node;
+
+typedef struct s_list
+{
+	struct s_node	*head;
+	struct s_node	*tail;
+	int				len;
+}	t_list;
+
+t_node	*make_node(void *content);
+void	pop_front(t_list *list);
+void	pop_middle(t_list *list, t_node *node);
+void	pop_back(t_list *list);
+void	push_front(t_list *list, t_node *node);
+void	push_back(t_list *list, t_node *node);
+void	clear_list(t_list *list);
+void	swap_node(t_list *list);
+t_list	*init_list(void);
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -58,6 +85,8 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strjoin_left_free(char const *s1, char const *s2);
 char	*ft_strjoin_right_free(char const *s1, char const *s2);
 char	*ft_strjoin_no_free(char const *s1, char const *s2);
+int		ft_is_newline(const char *backup);
+char	*get_next_line(int fd);
 
 int		_chdir(char *path);
 int		_fork(void);
