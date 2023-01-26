@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/26 19:48:10 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:31:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,4 @@ void	swap_node(t_list *list)
 	if (cursor_l == list->head)
 		list->head = cursor;
 	list->tail = cursor_l;
-}
-
-void	free_list_node_content(t_list *list)
-{
-	t_node	*cur_node;
-	t_node	*next_node;
-
-	cur_node = list->head;
-	while (cur_node)
-	{
-		next_node = cur_node->next;
-		free(cur_node->content);
-		free(cur_node);
-		cur_node = next_node;
-	}
-	free(list);
 }

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:17:08 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/26 20:26:59 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:43:15 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,8 @@ char	**get_array_map(t_list *list);
 t_list	*read_mapfile(char **argv);
 int		get_world_map_height(char **world_map);
 int		get_world_map_width(char **world_map);
+
+void	free_list_node_content(t_list *list);
+void	free_2d_array_content(char **array);
 
 #endif
