@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/26 20:22:54 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/26 20:35:04 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,13 @@ NAME				:=	cub3D
 PARSE_MAP			:=	get_array_map_from_file get_map_data
 PARSE_MAP_M			:=	$(addprefix src/parse_map/, $(addsuffix .c, $(PARSE_MAP)))
 
+UTILS				:=	free
+UTILS_M				:=	$(addprefix src/utils/, $(addsuffix .c, $(UTILS)))
+
 MAIN				:=	main
 MAIN_M				:=	$(addprefix src/, $(addsuffix .c, $(MAIN)))
 
-SRCS				:=	$(PARSE_MAP_M) $(MAIN_M)
+SRCS				:=	$(PARSE_MAP_M) $(UTILS_M) $(MAIN_M)
 
 OBJS				:=	$(SRCS:.c=.o)
 
