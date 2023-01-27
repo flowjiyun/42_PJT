@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <math.h>
 # include "libft.h"
 # include "mlx.h"
 
@@ -78,7 +79,27 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	raydir_x;
+	double	raydir_y;
 }	t_player;
+
+typedef struct s_raycast
+{
+	double	ratio;
+	double	raydir_x;
+	double	raydir_y;
+	int		map_x;
+	int		map_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	walldist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+}	t_raycast;
 
 typedef struct s_data
 {
@@ -103,5 +124,6 @@ void	get_player_init_dir(t_player *player);
 void	get_player_init_plane(t_player *player);
 t_mlx	*init_mlx(void);
 void	launch_game(t_data *data);
+void	render_wall(t_data *data);
 
 #endif

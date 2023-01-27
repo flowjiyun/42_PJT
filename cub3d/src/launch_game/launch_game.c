@@ -6,14 +6,14 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:21:40 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/27 20:11:41 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:00:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // draw rendered image buffer to screen in current state
-void	draw_image_to_screen(t_data *data)
+static void	draw_image_to_screen(t_data *data)
 {
 	const t_mlx	*mlx = data->mlx;
 
@@ -21,7 +21,7 @@ void	draw_image_to_screen(t_data *data)
 }
 
 // draw floor & ceilling to image buffer
-void	render_background(t_data *data)
+static void	render_background(t_data *data)
 {
 	const t_mlx	*mlx = data->mlx;
 	int			x;
@@ -48,15 +48,8 @@ void	render_background(t_data *data)
 	}
 }
 
-// draw wall to image buffer in current player state
-void	render_wall(t_data *data)
-{
-	(void) data;
-	return ;
-}
-
 // rendering map to image buffer
-void	render_map(t_data *data)
+static void	render_map(t_data *data)
 {
 	render_background(data);
 	render_wall(data);
