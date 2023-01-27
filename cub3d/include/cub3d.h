@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:17:08 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/26 20:43:15 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:46:09:24jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@
 # define SCREEN_HEIGHT	480
 # define TEX_WIDTH	64
 # define TEX_HEIGHT	64
-# define MAP_WIDTH	9
-# define MAP_HEIGHT	9
+# define NO "./texture/bluestone.png"
+# define SO "./texture/colorstone.png"
+# define WE "./texture/eagle.png"
+# define EA "./texture/greystone.png"
 
+typedef struct s_map		t_map;
+typedef struct s_texture	t_texture;
+typedef struct s_color		t_color;
+typedef struct s_player		t_player;
 typedef struct s_mlx
 {
 	void	*display;
@@ -38,19 +44,29 @@ typedef struct s_mlx
 	int		endian;
 }	t_mlx;
 
-typedef struct s_map
-{
-	int	width;
-	int	height;
-}	t_map;
-
 typedef struct s_texture
 {
-	int	width;
-	int	height;
+	char	*relative_path;
+	int		width;
+	int		height;
 }	t_texture;
-typedef struct s_player
+
+typedef struct s_color
 {
+	int	floor_color;
+	int	ceilling_color;
+}	t_color;
+
+typedef struct s_map
+{
+	char	**world_map;
+	int		width;
+	int		height;
+}	t_map;
+
+typedef struct s_player
+{	
+	char	init_state;
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
@@ -59,6 +75,14 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
+typedef struct s_data
+{
+	t_texture	*wall;
+	t_color		*color;
+	t_map		*map;
+	t_player	*player;
+}	t_data;
+
 char	**get_array_map(t_list *list);
 t_list	*read_mapfile(char **argv);
 int		get_world_map_height(char **world_map);
@@ -66,5 +90,11 @@ int		get_world_map_width(char **world_map);
 
 void	free_list_node_content(t_list *list);
 void	free_2d_array_content(char **array);
+
+t_data	*init_data(t_list *list, t_mlx *mlx);
+void	get_player_init_pos(t_player *player, t_map *map);
+void	get_player_init_dir(t_player *player);
+void	get_player_init_plane(t_player *player);
+t_mlx	*init_mlx(void);
 
 #endif
