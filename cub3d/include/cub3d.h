@@ -86,6 +86,7 @@ typedef struct s_data
 	t_color		*color;
 	t_map		*map;
 	t_player	*player;
+	t_mlx		*mlx;
 }	t_data;
 
 char	**get_array_map(t_list *list);
@@ -101,5 +102,6 @@ void	get_player_init_pos(t_player *player, t_map *map);
 void	get_player_init_dir(t_player *player);
 void	get_player_init_plane(t_player *player);
 t_mlx	*init_mlx(void);
+void	launch_game(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/27 15:27:11 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/27 17:23:16 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,14 @@
 
 NAME				:=	cub3D
 
-PARSE_MAP			:=	get_array_map_from_file get_map_data
-PARSE_MAP_M			:=	$(addprefix src/parse_map/, $(addsuffix .c, $(PARSE_MAP)))
-
 INIT				:=	init_data init_data_utils init_mlx
 INIT_M				:=	$(addprefix src/init/, $(addsuffix .c, $(INIT)))
+
+LAUNCH_GAME			:=	launch_game
+LAUNCH_GAME_M		:=	$(addprefix src/launch_game/, $(addsuffix .c, $(LAUNCH_GAME)))
+
+PARSE_MAP			:=	get_array_map_from_file get_map_data
+PARSE_MAP_M			:=	$(addprefix src/parse_map/, $(addsuffix .c, $(PARSE_MAP)))
 
 UTILS				:=	free
 UTILS_M				:=	$(addprefix src/utils/, $(addsuffix .c, $(UTILS)))
@@ -26,7 +29,7 @@ UTILS_M				:=	$(addprefix src/utils/, $(addsuffix .c, $(UTILS)))
 MAIN				:=	main
 MAIN_M				:=	$(addprefix src/, $(addsuffix .c, $(MAIN)))
 
-SRCS				:=	$(PARSE_MAP_M) $(UTILS_M) $(MAIN_M) $(INIT_M)
+SRCS				:=	$(PARSE_MAP_M) $(UTILS_M) $(MAIN_M) $(INIT_M) $(LAUNCH_GAME_M)
 
 OBJS				:=	$(SRCS:.c=.o)
 
