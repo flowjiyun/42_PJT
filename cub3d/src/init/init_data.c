@@ -24,8 +24,10 @@ static t_texture	*init_texture(t_list *list, t_mlx *mlx)
 	(wall[3]).relative_path = ft_strdup(EA);
 	for (int i = 0; i < 4; ++i)
 	{
-		wall[i].width = TEX_WIDTH;
-		wall[i].height = TEX_HEIGHT;
+		wall[i].img = mlx_png_file_to_image(mlx->display,
+				wall[i].relative_path, &wall[i].width, &wall[i].height);
+		wall[i].addr = mlx_get_data_addr(wall[i].img, &wall[i].bits_per_pixel,
+				&wall[i].size_line, &wall[i].endian);
 	}
 	return (wall);
 }

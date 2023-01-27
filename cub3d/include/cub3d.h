@@ -49,6 +49,11 @@ typedef struct s_texture
 	char	*relative_path;
 	int		width;
 	int		height;
+	void	*img;
+	void	*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 }	t_texture;
 
 typedef struct s_color
