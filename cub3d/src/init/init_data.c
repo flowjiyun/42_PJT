@@ -74,5 +74,6 @@ t_data	*init_data(t_list *list, t_mlx *mlx)
 	data->color = init_color(list);
 	data->map = init_map(list);
 	data->player = init_player(data->map);
+	data->mlx = mlx;
 	return (data);
 }
