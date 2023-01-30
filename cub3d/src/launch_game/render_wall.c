@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reder_wall.c                                       :+:      :+:    :+:   */
+/*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 20:59:53 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/27 23:19:38 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:58:01 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static void	init_cur_state(t_data *data, t_raycast *cur_state, int x)
 // if side == 0, hit x = c
 static void	dda(t_data *data, t_raycast *cur_state)
 {
-	const char	**world_map = data->map->world_map;
-
 	while (cur_state->hit == 0)
 	{
 		if (cur_state->sidedist_x < cur_state->sidedist_y)
@@ -81,9 +79,86 @@ static void	dda(t_data *data, t_raycast *cur_state)
 			cur_state->map_y += cur_state->step_y;
 			cur_state->side = 1;
 		}
-		if (world_map[cur_state->map_y][cur_state->map_x] == '1')
+		if (data->map->world_map[cur_state->map_y][cur_state->map_x] == '1')
 			cur_state->hit = 1;
 	}
+}
+
+static void	get_line_height(t_raycast *cur_state)
+{
+	if (cur_state->side == 0)
+		cur_state->walldist = (cur_state->sidedist_x - cur_state->deltadist_x);
+	else
+		cur_state->walldist = (cur_state->sidedist_y - cur_state->deltadist_y);
+	cur_state->line_height = (int)(SCREEN_HEIGHT / cur_state->walldist);
+	cur_state->draw_start = SCREEN_HEIGHT / 2 - cur_state->line_height / 2;
+	if (cur_state->draw_start < 0)
+		cur_state->draw_start = 0;
+	cur_state->draw_end = SCREEN_HEIGHT / 2 + cur_state->line_height / 2;
+	if (cur_state->draw_start >= SCREEN_HEIGHT)
+		cur_state->draw_start = SCREEN_HEIGHT - 1;
+}
+
+static void	get_tex_num(t_raycast *cur_state)
+{
+	if (cur_state->side == 0)
+	{
+		if (cur_state->raydir_y < 0)
+			cur_state->tex_num = 0;
+		else
+			cur_state->tex_num = 1;
+	}
+	else
+	{
+		if (cur_state->raydir_x < 0)
+			cur_state->tex_num = 2;
+		else
+			cur_state->tex_num = 3;
+	}
+}
+
+static void	get_real_hit_pos(t_data *data, t_raycast *cur_state)
+{
+	if (cur_state->side == 0)
+	{
+		cur_state->wall_x = data->player->pos_y
+			+ cur_state->walldist * cur_state->raydir_y;
+	}
+	else
+	{
+		cur_state->wall_x = data->player->pos_x
+			+ cur_state->walldist * cur_state->raydir_x;
+	}
+	cur_state->wall_x -= floor(cur_state->wall_x);
+	cur_state->tex_x = (int)(cur_state->wall_x * (double)TEX_WIDTH);
+	if (cur_state->side == 0 && cur_state->raydir_x < 0)
+		cur_state->tex_x = TEX_HEIGHT - cur_state->tex_x - 1;
+	if (cur_state->side == 1 && cur_state->raydir_y > 0)
+		cur_state->tex_x = TEX_HEIGHT - cur_state->tex_x - 1;
+}
+
+static void	put_texture_line_to_image(t_data *data, t_raycast *cur_state)
+{
+	double	step;
+	double	tex_pos;
+	int		y;
+	int		tex_y;
+
+	step = 1.0 * TEX_HEIGHT / cur_state->line_height;
+	tex_pos = 0.0;
+	y = cur_state->draw_start;
+	while (y < cur_state->draw_end)
+	{
+		tex_y = (int)texpos
+		++y;
+	}
+}
+
+static void	draw_wall_to_image(t_data *data, t_raycast *cur_state)
+{
+	get_tex_num(cur_state);
+	get_real_hit_pos(data, cur_state);
+	put_texture_line_to_image(data, cur_state);
 }
 
 static void	raycast(t_data *data)
@@ -96,6 +171,8 @@ static void	raycast(t_data *data)
 	{
 		init_cur_state(data, &cur_state, x);
 		dda(data, &cur_state);
+		get_line_height(&cur_state);
+		draw_wall_to_image(data, &cur_state);
 		++x;
 	}
 }

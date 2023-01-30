@@ -30,19 +30,25 @@
 # define WE "./texture/eagle.png"
 # define EA "./texture/greystone.png"
 
+typedef struct s_image		t_image;
 typedef struct s_map		t_map;
 typedef struct s_texture	t_texture;
 typedef struct s_color		t_color;
 typedef struct s_player		t_player;
-typedef struct s_mlx
+
+typedef struct s_image
 {
-	void	*display;
-	void	*window;
 	void	*img;
 	void	*addr;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+}	t_image;
+typedef struct s_mlx
+{
+	void	*display;
+	void	*window;
+	t_image	*image;
 }	t_mlx;
 
 typedef struct s_texture
@@ -50,11 +56,7 @@ typedef struct s_texture
 	char	*relative_path;
 	int		width;
 	int		height;
-	void	*img;
-	void	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
+	t_image	*image;
 }	t_texture;
 
 typedef struct s_color
@@ -99,6 +101,12 @@ typedef struct s_raycast
 	int		step_y;
 	int		hit;
 	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_num;
+	double	wall_x;
+	int		tex_x;
 }	t_raycast;
 
 typedef struct s_data

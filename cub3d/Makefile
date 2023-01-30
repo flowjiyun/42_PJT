@@ -6,11 +6,11 @@
 #    By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 09:21:03 by jiyunpar          #+#    #+#              #
-#    Updated: 2023/01/27 23:20:51 by jiyunpar         ###   ########.fr        #
+#    Updated: 2023/01/30 14:08:34 by jiyunpar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY : all bonus clean fclean re
+.PHONY : all bonus clean fclean re .all_check
 
 NAME				:=	cub3D
 

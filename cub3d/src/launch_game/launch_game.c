@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 17:21:40 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/01/27 21:00:22 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:02:08 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,15 @@ static void	draw_image_to_screen(t_data *data)
 {
 	const t_mlx	*mlx = data->mlx;
 
-	mlx_put_image_to_window(mlx->display, mlx->window, mlx->img, 0, 0);
+	mlx_put_image_to_window(mlx->display, mlx->window, mlx->image->img, 0, 0);
+}
+
+static void	put_pixel_to_image(t_image *image, int x, int y, int color)
+{
+	char	*ret;
+
+	ret = image->addr + (y * image->size_line + x * (image->bits_per_pixel / 8));
+	*((unsigned int *)ret) = color;
 }
 
 // draw floor & ceilling to image buffer
@@ -26,7 +34,6 @@ static void	render_background(t_data *data)
 	const t_mlx	*mlx = data->mlx;
 	int			x;
 	int			y;
-	char		*ret;
 	int			middle_line;
 
 	y = 0;
@@ -36,12 +43,14 @@ static void	render_background(t_data *data)
 		x = 0;
 		while (x < SCREEN_WIDTH)
 		{
-			ret = mlx->addr + (y * mlx->size_line
-					+ x * (mlx->bits_per_pixel / 8));
+			// ret = mlx->addr + (y * mlx->size_line
+			// 		+ x * (mlx->bits_per_pixel / 8));
 			if (y < middle_line)
-				*((unsigned int *)ret) = data->color->ceilling_color;
+				put_pixel_to_image(mlx->image, x, y, data->color->ceilling_color);
+				// *((unsigned int *)ret) = data->color->ceilling_color;
 			else
-				*((unsigned int *)ret) = data->color->floor_color;
+				put_pixel_to_image(mlx->image, x, y, data->color->floor_color);
+				// *((unsigned int *)ret) = data->color->floor_color;
 			++x;
 		}
 		++y;
@@ -52,7 +61,7 @@ static void	render_background(t_data *data)
 static void	render_map(t_data *data)
 {
 	render_background(data);
-	render_wall(data);
+	// render_wall(data);
 }
 
 void	launch_game(t_data *data)
