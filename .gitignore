@@ -7,6 +7,9 @@
 # Unignore all dirs
 !*/
 
+# Unignore Makefile
+!Makefile
+
 .vscode
 Tester
 libft-unit-test
@@ -15,3 +18,4 @@ a.out
 *.o
 *.a
 a.out.dSYM
+.all_check
