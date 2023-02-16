@@ -6,11 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/15 22:37:22 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:58:06 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::mFractionalBit = 8;
 
 int	Fixed::getRawBit(void) const
 {
@@ -20,7 +22,7 @@ int	Fixed::getRawBit(void) const
 
 void Fixed::setRawBit(const int raw)
 {
-	mFixedPointValue = (raw << mFractionalBit);
+	mFixedPointValue = raw * (1 << mFractionalBit);
 }
 
 Fixed::Fixed()
@@ -47,5 +49,3 @@ Fixed&	Fixed::operator=(const Fixed& rhs)
 		mFixedPointValue = rhs.getRawBit();
 	return (*this);
 }
-
-
