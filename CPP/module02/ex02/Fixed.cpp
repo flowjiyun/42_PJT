@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 18:16:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:20:33 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	Fixed::getRawBit(void) const
 
 void Fixed::setRawBit(const int raw)
 {
-	mFixedPointValue = raw * (1 << mFractionalBit);
+	mFixedPointValue = raw;
 }
 
 float Fixed::toFloat(void) const
@@ -114,22 +114,94 @@ bool Fixed::operator!=(const Fixed& rhs) const
 
 Fixed Fixed::operator+(const Fixed& rhs) const
 {
-	return (Fixed(this->getRawBit() + rhs.getRawBit()));
+	Fixed temp;
+
+	temp.setRawBit(this->getRawBit() + rhs.getRawBit());
+	return (temp);
 }
 
 Fixed Fixed::operator-(const Fixed& rhs) const
 {
-	return (Fixed(this->getRawBit() - rhs.getRawBit()));
+	Fixed temp;
+
+	temp.setRawBit(this->getRawBit() - rhs.getRawBit());
+	return (temp);
 }
 
 Fixed Fixed::operator*(const Fixed& rhs) const
 {
-	return (Fixed(this->getRawBit() * rhs.getRawBit()));
+	Fixed temp;
+
+	temp.setRawBit((this->getRawBit() * rhs.getRawBit()) / (1 << mFractionalBit));
+	return (temp);
 }
 
-Fixed Fixed::operator*(const Fixed& rhs) const
+Fixed Fixed::operator/(const Fixed& rhs) const
 {
-	return (Fixed(this->getRawBit() / rhs.getRawBit()));
+	Fixed temp;
+
+	temp.setRawBit((this->getRawBit() / rhs.getRawBit()) * (1 << mFractionalBit));
+	return (temp);
+}
+
+Fixed& Fixed::operator++(void)
+{
+	this->mFixedPointValue++;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int dummy)
+{
+	(void) dummy;
+	Fixed temp(*this);
+	this->mFixedPointValue++;	
+	return (temp);
+}
+
+Fixed& Fixed::operator--(void)
+{
+	this->mFixedPointValue--;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int dummy)
+{
+	(void) dummy;
+	Fixed temp(*this);
+	this->mFixedPointValue--;	
+	return (temp);
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+	if (a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+	if (a <= b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+	if (a >= b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	if (a >= b)
+		return (a);
+	else
+		return (b);
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& rhs)

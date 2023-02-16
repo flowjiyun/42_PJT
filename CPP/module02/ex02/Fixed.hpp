@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:32 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 18:10:32 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/16 21:53:21 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ class Fixed
 		float	toFloat(void) const;
 		int		toInt(void) const;
 
-		static Fixed& min(Fixed& a, Fixed& b);
-		static Fixed& min(const Fixed& a,  const Fixed& b);
-		static Fixed& max(Fixed& a, Fixed& b);
-		static Fixed& max(const Fixed& a,  const Fixed& b);
+		static			Fixed& min(Fixed& a, Fixed& b);
+		static const	Fixed& min(const Fixed& a,  const Fixed& b);
+		static			Fixed& max(Fixed& a, Fixed& b);
+		static const	Fixed& max(const Fixed& a,  const Fixed& b);
 
 	private:
 		int					mFixedPointValue;
