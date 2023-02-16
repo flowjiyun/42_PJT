@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 16:58:06 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/16 22:10:06 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	Fixed::getRawBit(void) const
 
 void Fixed::setRawBit(const int raw)
 {
-	mFixedPointValue = raw * (1 << mFractionalBit);
+	mFixedPointValue = raw;
 }
 
 Fixed::Fixed()
