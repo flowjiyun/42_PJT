@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:32 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 17:35:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:10:32 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ class Fixed
 		Fixed(const Fixed& other);
 		Fixed&	operator=(const Fixed& rhs);
 		// operator overload(comparison)
-		bool	operator>(const Fixed& rhs);
-		bool	operator<(const Fixed& rhs);
-		bool	operator>=(const Fixed& rhs);
-		bool	operator<=(const Fixed& rhs);
-		bool	operator==(const Fixed& rhs);
-		bool	operator!=(const Fixed& rhs);
+		bool	operator>(const Fixed& rhs) const;
+		bool	operator<(const Fixed& rhs) const;
+		bool	operator>=(const Fixed& rhs) const;
+		bool	operator<=(const Fixed& rhs) const;
+		bool	operator==(const Fixed& rhs) const;
+		bool	operator!=(const Fixed& rhs) const;
 		// operator overload(arithmetic)
-		Fixed&	operator+(const Fixed& rhs);
-		Fixed&	operator-(const Fixed& rhs);
-		Fixed&	operator*(const Fixed& rhs);
-		Fixed&	operator/(const Fixed& rhs);
+		Fixed	operator+(const Fixed& rhs) const;
+		Fixed	operator-(const Fixed& rhs) const;
+		Fixed	operator*(const Fixed& rhs) const;
+		Fixed	operator/(const Fixed& rhs) const;
 		// operator overload(increment/decrement)
 		Fixed&	operator++(void);
-		Fixed&	operator++(int dummy);
+		Fixed	operator++(int dummy);
 		Fixed&	operator--(void);
-		Fixed&	operator--(int dummy);
+		Fixed	operator--(int dummy);
 
 		int		getRawBit(void) const;
 		void	setRawBit(const int raw);

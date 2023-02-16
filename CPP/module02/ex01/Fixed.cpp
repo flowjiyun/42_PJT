@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 16:24:27 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:46:43 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	Fixed::getRawBit(void) const
 
 void Fixed::setRawBit(const int raw)
 {
-	mFixedPointValue = raw;
+	mFixedPointValue = raw * (1 << mFractionalBit);
 }
 
 float Fixed::toFloat(void) const
 {
-	return ((float)mFixedPointValue / (1 << 8));
+	return ((float)mFixedPointValue / (1 << mFractionalBit));
 }
 
 int Fixed::toInt(void) const
 {
-	return ((int)mFixedPointValue / (1 << 8));
+	return ((int)mFixedPointValue / (1 << mFractionalBit));
 }
 
 Fixed::Fixed()
