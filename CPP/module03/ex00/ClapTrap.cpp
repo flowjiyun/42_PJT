@@ -104,8 +104,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	{
 		--mEnergyPoint;
 		mHitPoint += amount;
-		if (mHitPoint > 10)
-			mHitPoint = 10;
 		std::cout << "================================================" << std::endl;
 		std::cout << "ClapTrap " << mName << " repaired " << amount << " Hit Point" << std::endl;
 		std::cout << "Hit Point : " << mHitPoint << std::endl;
