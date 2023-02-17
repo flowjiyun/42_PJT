@@ -18,7 +18,7 @@ ClapTrap::ClapTrap()
 	, mEnergyPoint(10)
 	, mAttackDamage(0)
 {
-	std::cout << "Default ClapTrap constructor called" << std::endl;
+	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string name)
