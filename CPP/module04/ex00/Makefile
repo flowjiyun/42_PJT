@@ -1,6 +1,6 @@
 .PHONY	= all clean fclean re
 
-NAME	=	ex03
+NAME	=	ex00
 
 SRC		=	$(wildcard *.cpp)
 
