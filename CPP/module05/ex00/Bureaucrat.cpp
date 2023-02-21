@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/21 16:10:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:14:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ Bureaucrat::Bureaucrat(const std::string name, unsigned int grade)
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
-	: mName(other.getName())
-	, mGrade(other.getGrade())
+	: mName(other.mName)
+	, mGrade(other.mGrade)
 {
 	std::cout << "copied" << std::endl;
 }
