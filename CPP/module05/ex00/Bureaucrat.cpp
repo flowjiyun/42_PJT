@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/21 14:12:49 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:10:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ Bureaucrat::Bureaucrat()
 
 Bureaucrat::Bureaucrat(const std::string name, unsigned int grade)
 	: mName(name)
+	, mGrade(grade)
 {
-	if (grade < 1)
+	if (mGrade < 1)
 		throw GradeTooHighException();
-	if (grade > 150)
+	if (mGrade > 150)
 		throw GradeTooLowException();
-	mGrade = grade;
 	std::cout << "Constructed" << std::endl;
 }
 
