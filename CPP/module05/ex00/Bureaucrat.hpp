@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:14:03 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/20 17:04:17 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:57:41 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ class Bureaucrat
 		unsigned int	mGrade;
 		Bureaucrat& operator=(const Bureaucrat& rhs);
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& rhs);
 
 #endif

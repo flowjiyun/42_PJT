@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/20 17:20:08 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:12:49 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ unsigned int Bureaucrat::getGrade(void) const
 
 void Bureaucrat::increaseGrade(void)
 {
+	std::cout << "IncreaseGrade called"  << std::endl;
 	--mGrade;
 	if (mGrade < 1)
 		throw GradeTooHighException();
@@ -71,7 +72,14 @@ void Bureaucrat::increaseGrade(void)
 
 void Bureaucrat::decreaseGrade(void)
 {
+	std::cout << "decreaseGrade called"  << std::endl;
 	++mGrade;
 	if (mGrade > 150)
 		throw GradeTooLowException();
+}
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& rhs)
+{
+	out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << "." << std::endl;
+	return (out);
 }
