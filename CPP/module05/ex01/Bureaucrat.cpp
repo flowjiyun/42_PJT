@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/21 18:01:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:16:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	Bureaucrat::signForm(Form& val) const
 	catch(const std::exception& e)
 	{
 		std::cout << mName << " couldn't sign " << val.getName() << " because ";
-		std::cerr << e.what() << '\n';
+		std::cout << e.what() << '\n';
 	}	
 }
 
