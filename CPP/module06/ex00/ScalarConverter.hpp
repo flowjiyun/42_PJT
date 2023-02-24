@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:09:18 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/24 17:43:16 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:32:36 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 
 enum
 {
+	FLOATINF,
+	DOUBLEINF,
 	CHAR,
 	NUMBER,
-	FLOATINF,
-	DOUBLEINF
+	ERROR
 };
 
 class ScarlarConverter

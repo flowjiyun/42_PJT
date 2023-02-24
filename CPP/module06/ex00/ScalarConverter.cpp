@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:09:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/24 18:17:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:28:59 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,55 @@ bool isDoubleInfOrNan(const std::string literal)
 		return (false);
 }
 
+bool isValidInput(std::string literal)
+{
+	int len;
+	int cntPoit;
+
+	len = literal.length();
+	cntPoit = 0;
+	if (len != 1)
+	{
+		if (len == 2)
+		{
+			if ((literal[0] == '+' || literal[0] == '-') && literal[1] == 'f')
+				return (false);
+		}
+		if (!(literal[0] == '+' || literal[0] == '-') && !isdigit(literal[0]))
+			return (false);
+		for (int i = 1; i < len - 1; ++i)
+		{
+			if (!isdigit(literal[i]))
+			{
+				if (literal[i] == '.')
+				{
+					++cntPoit;
+					if (cntPoit > 1)
+						return (false);	
+				}
+				else
+					return (false);
+			}
+		}
+		if ((literal[len - 1] >= '0' && literal[len - 1] <= '9') || literal[len - 1] == 'f')
+		{
+			std::cout << 2 << std::endl;
+			return (true);
+		}
+		else
+		{
+			std::cout << 3 << std::endl;
+			return (false);
+		}
+	}
+	else
+		return (true);
+}
+
 int checkType(const std::string literal)
 {
+	if (!isValidInput(literal))
+		return (ERROR);
 	if (isFloatInfOrNan(literal))
 		return (FLOATINF);
 	if (isDoubleInfOrNan(literal))
@@ -91,19 +138,33 @@ void printInfOrNan(std::string literal, int type)
 	}
 }
 
-void printNum(std::string literal)
-{
+// void printNum(std::string literal)
+// {
 
+// }
+
+void printError(void)
+{
+	const std::string error = "impossible";
+
+	std::cout << "char: " << error << std::endl;
+	std::cout << "int: " << error << std::endl;
+	std::cout << "float: " << error << std::endl;
+	std::cout << "double: " << error << std::endl;
 }
+
+
 void ScarlarConverter::convert(std::string literal)
 {
 	int type;
 
 	type = checkType(literal);
+	if (type == ERROR)
+		printError();
 	if (type == FLOATINF || type == DOUBLEINF)
 		printInfOrNan(literal, type);
 	else if (type == CHAR)
 		printChar(literal);
-	else
-		printNum(literal);
+	// else
+	// 	printNum(literal);
 }
