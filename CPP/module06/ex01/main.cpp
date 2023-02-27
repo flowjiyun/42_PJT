@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.cpp                                     :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 14:57:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/27 16:21:30 by jiyunpar         ###   ########.fr       */
+/*   Created: 2023/02/27 15:33:23 by jiyunpar          #+#    #+#             */
+/*   Updated: 2023/02/27 16:29:12 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
 
-uintptr_t Serializer::serialize(Data* ptr)
+int main(void)
 {
-	return (reinterpret_cast<uintptr_t>(ptr));
-}
+	Data data;
+	uintptr_t ptr;
+	Data* dataDeserialized;
+	
+	data.a = 42;
+	data.b = 42.42f;
+	data.c = 42.42;
+	ptr = Serializer::serialize(&data);
+	dataDeserialized = Serializer::deserialize(ptr);
 
-Data* Serializer::deserialize(uintptr_t raw)
-{
-	return (reinterpret_cast<Data*>(raw));
+	std::cout << "Before serialized : " <<  &data << std::endl;
+	std::cout << "After serialized: " << ptr << std::endl;
+	std::cout << "After deserialized: " << dataDeserialized << std::endl;
+
+	return (0);
 }
