@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:09:18 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/24 19:32:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:27:27 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 # include <cstdlib>
 # include <climits>
 # include <cctype>
+# include <cfloat>
 
 enum
 {
 	FLOATINF,
 	DOUBLEINF,
 	CHAR,
-	NUMBER,
+	INT,
+	FLOAT,
+	DOUBLE,
 	ERROR
 };
 
