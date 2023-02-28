@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 19:11:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/27 19:12:37 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:20:30 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 class Base
 {
 	public:
+		Base();
 		virtual ~Base();
 };
 #endif

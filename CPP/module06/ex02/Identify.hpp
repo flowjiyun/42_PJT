@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   C.hpp                                              :+:      :+:    :+:   */
+/*   identify.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 19:11:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/28 17:13:42 by jiyunpar         ###   ########.fr       */
+/*   Created: 2023/02/28 16:59:44 by jiyunpar          #+#    #+#             */
+/*   Updated: 2023/02/28 17:24:41 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C_HPP
-# define C_HPP
-# include "Base.hpp"
+#ifndef IDENTIFY_HPP
+# define IDENTIFY_HPP
+# include <iostream>
+# include <cstdlib>
+# include <ctime>
+# include <exception>
+# include "A.hpp"
+# include "B.hpp"
+# include "C.hpp"
 
-class C : public Base
-{
-	public:
-		C();
-		virtual ~C();
-};
+Base* generate(void);
+void identify(Base* p);
+void identify(Base& p);
+
 #endif
