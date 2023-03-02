@@ -5,13 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 20:39:35 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/28 20:39:37 by jiyunpar         ###   ########.fr       */
+/*   Created: 2023/03/02 12:06:37 by jiyunpar          #+#    #+#             */
+/*   Updated: 2023/03/02 13:40:10 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <Array.hpp>
+#include <cstdlib>
+#include <ctime>
+#include "Array.hpp"
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -25,6 +27,11 @@ int main(int, char**)
         numbers[i] = value;
         mirror[i] = value;
     }
+	for (int i = 0; i < 10; ++i)
+	{
+		std::cout << "numbers index " << i << ": " << numbers[i] << std::endl;
+		std::cout << "mirror index " << i << ": " << mirror[i] << std::endl;
+	}
     //SCOPE
     {
         Array<int> tmp = numbers;
@@ -61,5 +68,6 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;//
+	// system("leaks ex02");
     return 0;
 }
