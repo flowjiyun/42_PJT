@@ -6,15 +6,15 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:44:40 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/10 13:43:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:16:14 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
 Zombie::Zombie()
-{
-	
+	: mName("void")
+{	
 }
 
 Zombie::Zombie(std::string name)
