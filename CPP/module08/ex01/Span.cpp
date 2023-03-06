@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:38:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/06 17:07:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:48:32 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,17 @@ void Span::addNumber(unsigned int val)
 	else
 	{
 		mVec.push_back(val);
+		++mSize;
+	}
+}
+
+void Span::addNumber(std::vector<unsigned int>::const_iterator begin, std::vector<unsigned int>::const_iterator end)
+{
+	for (std::vector<unsigned int>::const_iterator it = begin; it != end; ++it)
+	{
+		if (mSize >= mCapacity)
+			throw MaxElement();
+		mVec.push_back(*it);
 		++mSize;
 	}
 }
