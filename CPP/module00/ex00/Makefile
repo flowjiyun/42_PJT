@@ -2,7 +2,7 @@
 
 NAME	=	megaphone
 
-SRC		=	megaphone.cpp 
+SRC		=	$(wildcard *.cpp)
 
 OBJ		=	$(SRC:.cpp=.o)
 
