@@ -6,17 +6,28 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 20:10:16 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/07 21:30:03 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:51:29 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include "Ft.hpp"
 
 void	Contact::SetFirstName(void)
 {
 	std::string val;
-	std::cout << "Enter First Name :";
-	getline(std::cin, val);
+	std::cout << "Enter First Name : ";
+	while (true)
+	{
+		Ft::getline(std::cin, val);
+		if (val == "")
+		{
+			std::cout << "Enter First Name : ";
+			continue;
+		}
+		else
+			break;
+	}
 	mFirstName = val;
 }
 
@@ -24,7 +35,17 @@ void	Contact::SetLastName(void)
 {
 	std::string val;
 	std::cout << "Enter Last Name : ";
-	getline(std::cin, val);
+	while (true)
+	{
+		Ft::getline(std::cin, val);
+		if (val == "")
+		{
+			std::cout << "Enter Last Name : ";
+			continue;
+		}
+		else
+			break;
+	}
 	mLastname = val;
 }
 
@@ -32,7 +53,17 @@ void	Contact::SetNickname(void)
 {
 	std::string val;
 	std::cout << "Enter Nickname : ";
-	getline(std::cin, val);
+	while (true)
+	{
+		Ft::getline(std::cin, val);
+		if (val == "")
+		{
+			std::cout << "Enter Nickname : ";
+			continue;
+		}
+		else
+			break;
+	}
 	mNickname = val;
 }
 
@@ -40,7 +71,17 @@ void	Contact::SetPhoneNumber(void)
 {
 	std::string val;
 	std::cout << "Enter Phone Number : ";
-	getline(std::cin, val);
+	while (true)
+	{
+		Ft::getline(std::cin, val);
+		if (val == "")
+		{
+			std::cout << "Enter Phone Number : ";
+			continue;
+		}
+		else
+			break;
+	}
 	mPhoneNumber = val;
 }
 
@@ -48,7 +89,17 @@ void	Contact::SetDarkestSecret(void)
 {
 	std::string val;
 	std::cout << "Enter Darkest Secret : ";
-	getline(std::cin, val);
+	while (true)
+	{
+		Ft::getline(std::cin, val);
+		if (val == "")
+		{
+			std::cout << "Enter Darkest Secret : ";
+			continue;
+		}
+		else
+			break;
+	}
 	mDarkestSecret = val;
 }
 

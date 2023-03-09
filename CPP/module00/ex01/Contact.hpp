@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 20:10:25 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/07 21:40:15 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:16:22 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
+# include "Ft.hpp"
 
 class Contact
 {	
