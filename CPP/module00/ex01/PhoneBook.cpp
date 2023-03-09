@@ -6,12 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 21:16:44 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/07 23:23:37 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:55:02 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include "Ft.hpp"
 
 PhoneBook::PhoneBook()
 	: mIndex(0)
@@ -30,7 +31,8 @@ void PhoneBook::Add(const Contact& val)
 	{
 		mBook[mIndex] = val;
 		++mIndex;
-		++mNum;
+		if (mNum < 8)
+			++mNum;
 	}
 	else
 	{
@@ -72,7 +74,7 @@ void PhoneBook::PrintTable(void) const
 	PrintCategoty();
 	if (mIndex != 0)
 	{
-		for (int i = 0; i < mIndex; ++i)
+		for (int i = 0; i < mNum; ++i)
 		{
 			std::cout << "|";
 			std::cout << std::setw(10) << std::right << i + 1;
@@ -89,11 +91,11 @@ void PhoneBook::Search(void) const
 {
 	std::string index;
 	std::cout << "Enter Index" << '\n';
-	getline(std::cin, index);
+	Ft::getline(std::cin, index);
 	while (atoi(index.c_str()) < 1 || atoi(index.c_str()) > 8 || atoi(index.c_str()) > mNum)
 	{
 		std::cout << "Invalid Index : Enter Index in range" << "\n";
-		getline(std::cin, index);
+		Ft::getline(std::cin, index);
 	}
 	std::cout << "First Name : " << mBook[atoi(index.c_str()) - 1].GetFirstName() << '\n';
 	std::cout << "Last Name : " << mBook[atoi(index.c_str()) - 1].GetLastName() << '\n';
