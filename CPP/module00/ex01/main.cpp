@@ -12,6 +12,7 @@
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include "Ft.hpp"
 
 int main(void)
 {
@@ -21,7 +22,7 @@ int main(void)
 	std::cout << "PLEASE USE CMD : ADD, SEARCH, EXIT" << '\n'; 
 	while (true)
 	{
-		getline(std::cin, cmd);
+		Ft::getline(std::cin, cmd);
 		if (cmd == "ADD")
 		{
 			val.SetData();
@@ -37,7 +38,7 @@ int main(void)
 		}
 		else if (cmd == "EXIT")
 		{
-			exit(0);
+			break;
 		}
 		else
 		{
