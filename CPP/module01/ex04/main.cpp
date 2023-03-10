@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:24:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/13 17:37:20 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:33:46 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ int	main(int argc, char **argv)
 	fileName = argv[1];
 	str1 = argv[2];
 	str2 = argv[3];
-	file.open(fileName.c_str(), std::fstream::in);
+	file.open(fileName.c_str(), std::ios_base::in);
 	if (!file.is_open())
+	{
+		std::cout << "can't open file" << std::endl;
 		return (1);
+	}
 	fileNameReplaced = fileName + ".replace";
-	fileReplaced.open(fileNameReplaced.c_str(), std::fstream::out);
+	fileReplaced.open(fileNameReplaced.c_str(), std::ios_base::out | std::ios_base::trunc);
 	if (!fileReplaced.is_open())
+	{
+		std::cout << "can't open file" << std::endl;
 		return (1);
+	}
 	while (!file.eof())
 	{
 		std::string val;
@@ -55,6 +61,11 @@ int	main(int argc, char **argv)
 				fileReplaced << val << '\n';
 			else
 				fileReplaced << val;
+		}
+		else
+		{
+			std::cout << "getline fail" << std::endl;
+			break;
 		}
 	}
 	file.close();
