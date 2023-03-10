@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:41:02 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/14 20:20:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:04:12 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ int main(int argc, char **argv)
 	if (argc != 2)
 	{
 		std::cout << "Input Error! : only debug, info, warning, error" << std::endl;
+		return (1);
 	}
 	level = argv[1];
 	index = getIndex(level);
 	switch(index)
 	{
-		default:
-			a.complain("badlevel");
-			break;
 		case 0:
 			a.complain("debug");
 			std::cout << "\n";
@@ -47,8 +45,11 @@ int main(int argc, char **argv)
 		case 2:
 			a.complain("warning");
 			std::cout << "\n";
-		case 4:
+		case 3:
 			a.complain("error");
+			break;
+		default:
+			a.complain("badlevel");
 	}
 	return (0);
 }
