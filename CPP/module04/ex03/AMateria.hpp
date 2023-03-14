@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:54:56 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 19:31:02 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:58:15 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ class AMateria
 		AMateria();
 		AMateria(const std::string& type);
 		virtual ~AMateria();
-		AMateria& operator=(const AMateria& rhs);
 
 		const std::string& getType(void) const;
 		virtual AMateria* clone(void) const = 0;
@@ -32,6 +31,7 @@ class AMateria
 		std::string mType;
 
 	private:
+		AMateria& operator=(const AMateria& rhs);
 	
 };
 
