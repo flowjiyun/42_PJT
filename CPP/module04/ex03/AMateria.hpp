@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:54:56 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 16:14:40 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:31:02 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,22 @@
 
 class AMateria
 {
-	protected:
-		std::string mType;
 	
 	public:
+		AMateria();
 		AMateria(const std::string& type);
-		const std::string& getType() const; //Returns the matera type
+		virtual ~AMateria();
+		AMateria& operator=(const AMateria& rhs);
 
-		virtual AMateria* clone() const = 0;
+		const std::string& getType(void) const;
+		virtual AMateria* clone(void) const = 0;
 		virtual void use(ICharacter& target);
+
+	protected:
+		std::string mType;
+
+	private:
+	
 };
 
 #endif
