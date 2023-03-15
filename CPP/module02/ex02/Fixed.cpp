@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 22:20:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:16:16 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	Fixed::getRawBit(void) const
 {
-	std::cout << "getRawBits member fucntion called" <<std::endl;
 	return (mFixedPointValue);
 }
 
@@ -36,35 +35,29 @@ int Fixed::toInt(void) const
 Fixed::Fixed()
 	: mFixedPointValue(0)
 {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const int value)
 	: mFixedPointValue(value * (1 << mFractionalBit))
 {
-	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float value)
 	: mFixedPointValue(roundf(value * (1 << mFractionalBit)))
 {
-	std::cout << "Float constructor called" << std::endl;	
 }
 
 Fixed::~Fixed()
 {
-	std::cout <<"Destructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Fixed&	Fixed::operator=(const Fixed& rhs)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)
 		mFixedPointValue = rhs.mFixedPointValue;
 	return (*this);
