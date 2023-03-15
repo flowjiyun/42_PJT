@@ -6,24 +6,13 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 22:10:06 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:45:03 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 const int Fixed::mFractionalBit = 8;
-
-int	Fixed::getRawBit(void) const
-{
-	std::cout << "getRawBits member fucntion called" <<std::endl;
-	return (mFixedPointValue);
-}
-
-void Fixed::setRawBit(const int raw)
-{
-	mFixedPointValue = raw;
-}
 
 Fixed::Fixed()
 	: mFixedPointValue(0)
@@ -48,4 +37,15 @@ Fixed&	Fixed::operator=(const Fixed& rhs)
 	if (this != &rhs)
 		mFixedPointValue = rhs.getRawBit();
 	return (*this);
+}
+
+int	Fixed::getRawBit(void) const
+{
+	std::cout << "getRawBits member fucntion called" <<std::endl;
+	return (mFixedPointValue);
+}
+
+void Fixed::setRawBit(const int raw)
+{
+	mFixedPointValue = raw;
 }
