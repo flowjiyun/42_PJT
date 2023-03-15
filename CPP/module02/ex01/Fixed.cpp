@@ -6,32 +6,11 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:31:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/16 22:09:58 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:02:42 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-int	Fixed::getRawBit(void) const
-{
-	std::cout << "getRawBits member fucntion called" <<std::endl;
-	return (mFixedPointValue);
-}
-
-void Fixed::setRawBit(const int raw)
-{
-	mFixedPointValue = raw;
-}
-
-float Fixed::toFloat(void) const
-{
-	return ((float)mFixedPointValue / (1 << mFractionalBit));
-}
-
-int Fixed::toInt(void) const
-{
-	return ((int)mFixedPointValue / (1 << mFractionalBit));
-}
 
 Fixed::Fixed()
 	: mFixedPointValue(0)
@@ -74,4 +53,25 @@ std::ostream& operator<<(std::ostream& out, const Fixed& rhs)
 {
 	out << rhs.toFloat();
 	return (out);
+}
+
+int	Fixed::getRawBit(void) const
+{
+	std::cout << "getRawBits member fucntion called" <<std::endl;
+	return (mFixedPointValue);
+}
+
+void Fixed::setRawBit(const int raw)
+{
+	mFixedPointValue = raw;
+}
+
+float Fixed::toFloat(void) const
+{
+	return ((float)mFixedPointValue / (1 << mFractionalBit));
+}
+
+int Fixed::toInt(void) const
+{
+	return ((int)mFixedPointValue / (1 << mFractionalBit));
 }
