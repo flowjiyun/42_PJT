@@ -36,10 +36,9 @@ FragTrap::~FragTrap()
 }
 
 FragTrap::FragTrap(const FragTrap& other)
-	: ClapTrap()
+	: ClapTrap(other.mName)
 {
 	std::cout << "FragTrap copy constructor called" << std::endl;
-	mName = other.mName;
 	mHitPoint = other.mHitPoint;
 	mEnergyPoint = other.mEnergyPoint;
 	mAttackDamage = other.mAttackDamage;
@@ -60,7 +59,7 @@ FragTrap& FragTrap::operator=(const FragTrap& rhs)
 
 void	FragTrap::attack(const std::string& target)
 {
-	if (mHitPoint != 0 && mEnergyPoint != 0)
+	if (mHitPoint > 0 && mEnergyPoint > 0)
 	{
 		--mEnergyPoint;
 		std::cout << "================================================" << std::endl;
