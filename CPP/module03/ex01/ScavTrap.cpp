@@ -12,15 +12,6 @@
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap()
-	: ClapTrap()
-{
-	std::cout << "Scavtrap default constructor called" << std::endl;
-	mHitPoint = 100;
-	mEnergyPoint = 50;
-	mAttackDamage = 20;
-}
-
 ScavTrap::ScavTrap(const std::string name)
 	: ClapTrap(name)
 {
@@ -36,10 +27,9 @@ ScavTrap::~ScavTrap()
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other)
-	: ClapTrap()
+	: ClapTrap(other.mName)
 {
 	std::cout << "Scavtrap copy constructor called" << std::endl;
-	mName = other.mName;
 	mHitPoint = other.mHitPoint;
 	mEnergyPoint = other.mEnergyPoint;
 	mAttackDamage = other.mAttackDamage;
@@ -60,7 +50,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& rhs)
 
 void	ScavTrap::attack(const std::string& target)
 {
-	if (mHitPoint != 0 && mEnergyPoint != 0)
+	if (mHitPoint > 0 && mEnergyPoint > 0)
 	{
 		--mEnergyPoint;
 		std::cout << "================================================" << std::endl;
