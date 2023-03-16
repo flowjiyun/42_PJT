@@ -13,7 +13,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
-	: mName("void")
+	: mName("")
 	, mHitPoint(10)
 	, mEnergyPoint(10)
 	, mAttackDamage(0)
@@ -59,7 +59,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	if (mHitPoint != 0 && mEnergyPoint != 0)
+	if (mHitPoint > 0 && mEnergyPoint > 0)
 	{	
 		mHitPoint -= amount;
 		if (mHitPoint < 0)
@@ -80,7 +80,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (mHitPoint != 0 && mEnergyPoint != 0)
+	if (mHitPoint > 0 && mEnergyPoint > 0)
 	{
 		--mEnergyPoint;
 		mHitPoint += amount;
