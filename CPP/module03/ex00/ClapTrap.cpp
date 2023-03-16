@@ -12,15 +12,6 @@
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
-	: mName("void")
-	, mHitPoint(10)
-	, mEnergyPoint(10)
-	, mAttackDamage(0)
-{
-	std::cout << "Default ClapTrap constructor called" << std::endl;
-}
-
 ClapTrap::ClapTrap(const std::string name)
 	: mName(name)
 	, mHitPoint(10)
