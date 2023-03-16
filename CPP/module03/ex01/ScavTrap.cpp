@@ -12,6 +12,15 @@
 
 #include "ScavTrap.hpp"
 
+ScavTrap::ScavTrap()
+	: ClapTrap()
+{
+	std::cout << "Scavtrap default constructor called" << std::endl;
+	mHitPoint = 100;
+	mEnergyPoint = 50;
+	mAttackDamage = 20;
+}
+
 ScavTrap::ScavTrap(const std::string name)
 	: ClapTrap(name)
 {
