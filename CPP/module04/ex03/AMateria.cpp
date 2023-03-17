@@ -6,14 +6,14 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:55:04 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 19:58:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:07:24 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
 AMateria::AMateria()
-	: mType("void")
+	: mType("")
 {
 }
 

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:24:13 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 16:41:15 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/17 16:08:59 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class IMateriaSource
 {
 	public:
-		virtual ~IMateriaSource();
+		virtual ~IMateriaSource() {}
 		virtual void learnMateria(AMateria* materia) = 0;
 		virtual AMateria* createMateria(const std::string& type) = 0;
 };
