@@ -57,6 +57,26 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
 	return (*this);
 }
 
+void	ClapTrap::attack(const std::string& target)
+{
+	if (mHitPoint > 0 && mEnergyPoint > 0)
+	{
+		--mEnergyPoint;
+		std::cout << "================================================" << std::endl;
+		std::cout << "ClapTrap " << mName << " attack "
+			<< target << ", causing " << mAttackDamage << " points of damage!" << std::endl;
+		std::cout << "Hit Point : " << mHitPoint << std::endl;
+		std::cout << "Energy Point : " << mEnergyPoint << std::endl;
+	}
+	else
+	{
+		std::cout << "================================================" << std::endl;
+		std::cout << "Can't do anything" << std::endl;
+		std::cout << "Hit Point : " << mHitPoint << std::endl;
+		std::cout << "Energy Point : " << mEnergyPoint << std::endl;
+	}
+}
+
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (mHitPoint > 0 && mEnergyPoint > 0)

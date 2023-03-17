@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:56:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/17 23:16:33 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:26:10 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class ScavTrap : virtual public ClapTrap
 	public:
 		ScavTrap();
 		ScavTrap(const std::string name);
-		virtual ~ScavTrap();
+		~ScavTrap();
 		ScavTrap(const ScavTrap& other);
 		ScavTrap& operator=(const ScavTrap& rhs);
 

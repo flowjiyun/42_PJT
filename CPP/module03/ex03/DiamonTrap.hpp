@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:44:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/17 23:16:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:54:37 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap& operator=(const DiamondTrap& rhs);
 		~DiamondTrap();
 
+		void	attack(const std::string& target);
 		void	whoAmI(void) const;
 
 	private:
