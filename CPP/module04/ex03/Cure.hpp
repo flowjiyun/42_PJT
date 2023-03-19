@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:40:47 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 19:08:56 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/19 15:23:42 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <iostream>
 # include "AMateria.hpp"
 
-# include "AMateria.hpp"
-
+class ICharacter;
+class AMateria;
 class Cure : public AMateria
 {
 	public:

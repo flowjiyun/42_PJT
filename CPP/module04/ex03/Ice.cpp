@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:40:45 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 19:11:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/19 15:44:19 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ Ice& Ice::operator=(const Ice& rhs)
 	return (*this); 
 }
 
-AMateria* AMateria::clone(void) const
+AMateria* Ice::clone(void) const
 {
-	return (new Ice());
+	return (new Ice(*this));
 }
 
-void AMateria::use(ICharacter& target)
+void Ice::use(ICharacter& target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

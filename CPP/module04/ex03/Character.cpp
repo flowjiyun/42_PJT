@@ -6,11 +6,20 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:07:04 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/17 16:00:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/19 16:30:20 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
+#include "AMateria.hpp"
+
+Character::Character()
+	: mName("")
+{
+	mSlot = new AMateria*[4];
+	for (int i = 0; i < 4; ++i)
+		mSlot[i] = NULL;
+}
 
 Character::Character(std::string name)
 	: mName(name)
@@ -25,13 +34,70 @@ Character::Character(const Character& other)
 {
 	mSlot = new AMateria*[4];
 	for (int i = 0; i < 4; ++i)
-		mSlot[i] = other.mSlot[i];
+	{
+		if (other.mSlot[i] == NULL)
+		{
+			mSlot[i] = NULL;
+			continue;
+		}
+		mSlot[i] = other.mSlot[i]->clone();
+	}
 }
 
 Character& Character::operator=(const Character& rhs)
 {
 	if (this != &rhs)
 	{
-		delete 
+		mName = rhs.mName;
+		for (int i = 0; i < 4; ++i)
+		{
+			delete mSlot[i];
+			if (rhs.mSlot[i] == NULL)
+			{
+				mSlot[i] = NULL;
+				continue;
+			}
+			mSlot[i] = rhs.mSlot[i]->clone();
+		}
 	}
+	return (*this);
+}
+
+Character::~Character()
+{
+	for (int i = 0; i < 4; ++i)
+		delete mSlot[i];
+	delete[] mSlot;
+}
+
+const std::string& Character::getName(void) const
+{
+	return (mName);
+}
+
+void Character::equip(AMateria* m)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		if (mSlot[i] == NULL)
+		{
+			mSlot[i] = m;
+			std::cout << i << std::endl;
+			break;
+		}
+		else
+			continue;
+	}	
+}
+
+void Character::unequip(int idx)
+{
+	if (idx >= 0 && idx <= 3)
+		mSlot[idx] = NULL;
+}
+
+void Character::use(int idx, ICharacter& target)
+{
+	if (mSlot[idx] != NULL)
+		mSlot[idx]->AMateria::use(target);
 }

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:39:36 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 19:06:55 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/19 15:23:51 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <iostream>
 # include "AMateria.hpp"
 
+class ICharacter;
+class AMateria;
 class Ice : public AMateria
 {
 	public:
