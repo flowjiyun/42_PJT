@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:24:05 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/19 16:25:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:57:55 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void MateriaSource::learnMateria(AMateria* materia)
 	for (int i = 0; i < MAXELEMENT; ++i)
 	{
 		if (mBackup[i] == NULL)
+		{
 			mBackup[i] = materia->clone();
+			break;
+		}
 	}
 }
 

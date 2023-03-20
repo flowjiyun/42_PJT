@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:24:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/19 16:27:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:58:19 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int main(void)
 	
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	delete bob;
+	delete me;
+	delete src;
+
+	// system("leaks ex03");
 
 	return (0);
 }

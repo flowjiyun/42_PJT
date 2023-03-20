@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:07:04 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/19 16:30:20 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:00:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void Character::equip(AMateria* m)
 		if (mSlot[i] == NULL)
 		{
 			mSlot[i] = m;
-			std::cout << i << std::endl;
 			break;
 		}
 		else
