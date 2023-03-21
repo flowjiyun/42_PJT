@@ -6,25 +6,25 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:50:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:37:16 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:31:55 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
 Dog::Dog()
-	: Animal("Dog")
+	: AAnimal("Dog")
 {
 	std::cout << "Dog default constructor called" << std::endl;
 	mBrain = new Brain("Dog");
 }
 
 Dog::Dog(const Dog& other)
-	: Animal(other.getType())
+	: AAnimal(other.getType())
 {	
 	std::cout << "Dog copy constructor called" << std::endl;
 	mBrain = new Brain();
-	mBrain->setIdea(other.mBrain->getIdea());
+	*mBrain = *other.mBrain;
 }
 
 Dog& Dog::operator=(const Dog& rhs)
@@ -33,8 +33,9 @@ Dog& Dog::operator=(const Dog& rhs)
 	if (this != &rhs)
 	{
 		mType = rhs.mType;
+		delete mBrain;
 		mBrain = new Brain();
-		mBrain->setIdea(rhs.mBrain->getIdea());
+		*mBrain = *rhs.mBrain;
 	}
 	return (*this);
 }
@@ -45,9 +46,9 @@ Dog::~Dog()
 	delete mBrain;
 }
 
-Brain& Dog::getBrain(void) const
+Brain* Dog::getBrain(void) const
 {
-	return (*mBrain);
+	return (mBrain);
 }
 
 void Dog::makeSound(void) const

@@ -6,25 +6,25 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:51:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:36:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:31:42 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
 Cat::Cat()
-	: Animal("Cat")
+	: AAnimal("Cat")
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	mBrain = new Brain("Cat");
 }
 
 Cat::Cat(const Cat& other)
-	: Animal(other.getType())
+	: AAnimal(other.getType())
 {	
 	std::cout << "Cat copy constructor called" << std::endl;
 	mBrain = new Brain();
-	mBrain->setIdea(other.mBrain->getIdea());
+	*mBrain = *other.mBrain;
 }
 
 Cat& Cat::operator=(const Cat& rhs)
@@ -33,8 +33,9 @@ Cat& Cat::operator=(const Cat& rhs)
 	if (this != &rhs)
 	{
 		mType = rhs.mType;
+		delete mBrain;
 		mBrain = new Brain();
-		mBrain->setIdea(rhs.mBrain->getIdea());
+		*mBrain = *rhs.mBrain;
 	}
 	return (*this);
 }
@@ -45,9 +46,9 @@ Cat::~Cat()
 	delete mBrain;
 }
 
-Brain& Cat::getBrain(void) const
+Brain* Cat::getBrain(void) const
 {
-	return (*mBrain);
+	return (mBrain);
 }
 
 void Cat::makeSound(void) const
