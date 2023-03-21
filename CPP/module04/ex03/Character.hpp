@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:07:07 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/14 19:50:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:18:15 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class Character : public ICharacter
 		virtual void equip(AMateria* m);
 		virtual void unequip(int idx);
 		virtual void use(int idx, ICharacter& target);
+		AMateria* backUp(int idx) const;
 
 	private:
 		Character();

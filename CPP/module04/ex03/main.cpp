@@ -6,11 +6,10 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 14:24:51 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/20 15:58:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:22:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "MateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
 #include "Character.hpp"
@@ -30,16 +29,21 @@ int main(void)
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 
-	ICharacter* bob = new Character("bob");
-	
+	ICharacter* bob = new Character("bob");	
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	AMateria* garbage;
+	garbage = me->backUp(0);
+	me->unequip(0);
+	me->use(0, *bob); // do nothing, no ice in 0 index slot
 
 	delete bob;
 	delete me;
 	delete src;
+	delete garbage;
 
-	// system("leaks ex03");
+	system("leaks ex03");
 
 	return (0);
 }

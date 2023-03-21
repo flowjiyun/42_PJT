@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:07:04 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/20 12:00:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:20:07 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,9 @@ void Character::use(int idx, ICharacter& target)
 {
 	if (mSlot[idx] != NULL)
 		mSlot[idx]->AMateria::use(target);
+}
+
+AMateria* Character::backUp(int idx) const
+{
+	return (mSlot[idx]);
 }
