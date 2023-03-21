@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:29:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:46:41 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:38:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ class Brain
 		Brain(const Brain& other);
 		Brain& operator=(const Brain& rhs);
 		~Brain();
-
-		void setIdea(std::string (&val)[100]);
-		std::string (&getIdea(void))[100];
-		void printIdea(void) const;
 
 	private:
 		std::string mIdea[100];
