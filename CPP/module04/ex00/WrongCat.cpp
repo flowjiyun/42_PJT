@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:51:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 14:09:16 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:22:11 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ WrongCat::WrongCat()
 }
 
 WrongCat::WrongCat(const WrongCat& other)
-	: WrongAnimal(other.getType())
+	: WrongAnimal(other.mType)
 {	
 	std::cout << "WrongCat copy constructor called" << std::endl;
 }

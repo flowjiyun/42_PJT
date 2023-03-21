@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:51:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 13:52:47 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:20:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Cat::Cat()
 }
 
 Cat::Cat(const Cat& other)
-	: Animal(other.getType())
+	: Animal(other.mType)
 {	
 	std::cout << "Cat copy constructor called" << std::endl;
 }

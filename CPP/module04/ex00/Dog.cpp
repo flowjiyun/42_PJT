@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:50:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 14:18:21 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:20:54 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ Dog::Dog()
 }
 
 Dog::Dog(const Dog& other)
-	: Animal(other.getType())
+	: Animal(other.mType)
 {	
 	std::cout << "Dog copy constructor called" << std::endl;
 }
