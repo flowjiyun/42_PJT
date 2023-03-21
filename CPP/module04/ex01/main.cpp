@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:49:55 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:40:01 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:52:27 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int main(void)
 	for (int i = 0; i < 4; ++i)
 		delete animal[i];
 		
-	std::cout << "===========Test2============" << std::endl;
-	Cat a;
-	Cat *b = new Cat(a);
+	// std::cout << "===========Test2============" << std::endl;
+	// Cat a;
+	// Cat *b = new Cat(a);
 
-	delete b;
-	a.getBrain().printIdea();
+	// delete b;
+	// a.getBrain().printIdea();
 
-	// system("leaks ex01");
+	system("leaks ex01");
 	return (0);
 }

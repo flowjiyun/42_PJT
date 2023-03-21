@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:50:42 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:37:16 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:00:06 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ Dog::Dog()
 }
 
 Dog::Dog(const Dog& other)
-	: Animal(other.getType())
+	: Animal(other.mType)
 {	
 	std::cout << "Dog copy constructor called" << std::endl;
 	mBrain = new Brain();
-	mBrain->setIdea(other.mBrain->getIdea());
+	for (int i = 0; i < 100; ++i)
+		mBrain[i] = other.mBrain[i];
 }
 
 Dog& Dog::operator=(const Dog& rhs)
@@ -34,7 +35,8 @@ Dog& Dog::operator=(const Dog& rhs)
 	{
 		mType = rhs.mType;
 		mBrain = new Brain();
-		mBrain->setIdea(rhs.mBrain->getIdea());
+		for (int i = 0; i < 100; ++i)
+			mBrain[i] = rhs.mBrain[i];
 	}
 	return (*this);
 }
@@ -45,9 +47,9 @@ Dog::~Dog()
 	delete mBrain;
 }
 
-Brain& Dog::getBrain(void) const
+Brain* Dog::getBrain(void) const
 {
-	return (*mBrain);
+	return (mBrain);
 }
 
 void Dog::makeSound(void) const

@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:51:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:35:53 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:59:35 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Cat : public Animal
 		Cat& operator=(const Cat& rhs);
 		virtual ~Cat();
 
-		Brain& getBrain(void) const;
+		Brain* getBrain(void) const;
 		virtual void makeSound(void) const;
 
 	private:

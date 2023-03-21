@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:50:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:36:03 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:59:45 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Dog : public Animal
 		Dog& operator=(const Dog& rhs);
 		virtual ~Dog();
 
-		Brain& getBrain(void) const;
+		Brain* getBrain(void) const;
 		virtual void makeSound(void) const;
 
 	private:

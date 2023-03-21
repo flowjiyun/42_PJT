@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:51:30 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/19 16:36:39 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:59:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ Cat::Cat()
 }
 
 Cat::Cat(const Cat& other)
-	: Animal(other.getType())
+	: Animal(other.mType)
 {	
 	std::cout << "Cat copy constructor called" << std::endl;
 	mBrain = new Brain();
-	mBrain->setIdea(other.mBrain->getIdea());
+	for (int i = 0; i < 100; ++i)
+		mBrain[i] = other.mBrain[i];
 }
 
 Cat& Cat::operator=(const Cat& rhs)
@@ -34,7 +35,8 @@ Cat& Cat::operator=(const Cat& rhs)
 	{
 		mType = rhs.mType;
 		mBrain = new Brain();
-		mBrain->setIdea(rhs.mBrain->getIdea());
+		for (int i = 0; i < 100; ++i)
+			mBrain[i] = rhs.mBrain[i];
 	}
 	return (*this);
 }
@@ -45,9 +47,9 @@ Cat::~Cat()
 	delete mBrain;
 }
 
-Brain& Cat::getBrain(void) const
+Brain* Cat::getBrain(void) const
 {
-	return (*mBrain);
+	return (mBrain);
 }
 
 void Cat::makeSound(void) const
