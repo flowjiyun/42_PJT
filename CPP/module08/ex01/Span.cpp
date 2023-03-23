@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:38:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/06 17:48:32 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:12:30 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,14 @@ void Span::prinfNumber(void) const
 unsigned int Span::shortestSpan(void) const
 {
 	unsigned int min;
+	std::vector<unsigned int> temp(mVec);
 
 	min = UINT_MAX;
-	for (std::vector<unsigned int>::const_iterator it = mVec.begin(); it != mVec.end() - 1; ++it)
+	sort(temp.begin(), temp.end());
+	for (std::vector<unsigned int>::const_iterator it = temp.begin(); it != temp.end() - 1; ++it)
 	{
 		std::vector<unsigned int>::const_iterator itNext = it + 1;
+		// exception check`
 		if (*itNext - *it < min)
 			min = *itNext - *it;
 	}
@@ -96,3 +99,5 @@ unsigned int Span::longestSpan(void) const
 	sort(temp.begin(), temp.end());
 	return (temp.back() - temp.front());
 }
+
+1 4 5 6 7
