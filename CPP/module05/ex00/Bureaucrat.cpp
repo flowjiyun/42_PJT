@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/21 16:14:58 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:50:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Bureaucrat::Bureaucrat(const std::string name, unsigned int grade)
 {
 	if (mGrade < 1)
 		throw GradeTooHighException();
-	if (mGrade > 150)
+	else if (mGrade > 150)
 		throw GradeTooLowException();
 	std::cout << "Constructed" << std::endl;
 }
@@ -80,6 +80,6 @@ void Bureaucrat::decreaseGrade(void)
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& rhs)
 {
-	out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << "." << std::endl;
+	out << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".";
 	return (out);
 }

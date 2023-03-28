@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:13:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/23 15:17:13 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:55:38 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int main(void)
 		std::cout << "OK" << std::endl;
 
 		Bureaucrat c(Bureaucrat("hello", 189));
-		std::cout << b << std::endl;
+		std::cout << c << std::endl;
 		std::cout << "OK" << std::endl;
 	}
 	catch(const std::exception& e)
