@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:06:29 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/23 15:39:44 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:28:48 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const
 		throw NotSignedException();
 	if (executor.getGrade() > this->getGradeExecute())
 		throw GradeTooLowException();
-	srand((unsigned int)time(NULL));
+	srand(time(NULL));
 	int val = rand();
 	if (val % 2 == 0)
 		std::cout << mTarget << " robotomization success!!" << std::endl;

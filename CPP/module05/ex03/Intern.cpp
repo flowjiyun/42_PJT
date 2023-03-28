@@ -6,11 +6,16 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:12:00 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/23 17:40:23 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:46:30 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+
+const char* Intern::MakeFormFailException::what(void) const throw()
+{
+	return ("Make Form Fail");
+}
 
 Intern::Intern()
 {
@@ -58,7 +63,7 @@ AForm* Intern::makePresidentialPardonForm(const std::string target) const
 
 AForm* Intern::makeForm(const std::string formName, const std::string target) const
 {
-	const std::string formArray[3] = {"ShruberryCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+	const std::string formArray[3] = {"ShrubberryCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
 	int index = -1;
 	AForm *ret;
 	for (int i = 0; i < 3; ++i)
@@ -76,7 +81,7 @@ AForm* Intern::makeForm(const std::string formName, const std::string target) co
 	}
 	else
 	{
-		std::cout << "Form name doesn't exist!" << std::endl;
+		throw(MakeFormFailException());
 		return (NULL);
 	}
 }

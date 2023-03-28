@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:13:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/23 16:06:14 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:47:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,82 +14,23 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main(void)
 {
-	// 제대로 생성되는지 확인
+	//create form & executeForm test
 	std::cout << "=============test1================" << std::endl;
 	try
 	{
-		ShrubberyCreationForm a("tree");
-		Bureaucrat b("jiyun", 135);
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		b.signForm(a);
-		a.execute(b);
-		std::cout << "OK" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-	}
-	// 사인되지 않은 form을 집행하려고 할때 (오류1)
-	std::cout << "=============test2================" << std::endl;
-	try
-	{
-		ShrubberyCreationForm a("tree");
-		Bureaucrat b("jiyun", 135);
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		a.execute(b);
-		std::cout << "OK" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-	}
-	// 권한이 부족한 공무원이 form을 집행하려고 할때 (오류1)
-	std::cout << "=============test3================" << std::endl;
-	try
-	{
-		ShrubberyCreationForm a("tree");
-		Bureaucrat b("jiyun", 140);
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		b.signForm(a);
-		a.execute(b);
-		std::cout << "OK" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-	}
+		Intern intern;
 
-	// executeForm test
-	std::cout << "=============test4================" << std::endl;
-	try
-	{
-		ShrubberyCreationForm a("home");
+		AForm *temp;
 		Bureaucrat b("jiyun1", 135);
-		RobotomyRequestForm c("dog");
-		Bureaucrat d("jiyun2", 40);
-		PresidentialPardonForm e("prisoner");
-		Bureaucrat f("jiyun3", 1);
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		std::cout << c << std::endl;
-		std::cout << d << std::endl;
-		std::cout << e << std::endl;
-		std::cout << f << std::endl;
+
+		temp = intern.makeForm("ShrubberryCreationForm", "Bender");
 		// shruberry
-		b.signForm(a);
-		b.executeForm(a);
-		//robot
-		d.signForm(c);
-		d.executeForm(c);
-		//robot
-		f.signForm(e);
-		f.executeForm(e);
+		b.signForm(*temp);
+		b.executeForm(*temp);
 		std::cout << "OK" << std::endl;
 	}
 	catch(const std::exception& e)

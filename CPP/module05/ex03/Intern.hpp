@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:12:05 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/23 17:31:56 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:45:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 class Intern
 {
 	public:
+		class MakeFormFailException : public std::exception
+		{
+			public:
+				virtual const char* what(void) const throw();
+		};
 		Intern();
 		Intern(const Intern& other);
 		Intern& operator=(const Intern& rhs);
