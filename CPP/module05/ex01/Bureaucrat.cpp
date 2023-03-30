@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/28 20:57:41 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:55:26 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	Bureaucrat::signForm(Form& val) const
 		}
 		else
 		{
-			val.beSigned(*this);
 			std::cout << mName << " signed " << val.getName() << std::endl;
+			val.beSigned(*this);
 		}
 	}
 	catch(const std::exception& e)

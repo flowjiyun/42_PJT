@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 14:53:48 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/02/23 15:15:54 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:56:01 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	Bureaucrat::signForm(AForm& val) const
 		}
 		else
 		{
-			val.beSigned(*this);
 			std::cout << mName << " signed " << val.getName() << std::endl;
+			val.beSigned(*this);
 		}
 	}
 	catch(const std::exception& e)
@@ -107,13 +107,13 @@ void	Bureaucrat::executeForm(const AForm& val) const
 			throw NotSignedException();
 		else
 		{
-			val.execute(*this);
 			std::cout << mName << " executed " << val.getName() << std::endl;
+			val.execute(*this);
 		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << mName << " couldn't sign " << val.getName() << " because ";
+		std::cout << mName << " couldn't execute " << val.getName() << " because ";
 		std::cout << e.what() << '\n';
 	}	
 

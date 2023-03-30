@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:13:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/28 21:47:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/03/30 10:53:19 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int main(void)
 		Intern intern;
 
 		AForm *temp;
-		Bureaucrat b("jiyun1", 135);
+		Bureaucrat b("jiyun1", 45);
 
-		temp = intern.makeForm("ShrubberryCreationForm", "Bender");
+		temp = intern.makeForm("RobotomyRequestForm", "Bender");
 		// shruberry
 		b.signForm(*temp);
 		b.executeForm(*temp);
