@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:13:39 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/30 10:53:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/05 09:47:20 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,17 @@ int main(void)
 {
 	//create form & executeForm test
 	std::cout << "=============test1================" << std::endl;
-	try
-	{
+
 		Intern intern;
 
 		AForm *temp;
 		Bureaucrat b("jiyun1", 45);
 
-		temp = intern.makeForm("RobotomyRequestForm", "Bender");
+		temp = intern.makeForm("RobotomyrequestForm", "Bender");
 		// shruberry
 		b.signForm(*temp);
 		b.executeForm(*temp);
 		std::cout << "OK" << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-	}
+
 	return (0);
 }
