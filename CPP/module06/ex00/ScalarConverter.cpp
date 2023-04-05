@@ -124,8 +124,8 @@ void printChar(std::string literal)
 	if (isdigit(static_cast<int>(*literal.c_str())))
 	{
 		std::cout << "int: " << static_cast<int>(num) << std::endl;
-		std::cout << std::showpoint << std::fixed << "float: " << static_cast<float>(num) << "f" << std::endl;
-		std::cout << std::showpoint << std::fixed << "double: " << static_cast<double>(num) << std::endl;
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(num) << "f" << std::endl;
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << static_cast<double>(num) << std::endl;
 	}
 	else
 	{
@@ -156,8 +156,8 @@ void printNumber(std::string literal)
 		else
 			std::cout << "char: " << error << std::endl;
 		std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
-		std::cout << std::showpoint << std::fixed << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
-		std::cout << std::showpoint << std::fixed << "double: " << numDouble << std::endl;
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;
 	}
 	else
 	{
@@ -169,8 +169,8 @@ void printNumber(std::string literal)
 		if (numDouble > FLT_MAX || numDouble < FLT_MIN)
 			std::cout << "float: " << error << std::endl;
 		else
-			std::cout << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
-		std::cout << "double: " << numDouble << std::endl;		
+			std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;		
 	}
 }
 
