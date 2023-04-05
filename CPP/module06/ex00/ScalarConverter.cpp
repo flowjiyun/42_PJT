@@ -15,10 +15,10 @@
 bool isValidInput(std::string literal)
 {
 	int len;
-	int cntPoit;
+	int cntPoint;
 
 	len = literal.length();
-	cntPoit = 0;
+	cntPoint = 0;
 	if (len != 1)
 	{
 		if (len == 2)
@@ -34,8 +34,8 @@ bool isValidInput(std::string literal)
 			{
 				if (literal[i] == '.')
 				{
-					++cntPoit;
-					if (cntPoit > 1)
+					++cntPoint;
+					if (cntPoint > 1)
 						return (false);	
 				}
 				else
@@ -112,6 +112,7 @@ void printChar(std::string literal)
 	int num;
 
 	num = atoi(literal.c_str());
+	// 문자가 출력가능한 ascii 문자인지 확인(0이면 출력 불가)
 	if (isprint(*literal.c_str()))
 	{
 		if (num >= 1 && num <= 9)
@@ -135,43 +136,99 @@ void printChar(std::string literal)
 	}
 }
 
+bool isValidInt(double numDouble)
+{
+	if (numDouble >= std::numeric_limits<int>::min() && numDouble <= std::numeric_limits<int>::max())
+		return (true);
+	else
+		return (false);
+}
+
+bool isValidFloat(double numDouble)
+{
+	if (numDouble >= -std::numeric_limits<float>::max() && numDouble <= std::numeric_limits<float>::max())
+		return (true);
+	else
+		return (false);
+}
+
+bool isValidDouble(void)
+{
+	if (errno == 0)
+		return (true);
+	else
+		return (false);
+}
+
+void printError(void)
+{
+	const std::string error = "impossible";
+
+	std::cout << "char: " << error << std::endl;
+	std::cout << "int: " << error << std::endl;
+	std::cout << "float: " << error << std::endl;
+	std::cout << "double: " << error << std::endl;
+}
+
+void printNumErrorCheck(double numDouble, const std::string error)
+{
+	std::cout << "char: " << error << std::endl;
+	if (isValidInt(numDouble))
+		std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
+	else
+		std::cout << "int: " << error << std::endl;
+	if (isValidFloat(numDouble))
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
+	else
+		std::cout << "float: " << error << std::endl;
+	if (isValidDouble())
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;
+	else
+		std::cout << "double: " << error << std::endl;
+}
+
+void printIntToDouble(double numDouble , const std::string error)
+{
+	std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
+	if (isValidFloat(numDouble))
+		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
+	else
+		std::cout << "float: " << error << std::endl;
+	std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;
+}
+
 void printNumber(std::string literal)
 {
 	const std::string error = "impossible";
 	int numInt;
 	double numDouble;
-	char *end;
 
 	numInt = atoi(literal.c_str());
-	numDouble = strtod(literal.c_str(), &end);
-	if (numDouble - numInt == 0)
+	numDouble = strtod(literal.c_str(), NULL);
+	if (isValidDouble() && isValidInt(numDouble))
 	{
-		if (numInt <= UCHAR_MAX)
+		// .0으로 떨어지는 소수점 숫자를 문자로 변환하기 위해
+		if (numDouble - numInt == 0)
 		{
-			if (isprint(numInt))
-				std::cout << "char: " << "'" << static_cast<char>(numInt) << "'" << std::endl;
+			if (numInt <= std::numeric_limits<char>::max() && numInt >= 0)
+			{
+				if (isprint(numInt))
+					std::cout << "char: " << "'" << static_cast<char>(numInt) << "'" << std::endl;
+				else
+					std::cout << "char: " << "Non displayable" << std::endl;
+			}
 			else
-				std::cout << "char: " << "Non displayable" << std::endl;
+				std::cout << "char: " << error << std::endl;
+			printIntToDouble(numDouble, error);
 		}
 		else
+		{
 			std::cout << "char: " << error << std::endl;
-		std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
-		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
-		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;
+			printIntToDouble(numDouble, error);
+		}
 	}
 	else
-	{
-		std::cout << "char: " << error << std::endl;
-		if (numDouble > INT_MAX || numDouble < INT_MIN)
-			std::cout << "int: " << error << std::endl;
-		else
-			std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
-		if (numDouble > FLT_MAX || numDouble < FLT_MIN)
-			std::cout << "float: " << error << std::endl;
-		else
-			std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
-		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;		
-	}
+		printNumErrorCheck(numDouble, error);
 }
 
 void printInfOrNan(std::string literal, int type)
@@ -191,17 +248,6 @@ void printInfOrNan(std::string literal, int type)
 		std::cout << "double: " << literal<< std::endl;
 	}
 }
-
-void printError(void)
-{
-	const std::string error = "impossible";
-
-	std::cout << "char: " << error << std::endl;
-	std::cout << "int: " << error << std::endl;
-	std::cout << "float: " << error << std::endl;
-	std::cout << "double: " << error << std::endl;
-}
-
 
 void ScarlarConverter::convert(std::string literal)
 {
