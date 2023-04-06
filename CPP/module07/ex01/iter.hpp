@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:53:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/01 22:31:18 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:51:58 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define ITER_HPP
 # include <iostream>
 
-template <typename T>
-void iter(T* array, int length, void (*func)(T&))
+template <typename T1, typename T2>
+void iter(T1* array, int length, T2 func)
 {
-	if (array == NULL)
+	if (array == NULL || func == NULL)
 	{
 		std::cout << "Error : array can't be null" << std::endl;
 		return ;
@@ -29,7 +29,7 @@ void iter(T* array, int length, void (*func)(T&))
 }
 
 template <typename T>
-void printVal(T& val)
+void printVal(const T& val)
 {
 	std::cout << "val is " << val << std::endl;
 }

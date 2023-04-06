@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:53:31 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/01 23:12:25 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:50:18 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 int main(void)
 {
 	{
-		std::cout << "int" << std::endl;
+		std::cout << "--------int---------" << std::endl;
 		int a[5] = {1, 2, 3, 4, 5};
 
-		iter(a, 5, printVal);
+		void (*ptr)(int&) = 0;
+		iter(a, 5, ptr);
 	}
 
 	{
-		std::cout << "float" << std::endl;
-		float a[5] = {0.1, 0.2, 0.3, 0.4, 0.5};
+		std::cout << "--------float---------" << std::endl;
+		float a[5] = {0.1f, 0.2f, 0.3f, 0.4f, 0.5f};
 
-		iter(a, 5, printVal);
+		iter(a, 5, printVal<float>);
 	}
 
 	{
-		std::cout << "string" << std::endl;
-
+		std::cout << "--------string---------" << std::endl;
 		std::string a[5] = {"a", "b", "c", "d", "e"};
 
-		iter(a, 5, printVal);
+		iter(a, 5, printVal<std::string>);
 	}
 	return (0);
 }
