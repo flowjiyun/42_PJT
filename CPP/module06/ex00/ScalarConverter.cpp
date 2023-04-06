@@ -12,7 +12,7 @@
 
 #include "ScalarConverter.hpp"
 
-bool isValidInput(std::string literal)
+static bool isValidInput(std::string literal)
 {
 	int len;
 	int cntPoint;
@@ -51,7 +51,7 @@ bool isValidInput(std::string literal)
 		return (true);
 }
 
-bool isFloatInfOrNan(const std::string literal)
+static bool isFloatInfOrNan(const std::string literal)
 {
 	if (literal == "-inff" || literal == "+inff" || literal == "nanf")
 		return (true);
@@ -59,7 +59,7 @@ bool isFloatInfOrNan(const std::string literal)
 		return (false);
 }
 
-bool isDoubleInfOrNan(const std::string literal)
+static bool isDoubleInfOrNan(const std::string literal)
 {
 	if (literal == "-inf" || literal == "+inf" || literal == "nan")
 		return (true);
@@ -67,14 +67,14 @@ bool isDoubleInfOrNan(const std::string literal)
 		return (false);
 }
 
-bool isChar(const std::string literal)
+static bool isChar(const std::string literal)
 {
 	if (literal.length() == 1)
 		return (true);
 	return (false);
 }
 
-bool isInt(const std::string literal)
+static bool isInt(const std::string literal)
 {
 	if (literal.find('.') == std::string::npos &&
 		literal.find('f') == std::string::npos)
@@ -82,14 +82,14 @@ bool isInt(const std::string literal)
 	return (false);
 }
 
-bool isFloat(const std::string literal)
+static bool isFloat(const std::string literal)
 {
 	if (literal.find('.') && literal.find('f'))
 		return (true);
 	return (false);
 }
 
-int checkType(const std::string literal)
+static int checkType(const std::string literal)
 {
 	if (isFloatInfOrNan(literal))
 		return (FLOATINF);
@@ -106,7 +106,7 @@ int checkType(const std::string literal)
 	return (DOUBLE);
 }
 
-void printChar(std::string literal)
+static void printChar(std::string literal)
 {
 	const std::string error = "impossible";
 	int num;
@@ -136,7 +136,7 @@ void printChar(std::string literal)
 	}
 }
 
-bool isValidInt(double numDouble)
+static bool isValidInt(double numDouble)
 {
 	if (numDouble >= std::numeric_limits<int>::min() && numDouble <= std::numeric_limits<int>::max())
 		return (true);
@@ -144,7 +144,7 @@ bool isValidInt(double numDouble)
 		return (false);
 }
 
-bool isValidFloat(double numDouble)
+static bool isValidFloat(double numDouble)
 {
 	if (numDouble >= -std::numeric_limits<float>::max() && numDouble <= std::numeric_limits<float>::max())
 		return (true);
@@ -152,15 +152,15 @@ bool isValidFloat(double numDouble)
 		return (false);
 }
 
-bool isValidDouble(void)
+static bool isValidDouble(double numDouble)
 {
-	if (errno == 0)
+	if (numDouble >= -std::numeric_limits<double>::max() && numDouble <= std::numeric_limits<double>::max())
 		return (true);
 	else
 		return (false);
 }
 
-void printError(void)
+static void printError(void)
 {
 	const std::string error = "impossible";
 
@@ -170,7 +170,7 @@ void printError(void)
 	std::cout << "double: " << error << std::endl;
 }
 
-void printNumErrorCheck(double numDouble, const std::string error)
+static void printNumErrorCheck(double numDouble, const std::string error)
 {
 	std::cout << "char: " << error << std::endl;
 	if (isValidInt(numDouble))
@@ -181,13 +181,13 @@ void printNumErrorCheck(double numDouble, const std::string error)
 		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "float: " << static_cast<float>(numDouble) << "f" << std::endl;
 	else
 		std::cout << "float: " << error << std::endl;
-	if (isValidDouble())
+	if (isValidDouble(numDouble))
 		std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;
 	else
 		std::cout << "double: " << error << std::endl;
 }
 
-void printIntToDouble(double numDouble , const std::string error)
+static void printIntToDouble(double numDouble , const std::string error)
 {
 	std::cout << "int: " << static_cast<int>(numDouble) << std::endl;
 	if (isValidFloat(numDouble))
@@ -197,7 +197,7 @@ void printIntToDouble(double numDouble , const std::string error)
 	std::cout << std::showpoint << std::fixed << std::setprecision(1) << "double: " << numDouble << std::endl;
 }
 
-void printNumber(std::string literal)
+static void printNumber(std::string literal)
 {
 	const std::string error = "impossible";
 	int numInt;
@@ -205,7 +205,7 @@ void printNumber(std::string literal)
 
 	numInt = atoi(literal.c_str());
 	numDouble = strtod(literal.c_str(), NULL);
-	if (isValidDouble() && isValidInt(numDouble))
+	if (isValidDouble(numDouble) && isValidInt(numDouble))
 	{
 		// .0으로 떨어지는 소수점 숫자를 문자로 변환하기 위해
 		if (numDouble - numInt == 0)
@@ -231,7 +231,7 @@ void printNumber(std::string literal)
 		printNumErrorCheck(numDouble, error);
 }
 
-void printInfOrNan(std::string literal, int type)
+static void printInfOrNan(std::string literal, int type)
 {
 	const std::string error = "impossible";
 
