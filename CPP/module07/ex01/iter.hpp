@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:53:38 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/06 20:51:58 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:43:37 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void iter(T1* array, int length, T2 func)
 {
 	if (array == NULL || func == NULL)
 	{
-		std::cout << "Error : array can't be null" << std::endl;
+		std::cout << "Error : array & funtion pointer can't be null" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < length; ++i)

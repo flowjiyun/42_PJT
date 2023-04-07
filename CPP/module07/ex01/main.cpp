@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:53:31 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/06 20:50:18 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:44:17 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int main(void)
 		std::cout << "--------int---------" << std::endl;
 		int a[5] = {1, 2, 3, 4, 5};
 
-		void (*ptr)(int&) = 0;
-		iter(a, 5, ptr);
+		// void (*ptr)(int&) = 0;
+		// iter(a, 5, ptr);
+		iter(a, 5, printVal<int>);
 	}
 
 	{
