@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 23:13:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/06 20:55:15 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:17:35 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class Array
 		Array(const Array<T>& other);
 		~Array();
 		Array<T>& operator=(const Array<T>& rhs);
-		T& operator[](const unsigned int index);
-		int size() const;
+		T& operator[](const int index) const;
+		unsigned int size(void) const;
 
 	private:
 		unsigned int mSize;
@@ -50,8 +50,6 @@ template <typename T>
 Array<T>::Array(unsigned int n)
 	: mSize(n)
 {
-	if (n < 0)
-		throw OutOfBound();
 	mArray = new T[n];
 }
 
@@ -89,15 +87,15 @@ Array<T>& Array<T>::operator=(const Array<T>& rhs)
 }
 
 template <typename T>
-T& Array<T>::operator[](const unsigned int index)
+T& Array<T>::operator[](const int index) const
 {
-		if (index < 0 || index >= mSize)
+		if (index < 0 || static_cast<unsigned int>(index) >= mSize)
 			throw OutOfBound();
 		return (mArray[index]);
 }
 
 template <typename T>
-int Array<T>::size() const
+unsigned int Array<T>::size(void) const
 {
 	return (mSize);
 }
