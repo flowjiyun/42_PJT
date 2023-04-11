@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 23:13:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/07 11:17:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/11 20:34:45 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ template <typename T>
 Array<T>::Array(unsigned int n)
 	: mSize(n)
 {
-	mArray = new T[n];
+	mArray = new T[n]();
 }
 
 template <typename T>
