@@ -9,6 +9,7 @@
 
 # Unignore Makefile
 !Makefile
+!Dockerfile
 
 .vscode
 Tester
