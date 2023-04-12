@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:06:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/07 11:33:19 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/11 20:34:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 int main(void)
 {
     Array<int> numbers(MAX_VAL);
+	Array<int> a;
+	
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
 
