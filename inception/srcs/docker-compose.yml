@@ -2,50 +2,64 @@ version: "3.9"
 
 services:
   mariadb:
+    container_name: mariadb
     build:
       context: ./requirement/mariadb
       dockerfile: Dockerfile
+      tags:
+        - mariadb:v1
+    image: mariadb:v1
     restart: always
-    volume:
-      - DB:/var/lib/mysql
+    # volumes:
+    #   - db_data:/var/lib/mysql
     networks:
       - wordpress_mariadb
+    # environment:
+    #   - MYSQL_ROOT_PASSWORD=1234
+    #   - MYSQL_DATABASE=wordpress_db
 
   wordpress:
-    depends_on:
-      - mariadb
+    # depends_on:
+    #   - mariadb
+    container_name: wordpress
     build:
       context: ./requirement/wordpress
       dockerfile: Dockerfile
+      tags: 
+        - wordpress:v1
+    image: wordpress:v1
     restart: always
-    volume:
-      - WordPress:/var/www/wordpress
+    volumes:
+      - wordpress_data:/var/www/wordpress
     networks:
       - wordpress_mariadb
       - nginx_wordpress
+    environment:
+      - name=value
 
   nginx:
-    depends_on:
-      - mariadb
-      - wordpress
+    # depends_on:
+    #   # - mariadb
+    #   - wordpress
+    container_name: nginx
     build:
       context: ./requirement/nginx
       dockerfile: Dockerfile
+      tags:
+        - nginx:v1
+    image: nginx:v1
     restart: always
+    volumes:
+      - wordpress_data:/var/www/
     ports:
       - "443:443"
     networks:
       - nginx_wordpress
 
 volumes:
-  DB:
-  WordPress:
+  db_data:
+  wordpress_data:
 
 networks:
   nginx_wordpress:
   wordpress_mariadb:
-
-# secrets:
-
-
-# configs:
