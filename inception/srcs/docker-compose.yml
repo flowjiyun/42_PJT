@@ -30,7 +30,7 @@ services:
     image: wordpress:v1
     restart: always
     volumes:
-      - wordpress_data:/var/www/wordpress
+      - wordpress_data:/var/www/
     networks:
       - wordpress_mariadb
       - nginx_wordpress
@@ -39,7 +39,6 @@ services:
 
   nginx:
     # depends_on:
-    #   # - mariadb
     #   - wordpress
     container_name: nginx
     build:
