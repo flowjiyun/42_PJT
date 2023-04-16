@@ -1,19 +1,18 @@
 FROM alpine:3.16
 
-WORKDIR /var/www/wordpress
+WORKDIR /var/www/html
 
-RUN apk update && apk add php8-common php8-fpm wget openrc
-RUN rc-status && touch /run/openrc/softlevel
-#RUN rc-update add php-fpm8 
+RUN apk update && apk add php8-common php8-fpm wget && \
+	addgroup -S nginx && adduser -S nginx -G nginx
 
 RUN wget http://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && rm latest.tar.gz
 
+RUN mkdir /app
 COPY conf/wp-config.php ./wordpress
 COPY conf/www.conf /etc/php8/php-fpm.d/www.conf
-COPY conf/index.html ./html
-COPY tools/init.sh .
-
+COPY tools/init_wordpress.sh /app
+RUN chmod +x /app/init_wordpress.sh
 
 EXPOSE 9000
 
-ENTRYPOINT [ "sh", "/var/www/wordpress/init.sh" ]
+ENTRYPOINT [ "sh", "/app/init_wordpress.sh" ]
