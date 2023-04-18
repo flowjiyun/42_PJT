@@ -3,7 +3,7 @@ FROM alpine:3.16
 WORKDIR /var/www/html
 
 RUN apk update && \
-	apk add php8-common php8-fpm php8-mysql php8-mysqli mysql-client wget && \
+	apk add php8-common php8-fpm php8-mysqli mariadb-client wget && \
 	addgroup -S nginx && adduser -S nginx -G nginx && \
 	mkdir /app
 
