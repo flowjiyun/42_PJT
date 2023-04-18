@@ -20,3 +20,4 @@ a.out
 *.a
 a.out.dSYM
 .all_check
+.env
