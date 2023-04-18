@@ -1,13 +1,14 @@
 FROM alpine:3.16
 
-RUN apk update && apk add mariadb mariadb-client
-
-RUN mariadb-install-db --datadir=/var/lib/mysql && chown -R mysql:mysql /var/lib/mysql
-
 WORKDIR /workspace
-COPY tools/database_init.sql /workspace
-COPY tools/init.sh /workspace
+RUN apk update && \
+	apk add mariadb mariadb-client mariadb-server-utils && \
+	rm -f /var/cache/apk/*
+
+
+COPY ./tools/init_mariadb.sh .
+RUN chmod -R 755 .
 
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "init.sh"]
+ENTRYPOINT ["sh", "init_mariadb.sh"]
