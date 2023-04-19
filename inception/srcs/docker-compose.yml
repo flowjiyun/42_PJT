@@ -40,6 +40,9 @@ services:
       - WORDPRESS_ADMIN_USER=jiyunpar
       - WORDPRESS_ADMIN_PASSWORD=1234
       - WORDPRESS_ADMIN_EMAIL=gyp2795@gmail.com
+      - WORDPRESS_USER=jiyun
+      - WORDPRESS_USER_PASSWORD=1234
+      - WORDPRESS_USER_EMAIL=gyp93@naver.com
     volumes:
       - wordpress_data:/var/www/html
     networks:
