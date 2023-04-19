@@ -16,7 +16,7 @@ services:
       - MYSQL_USER=wordpress_user
       - MYSQL_PASSWORD=123456
     volumes:
-      - db_data:/var/lib/mysql
+      - /home/jiyunpar/data/db:/var/lib/mysql
     networks:
       - app_network
 
@@ -44,7 +44,7 @@ services:
       - WORDPRESS_USER_PASSWORD=1234
       - WORDPRESS_USER_EMAIL=gyp93@naver.com
     volumes:
-      - wordpress_data:/var/www/html
+      - /home/jiyunpar/data/wordpress:/var/www/html
     networks:
       - app_network
 
@@ -60,15 +60,11 @@ services:
     image: nginx:v1
     restart: always
     volumes:
-      - wordpress_data:/var/www/html
+      - /home/jiyunpar/data/wordpress:/var/www/html
     ports:
       - "443:443"
     networks:
       - app_network
-
-volumes:
-  wordpress_data:
-  db_data:
 
 networks:
   app_network:
