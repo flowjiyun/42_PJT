@@ -7,11 +7,10 @@ RUN apk update && \
 	addgroup -S nginx && adduser -S nginx -G nginx && \
 	mkdir /app
 
-RUN wget http://wordpress.org/latest.tar.gz && \
-	tar -xzvf latest.tar.gz && \
-	rm latest.tar.gz
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
-COPY conf/wp-config.php ./wordpress
 COPY conf/www.conf /etc/php8/php-fpm.d/www.conf
 COPY tools/init_wordpress.sh /app
 RUN chmod +x /app/init_wordpress.sh
