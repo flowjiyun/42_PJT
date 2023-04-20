@@ -21,3 +21,4 @@ a.out
 a.out.dSYM
 .all_check
 .env
+inception/srcs/.env
