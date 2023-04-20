@@ -11,10 +11,10 @@ services:
     image: mariadb:v1
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wordpress_user
-      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - /home/jiyunpar/data/db:/var/lib/mysql
     networks:
@@ -32,17 +32,17 @@ services:
     image: wordpress:v1
     restart: always
     environment:
-      - WORDPRESS_DB_HOST=mariadb:3306
-      - WORDPRESS_DB_NAME=wordpress
-      - WORDPRESS_DB_USER=wordpress_user
-      - WORDPRESS_DB_PASSWORD=123456
-      - WORDPRESS_URL=jiyunpar.42.fr
-      - WORDPRESS_ADMIN_USER=jiyunpar
-      - WORDPRESS_ADMIN_PASSWORD=1234
-      - WORDPRESS_ADMIN_EMAIL=gyp2795@gmail.com
-      - WORDPRESS_USER=jiyun
-      - WORDPRESS_USER_PASSWORD=1234
-      - WORDPRESS_USER_EMAIL=gyp93@naver.com
+      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_URL=${WORDPRESS_URL}
+      - WORDPRESS_ADMIN_USER=${WORDPRESS_ADMIN_USER}
+      - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
+      - WORDPRESS_ADMIN_EMAIL=${WORDPRESS_ADMIN_EMAIL}
+      - WORDPRESS_USER=${WORDPRESS_USER}
+      - WORDPRESS_USER_PASSWORD=${WORDPRESS_USER_PASSWORD}
+      - WORDPRESS_USER_EMAIL=${WORDPRESS_USER_EMAIL}
     volumes:
       - /home/jiyunpar/data/wordpress:/var/www/html
     networks:
