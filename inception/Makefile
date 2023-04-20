@@ -1,4 +1,4 @@
-PHONY : all fclean re
+.PHONY : all fclean re
 
 all : .all_check
 
@@ -7,7 +7,7 @@ all : .all_check
 	touch $@
 
 fclean :
-	docker rmi $(docker images -a -q)
+	docker rmi mariadb:v1 wordpress:v1 nginx:v1
 	rm -rf .all_check
 
 re :
