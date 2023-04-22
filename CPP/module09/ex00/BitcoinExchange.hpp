@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:48:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/21 17:41:11 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:51:24 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,38 @@
 #include <map>
 #include <fstream>
 #include <exception>
+#include <ctime>
+#include <cstring>
 
 class BitcoinExchange
 {
 	public:
-		class FileOpenError : public std::exception
+		class Error : public std::exception
 		{
 			public:
+				Error(const std::string message, const std::string value);
+				Error(const Error& other);
+				~Error() throw();
+				Error& operator=(const Error& rhs);
 				virtual const char* what(void) const throw();
+				std::string getErrorValue() const;
+			private:
+				std::string mErrorMessage;
+				std::string mValue;
+				Error();
 		};
 
-		BitcoinExchange();
+		BitcoinExchange(const char* datapath);
 		BitcoinExchange(const BitcoinExchange& other);
-		~BitcoinExchange();
 		BitcoinExchange& operator=(const BitcoinExchange& rhs);
+		~BitcoinExchange();
 
-		void exchange(std::string input) const;
+		// void exchange(std::string input) const;
+		void exchange(void) const;
 		
 	private:
-		std::map<std::string, int> mDateWithPrice;	
+		std::map<time_t, double> mDateWithPrice;	
+		BitcoinExchange();
 };
 
 #endif
