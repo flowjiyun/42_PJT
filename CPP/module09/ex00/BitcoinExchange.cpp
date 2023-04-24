@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:58:58 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/24 13:00:35 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:47:32 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ double parseValue(std::string line, std::string delimeter, int flag = 0)
 	
 	pos = line.find(delimeter);
 	if (pos == std::string::npos)
-		throw BitcoinExchange::Error("Error: Wrong date format", line);
+		throw BitcoinExchange::Error("Error: Wrong data format", line);
 	value = line.substr(pos + delimeter.length());
 	ret = strtod(value.c_str(), NULL);
 	if (flag != 0 && (ret < 0 || ret > 1000))
-		throw BitcoinExchange::Error("Error: Date value out of range", value);
+		throw BitcoinExchange::Error("Error: value out of range", value);
 	return ret;
 }
 
@@ -174,7 +174,7 @@ time_t dateToSecond(std::string key)
 }
 
 
-std::map<time_t, double> initPriceData(const std::string filepath)
+std::map<time_t, double> initData(const std::string filepath, const std::string delimeter, int flag)
 {
 	std::fstream file;
 	std::map<time_t, double> ret;
@@ -192,8 +192,11 @@ std::map<time_t, double> initPriceData(const std::string filepath)
 		time_t timeInSec;
 		try
 		{
-			key = parseKey(line, ",");
-			value = parseValue(line, ",");
+			key = parseKey(line, delimeter);
+			if (flag != 0)
+				value = parseValue(line, delimeter, flag);
+			else
+				value = parseValue(line, delimeter);
 			timeInSec = dateToSecond(key);
 			ret.insert(std::pair<time_t, double>(timeInSec, value));
 		}
@@ -208,7 +211,7 @@ std::map<time_t, double> initPriceData(const std::string filepath)
 
 BitcoinExchange::BitcoinExchange(const char* datapath)
 {
-	mDateWithPrice = initPriceData(datapath);
+	mDateWithPrice = initData(datapath, ",", 0);
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
@@ -227,30 +230,39 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
-// void BitcoinExchange::exchange(void) const
-// {
-// 	std::map<time_t, double>::const_iterator it = mDateWithPrice.begin();
-// 	int i = 0;
-// 	while (i < 50)
-// 	{
-// 		std::cout << it->first << " : " << it->second << '\n';
-// 		++i;
-// 		++it;
-// 	}
-// }
-
-void BitcoinExchange::exchange(void) const
+void BitcoinExchange::exchange(std::string input) const
 {
-	for (std::map<time_t, double>::const_iterator it = mDateWithPrice.begin(); it != mDateWithPrice.end(); ++it)
+	// read input data line by line and calculate
+	std::fstream inputFile;
+
+	inputFile.open(input.c_str(), std::ios::in);
+	if (!inputFile.is_open())
+		throw BitcoinExchange::Error("Error: File not open", "");
+	std::string first_line, line;
+	std::getline(inputFile, first_line);
+	while (std::getline(inputFile, line))
 	{
-		std::cout << it->first << " : " << it->second << '\n';
+		std::string key;
+		double value;
+		time_t timeInSec;
+		try
+		{
+			key = parseKey(line, " | ");
+			value = parseValue(line, " | ", 1);
+			timeInSec = dateToSecond(key);
+			std::map<time_t, double>::const_iterator it = mDateWithPrice.find(timeInSec);
+			if (it != mDateWithPrice.end())
+				std::cout << key << " => " << value << " = " << value * it->second << '\n';
+			else
+			{
+				it = mDateWithPrice.upper_bound(timeInSec);
+				std::cout << key << " => " << value << " = " << value * it->second << '\n';
+			}
+		}
+		catch(const BitcoinExchange::Error& e)
+		{
+			std::cout << e.what();
+			std::cout << " => " << e.getErrorValue() << '\n';
+		}	
 	}
 }
-
-// void BitcoinExchange::exchange(std::string input) const
-// {
-// 	for (std::map<time_t, double>::const_iterator it = mDateWithPrice.begin(); it != mDateWithPrice.end(); ++it)
-// 	{
-// 		std::cout << it->first << " : " << it->second << '\n';
-// 	}
-// }
