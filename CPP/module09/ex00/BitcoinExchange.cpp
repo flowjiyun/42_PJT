@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:58:58 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/22 21:03:00 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:00:35 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,19 +183,13 @@ std::map<time_t, double> initPriceData(const std::string filepath)
 	if (!file.is_open())
 		throw BitcoinExchange::Error("Error: File not open", "");
 	//첫줄은 건너 뛰고 다음 줄 부터 읽기
-	std::string first_line;
+	std::string first_line, line;
 	std::getline(file, first_line);
-	std::cout << first_line << '\n';
-	while (!file.eof())
+	while (std::getline(file, line))
 	{
-		std::string line, key;
+		std::string key;
 		double value;
 		time_t timeInSec;
-		std::getline(file, line);
-		std::cout << line << '\n';
-		// 개행 건너 뛰기
-		if (line == "\n")
-			continue;
 		try
 		{
 			key = parseKey(line, ",");
@@ -233,15 +227,23 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
+// void BitcoinExchange::exchange(void) const
+// {
+// 	std::map<time_t, double>::const_iterator it = mDateWithPrice.begin();
+// 	int i = 0;
+// 	while (i < 50)
+// 	{
+// 		std::cout << it->first << " : " << it->second << '\n';
+// 		++i;
+// 		++it;
+// 	}
+// }
+
 void BitcoinExchange::exchange(void) const
 {
-	std::map<time_t, double>::const_iterator it = mDateWithPrice.begin();
-	int i = 0;
-	while (i < 1)
+	for (std::map<time_t, double>::const_iterator it = mDateWithPrice.begin(); it != mDateWithPrice.end(); ++it)
 	{
 		std::cout << it->first << " : " << it->second << '\n';
-		++i;
-		++it;
 	}
 }
 
