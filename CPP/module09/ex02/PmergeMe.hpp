@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/24 19:02:48 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/25 03:00:32 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,43 @@ void PmergeMe<T>::sortWithAlgorithm()
 }
 
 
-void	mergeInsertionSortInVector(std::vector<int>::iterator start, std::vector<int>::iterator end);
+void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 {
-	std::distance(start, end);
+	if (size < 2)
+		return;
+	int remain = -1;
+	std::vector<int> pairIndex;
+	pairIndex.resize(origin.size(), -1);
+	// 1. check pair & swap
+	// 2. make pair index vector for radomaccess
+	for (int i = 0; i < size / 2; ++i)
+	{
+		if (origin[i] < origin[i + (size / 2)])
+		{
+			int tmp = temp[i];
+			temp[i] = temp[i + (size / 2)];
+			temp[i + (size / 2)] = tmp;
+			pairIndex[temp[i + (size / 2)]] = temp[i];
+		}
+		pairIndex[temp[i]] = temp[i + (size / 2)];
+	}
+	if (size & 1)
+		remain = temp[size - 1];
+	sortVector(size / 2, origin, temp);
+	// 3. do binary search with saveed pair index by referencing real value of origin vector
+	for (int i = 0; i < size / 2; ++i)
+	{
+		
+	}
 	
+}
+void	mergeInsertionSortInVector(std::vector<int>& input)
+{
+	//make index vector
+	std::vector<int> temp;
+	for (int i = 0; i < input.size(); ++i)
+		temp.push_back(i);
+	//do merge insert sort
+	sortVector(input.size(), input, temp);
 }
 #endif

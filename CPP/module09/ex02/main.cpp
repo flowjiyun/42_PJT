@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/24 18:50:38 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/25 00:37:05 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 		std::vector<int> dataInVector = inputInVector.getSequence();
 		std::list<int> dataInList = inputInList.getSequence();
 
-		mergeInsertionSortInVector()
+		mergeInsertionSortInVector();
 
 		
 	}
