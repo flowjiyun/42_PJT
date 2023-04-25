@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/25 03:00:32 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:49:36 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void PmergeMe<T>::sortWithAlgorithm()
 	sort(mSequence.begin(), mSequence.end());
 }
 
+bool compare(int a, int b, const std::vector<int>& temp, const std::vector<int>& origin)
+{
+	return (origin[temp[a]] < origin[temp[b]]);
+}
 
 void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 {
@@ -113,10 +117,12 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 		remain = temp[size - 1];
 	sortVector(size / 2, origin, temp);
 	// 3. do binary search with saveed pair index by referencing real value of origin vector
+	// 3-1 make vector for binary insert element (not sorted)
+	std::vector<int> unsorted;
+	unsorted.reserve(size / 2);
 	for (int i = 0; i < size / 2; ++i)
-	{
-		
-	}
+		unsorted.push_back(pairIndex[temp[i]]);
+	//3-2 get start index and binary search size with 
 	
 }
 void	mergeInsertionSortInVector(std::vector<int>& input)
