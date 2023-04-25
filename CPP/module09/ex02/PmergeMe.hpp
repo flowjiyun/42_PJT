@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/25 17:15:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:22:38 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 		{
 			std::vector<int>::iterator low;
 			std::vector<int>::iterator start = temp.begin();
-			std::vector<int>::iterator end = start + std::min((1 << i + 1) - 1, n - 1);
-			low = std::lower_bound(start, end, unsorted[j], std::bind2nd());
+			std::vector<int>::iterator end = start + std::min((1 << (i + 1)) - 1, n - 1);
+			low = std::lower_bound(start, end, unsorted[j], std::bind2nd(std::ptr_fun(compare), temp, origin));
 			temp.insert(low, unsorted[j]);
 			--j;
 		}
@@ -155,7 +155,13 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 	}
 	// if remain exist binary search as 'size' amount and insert
 	if (remain != -1)
-
+	{
+		std::vector<int>::iterator low;
+		std::vector<int>::iterator start = temp.begin();
+		std::vector<int>::iterator end = start + size;
+		low = std::lower_bound(start, end, remain, std::bind2nd(std::ptr_fun(compare), temp, origin));
+		temp.insert(low, remain);
+	}
 }
 void	mergeInsertionSortInVector(std::vector<int>& input)
 {
