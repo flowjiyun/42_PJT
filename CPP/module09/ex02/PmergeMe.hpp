@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/25 16:35:03 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:15:04 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <vector>
 # include <list>
 # include <algorithm>
+# include <functional>
 # include <ctime>
 
 template<typename T>
@@ -125,10 +126,11 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 	std::cout << '\n';
 	sortVector(size / 2, origin, temp);
 	// 3. do binary search with saveed pair index by referencing real value of origin vector
-	// 3-1 make vector for binary insert element (not sorted)
+	// 3-1. insert first unsorted element to temp's begin();
+	temp.insert(temp.begin(), pairIndex[temp[0]]);
+	// 3-2. make vector for binary insert element (not sorted)
 	std::vector<int> unsorted;
-	unsorted.reserve(size / 2);
-	for (int i = 0; i < size / 2; ++i)
+	for (int i = 1; i < size / 2; ++i)
 		unsorted.push_back(pairIndex[temp[i]]);
 	//3-2 get start index and binary search size with jacobsthal number
 	int n = unsorted.size();
@@ -140,13 +142,20 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 		int j = std::min(prevStart + curr, n - 1);
 		while (j > prevStart)
 		{
-				
+			std::vector<int>::iterator low;
+			std::vector<int>::iterator start = temp.begin();
+			std::vector<int>::iterator end = start + std::min((1 << i + 1) - 1, n - 1);
+			low = std::lower_bound(start, end, unsorted[j], std::bind2nd());
+			temp.insert(low, unsorted[j]);
 			--j;
 		}
 		prevStart = std::min(prevStart + curr, n - 1);
 		curr = ((1 << (i + 1)) - curr);
 		++i;
-	}	
+	}
+	// if remain exist binary search as 'size' amount and insert
+	if (remain != -1)
+
 }
 void	mergeInsertionSortInVector(std::vector<int>& input)
 {
