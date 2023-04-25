@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/25 14:49:36 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:35:03 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ bool compare(int a, int b, const std::vector<int>& temp, const std::vector<int>&
 void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 {
 	if (size < 2)
+	{	
+		for (int i = 0; i < temp.size(); ++i)
+			std::cout << temp[i] << ' ';
 		return;
+	}
 	int remain = -1;
 	std::vector<int> pairIndex;
 	pairIndex.resize(origin.size(), -1);
@@ -104,17 +108,21 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 	// 2. make pair index vector for radomaccess
 	for (int i = 0; i < size / 2; ++i)
 	{
-		if (origin[i] < origin[i + (size / 2)])
+		if (origin[temp[i]] < origin[temp[i + (size / 2)]])
 		{
-			int tmp = temp[i];
-			temp[i] = temp[i + (size / 2)];
-			temp[i + (size / 2)] = tmp;
+			std::swap(temp[i], temp[i + (size / 2)]);
 			pairIndex[temp[i + (size / 2)]] = temp[i];
 		}
-		pairIndex[temp[i]] = temp[i + (size / 2)];
+		else
+			pairIndex[temp[i]] = temp[i + (size / 2)];
 	}
 	if (size & 1)
 		remain = temp[size - 1];
+	std::cout << "size : " << size << '\n';
+	std::cout << "temp before recursive : ";
+	for (int i = 0; i < temp.size(); ++i)
+		std::cout << temp[i] << ' ';
+	std::cout << '\n';
 	sortVector(size / 2, origin, temp);
 	// 3. do binary search with saveed pair index by referencing real value of origin vector
 	// 3-1 make vector for binary insert element (not sorted)
@@ -122,8 +130,23 @@ void sortVector(int size, std::vector<int>& origin, std::vector<int>& temp)
 	unsorted.reserve(size / 2);
 	for (int i = 0; i < size / 2; ++i)
 		unsorted.push_back(pairIndex[temp[i]]);
-	//3-2 get start index and binary search size with 
-	
+	//3-2 get start index and binary search size with jacobsthal number
+	int n = unsorted.size();
+	int prevStart = -1;
+	int i = 1;
+	int curr = 2; // initial element of sequence
+	while (prevStart < n - 1)
+	{
+		int j = std::min(prevStart + curr, n - 1);
+		while (j > prevStart)
+		{
+				
+			--j;
+		}
+		prevStart = std::min(prevStart + curr, n - 1);
+		curr = ((1 << (i + 1)) - curr);
+		++i;
+	}	
 }
 void	mergeInsertionSortInVector(std::vector<int>& input)
 {
