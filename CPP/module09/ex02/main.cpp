@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/25 00:37:05 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:57:40 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	{
 		PmergeMe<std::vector<int> > inputTemp(argv);
 		PmergeMe<std::vector<int> > inputInVector(inputTemp);
-		PmergeMe<std::list<int> > inputInList(argv);
+		// PmergeMe<std::list<int> > inputInList(argv);
 
 		// first line
 		std::cout << "Before: ";
