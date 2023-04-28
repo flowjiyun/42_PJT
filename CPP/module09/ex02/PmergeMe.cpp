@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/26 15:55:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:55:00 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ std::vector<int>	mergeInsertionSortInVector(std::vector<int>& input)
 	int size = input.size();
 
 	temp.reserve(size);
-	for (size_t i = 0; i < size; ++i)
+	for (int i = 0; i < size; ++i)
 		temp.push_back(i);
 
 	sortVector(size, input, temp);
 
 	ret.reserve(size);
-	for (size_t i = 0; i < size; ++i)
+	for (int i = 0; i < size; ++i)
 		ret.push_back(input[temp[i]]);
 
 	return ret;

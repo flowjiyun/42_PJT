@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/26 15:49:01 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:31:57 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <algorithm>
 # include <functional>
 # include <ctime>
+# include <sys/time.h>
 
 class MyCompare
 {
