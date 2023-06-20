@@ -6,12 +6,12 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 20:38:08 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/03/01 20:44:17 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:58:07 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
-# define UTILS_HPP
+#define UTILS_HPP
 
 namespace utils
 {

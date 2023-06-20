@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 12:06:37 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/11 20:34:04 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:49:46 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 #define MAX_VAL 750
 int main(void)
 {
-    Array<int> numbers(MAX_VAL);
-	Array<int> a;
-	
+    Array<int> numbers(MAX_VAL);	
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
 

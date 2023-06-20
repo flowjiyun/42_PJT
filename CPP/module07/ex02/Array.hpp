@@ -6,13 +6,14 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 23:13:21 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/11 20:34:45 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:40:25 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
-# define ARRAY_HPP
-# include <exception>
+#define ARRAY_HPP
+
+#include <exception>
 
 template <typename T>
 class Array
@@ -27,15 +28,15 @@ class Array
 				}
 		};
 		Array();
-		explicit Array(unsigned int n);
+		Array(unsigned int n);
 		Array(const Array<T>& other);
 		~Array();
 		Array<T>& operator=(const Array<T>& rhs);
 		T& operator[](const int index) const;
-		unsigned int size(void) const;
+		size_t size(void) const;
 
 	private:
-		unsigned int mSize;
+		size_t mSize;
 		T* mArray;
 };
 
@@ -43,14 +44,15 @@ template <typename T>
 Array<T>::Array()
 	: mSize(0)
 {
-	mArray = new T[0];
+	mArray = new T[mSize];
 }
 
 template <typename T>
 Array<T>::Array(unsigned int n)
 	: mSize(n)
 {
-	mArray = new T[n]();
+  // when add () after new, initiallize with default value
+	mArray = new T[mSize]();
 }
 
 template <typename T>
@@ -58,7 +60,7 @@ Array<T>::Array(const Array<T>& other)
 	:mSize(other.mSize)
 {
 	mArray = new T[mSize];
-	for (unsigned int i = 0; i < mSize; ++i)
+	for (size_t i = 0; i < mSize; ++i)
 	{
 		mArray[i] = other.mArray[i];
 	}
@@ -78,7 +80,7 @@ Array<T>& Array<T>::operator=(const Array<T>& rhs)
 		mSize = rhs.mSize;
 		delete[] mArray;
 		mArray = new T[mSize];
-		for (unsigned int i = 0; i < mSize; ++i)
+		for (size_t i = 0; i < mSize; ++i)
 		{
 			mArray[i] = rhs.mArray[i];
 		}
@@ -89,13 +91,13 @@ Array<T>& Array<T>::operator=(const Array<T>& rhs)
 template <typename T>
 T& Array<T>::operator[](const int index) const
 {
-		if (index < 0 || static_cast<unsigned int>(index) >= mSize)
+		if (index < 0 || static_cast<size_t>(index) >= mSize)
 			throw OutOfBound();
 		return (mArray[index]);
 }
 
 template <typename T>
-unsigned int Array<T>::size(void) const
+size_t Array<T>::size(void) const
 {
 	return (mSize);
 }
