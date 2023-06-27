@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 15:38:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/07 12:59:18 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:59:18by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,30 @@ class Span
 		Span& operator=(const Span& rhs);
 
 		void addNumber(int val);
-		void addNumber(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+    template<typename InputIterator>
+		void addNumber(InputIterator begin, InputIterator end) {
+      InputIterator begin_cp = begin, end_cp = end;
+      size_t input_size = 0;
+      while(begin_cp != end_cp) {
+        ++begin_cp;
+        ++input_size;
+      }
+      if (mCapacity - mSize < input_size) {
+        throw MaxElement();
+      }
+      while (begin != end) {
+        mVec.push_back(*begin);
+        ++mSize;
+        ++begin;
+      }
+    }
 		unsigned int shortestSpan(void) const;
 		unsigned int longestSpan(void) const;
-		void prinfNumber(void) const;
 
 	private:
 		std::vector<int> mVec;
-		unsigned int mSize;
-		unsigned int mCapacity;
+		size_t mSize;
+		size_t mCapacity;
 		Span();
 		
 };
