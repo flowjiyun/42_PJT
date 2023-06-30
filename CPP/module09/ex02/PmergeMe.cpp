@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/06/30 16:41:05 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:28:57 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 	int n = unsorted.size();
 	int sortedCnt = (size / 2) + 1;
   // 정렬 후보군 중 정렬 시작 값의 위치
-	int prevStart = -1;
+	int prevStart = 0;
   // jacob 계산 시작 인덱스
 	int i = 1;
   // 정렬 후보군 중 현 step에서 정렬 할 갯수
   // 2 2 6 10
 	int curr = 2;
-	while (prevStart < n - 1)
+	while (prevStart < n)
 	{
     //정렬 후보군 중 정렬될 마지막 값의 위치
-		int j = std::min(prevStart + curr, n - 1);
+		int j = std::min(prevStart + curr - 1, n - 1);
     // 마지막 값부터 넣어야 최적화 (최소 비교 가능)
-		while (j > prevStart)
+		while (j >= prevStart)
 		{
 			std::vector<int>::iterator low;
 			std::vector<int>::iterator start = temp.begin();
@@ -80,7 +80,7 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 			++sortedCnt;
 			--j;
 		}
-		prevStart = std::min(prevStart + curr, n - 1);
+		prevStart = std::min(prevStart + curr, n);
 		curr = ((1 << (i + 1)) - curr);
 		++i;
 	}
