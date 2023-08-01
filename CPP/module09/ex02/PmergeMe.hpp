@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:19 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/28 18:31:57 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:47:53 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,36 @@
 # define PMERGEME_HPP
 # include <iostream>
 # include <vector>
+# include <deque>
 # include <list>
 # include <algorithm>
 # include <functional>
 # include <ctime>
 # include <sys/time.h>
 
-class MyCompare
+class MyCompareVector
 {
 	public:
-		MyCompare(std::vector<int>& origin);
-		MyCompare(const MyCompare& other);
-		~MyCompare();
+		MyCompareVector(std::vector<int>& origin);
+		MyCompareVector(const MyCompareVector& other);
+		~MyCompareVector();
 		bool operator()(const int& a, const int& b);
 	private:
 		std::vector<int>& mOrigin;
-		MyCompare();
-		MyCompare& operator=(const MyCompare& rhs);
+		MyCompareVector();
+		MyCompareVector& operator=(const MyCompareVector& rhs);
+};
+class MyCompareDeque
+{
+	public:
+		MyCompareDeque(std::deque<int>& origin);
+		MyCompareDeque(const MyCompareDeque& other);
+		~MyCompareDeque();
+		bool operator()(const int& a, const int& b);
+	private:
+		std::deque<int>& mOrigin;
+		MyCompareDeque();
+		MyCompareDeque& operator=(const MyCompareDeque& rhs);
 };
 template<typename T>
 class PmergeMe
@@ -103,4 +116,5 @@ void PmergeMe<T>::sortWithAlgorithm()
 }
 
 std::vector<int>	mergeInsertionSortInVector(std::vector<int>& input);
+std::deque<int>	mergeInsertionSortInDeque(std::deque<int>& input);
 #endif
