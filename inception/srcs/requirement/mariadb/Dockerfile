@@ -2,7 +2,7 @@ FROM alpine:3.17
 
 WORKDIR /workspace
 RUN apk update && \
-	apk add mariadb mariadb-client mariadb-server-utils && \
+	apk add dumb-init mariadb mariadb-client mariadb-server-utils && \
 	rm -f /var/cache/apk/*
 
 
@@ -11,4 +11,4 @@ RUN chmod -R 755 .
 
 EXPOSE 3306
 
-ENTRYPOINT ["sh", "init_mariadb.sh"]
+ENTRYPOINT ["/usr/bin/dumb-init","--","init_mariadb.sh"]
