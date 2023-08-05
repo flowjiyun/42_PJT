@@ -1,5 +1,6 @@
 # !/bin/sh
-if [ -d "/run/myspld" ]; then
+# directory check for /run/mys
+if [ -d "/run/mysqld" ]; then
 		echo "mysqld already present, skip creation"
 		chown -R mysql:mysql /run/mysqld
 else
