@@ -3,7 +3,7 @@ FROM alpine:3.17
 WORKDIR /var/www/html
 
 RUN apk update && \
-	apk add dumb-init php81 php81-common php81-fpm php81-mysqli php81-phar php81-mbstring mariadb-client wget && \
+	apk add dumb-init bash php81 php81-common php81-fpm php81-mysqli php81-phar php81-mbstring mariadb-client wget && \
 	addgroup -S nginx && adduser -S nginx -G nginx && \
 	mkdir /app
 
