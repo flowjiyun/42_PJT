@@ -10,7 +10,7 @@ build:
 	docker compose -f ./srcs/docker-compose.yml build --no-cache
 
 clean:
-	docker compose -f ./srcs/dokcer-compose.yml down
+	docker compose -f ./srcs/docker-compose.yml down
 
 fclean :
 	make clean
