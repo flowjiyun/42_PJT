@@ -16,7 +16,7 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - /home/jiyunpar/data/db:/var/lib/mysql
+      - db-volume:/var/lib/mysql
     networks:
       - app_network
 
@@ -44,7 +44,7 @@ services:
       - WORDPRESS_USER_PASSWORD=${WORDPRESS_USER_PASSWORD}
       - WORDPRESS_USER_EMAIL=${WORDPRESS_USER_EMAIL}
     volumes:
-      - /home/jiyunpar/data/wordpress:/var/www/html
+      - wp-volume:/var/www/html
     networks:
       - app_network
 
@@ -60,11 +60,25 @@ services:
     image: nginx:v1
     restart: always
     volumes:
-      - /home/jiyunpar/data/wordpress:/var/www/html
+      - wp-volume:/var/www/html
     ports:
       - "443:443"
     networks:
       - app_network
+
+volumes:
+  db-volume:
+    driver: local
+    driver_opts:
+      device: /home/jiyunpar/data/db
+      type: none
+      o: bind
+  wp-volume:
+    driver: local
+    driver_opts:
+      device: /home/jiyunpar/data/wp
+      type: none
+      o: bind
 
 networks:
   app_network:
