@@ -13,6 +13,7 @@ clean:
 	docker compose -f ./srcs/dokcer-compose.yml down
 
 fclean :
+	make clean
 	docker rmi -f mariadb:v1 wordpress:v1 nginx:v1
 	rm -rf .all_check
 
