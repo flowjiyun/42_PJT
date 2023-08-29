@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:04:26 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/24 15:23:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:31:03 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,35 @@ static bool isValidInput(std::string operation)
 	return (true);
 }
 
-static long doOperation(int left, int right, char token)
+static float doOperation(float left, float right, char token)
 {
-	long ret;
+	double ret;
 
 	switch (token)
 	{
 	case '+':
 		ret = left + right;
-		if (ret < std::numeric_limits<int>::min() || ret > std::numeric_limits<int>::max())
-			throw -1;
 		break;
 	case '-':
 		ret = left - right;
-		if (ret < std::numeric_limits<int>::min() || ret > std::numeric_limits<int>::max())
-			throw -1;
 		break;	
 	case '*':
 		ret = left * right;
-		if (ret < std::numeric_limits<int>::min() || ret > std::numeric_limits<int>::max())
-			throw -1;
 		break;
 	case '/':
 		ret = left / right;
-		if (ret < std::numeric_limits<int>::min() || ret > std::numeric_limits<int>::max())
-			throw -1;
 		break;
 	}
-	return (ret);
+  if ((ret > 0 && ret < std::numeric_limits<float>::min()) || ret > std::numeric_limits<float>::max() || ret < -std::numeric_limits<float>::max() || (ret > -std::numeric_limits<float>::min() && ret < 0)) {
+    throw -1;
+  }
+	return (static_cast<float>(ret));
 }
 
 int	doRpn(std::string operation)
 {
-	int ret;
-	std::stack<int> data;
+	float ret;
+	std::stack<float> data;
 	if (!isValidInput(operation))
 		throw -1;
 	for (int i = 0 ; i < static_cast<int>(operation.length()); ++i)
@@ -75,13 +70,13 @@ int	doRpn(std::string operation)
 		{
 			if (isValidToken(operation[i]))
 			{
-				int right = data.top();
+				float right = data.top();
 				data.pop();
-				int left = data.top();
+				float left = data.top();
 				data.pop();
 				if (operation[i] == '/' && right == 0)
 					throw -1;
-				ret = static_cast<int>(doOperation(left, right, operation[i]));
+				ret = doOperation(left, right, operation[i]);
 				data.push(ret);
 			}
 			else
