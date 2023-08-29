@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/08/29 15:36:21 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/29 18:57:31 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 	unsorted.erase(unsorted.begin());
 
 	int n = unsorted.size();
+  // 현재까지 정렬된 갯수
 	int sortedCnt = (size / 2) + 1;
   // 정렬 후보군 중 정렬 시작 값의 위치
 	int prevStart = 0;
@@ -81,6 +82,7 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 	int i = 1;
   // 정렬 후보군 중 현 step에서 정렬 할 갯수
   // 2 2 6 10
+  // (3, 2), (5, 4), (11, 10, 9, 8, 7, 6)
 	int curr = 2;
 	while (prevStart < n)
 	{
@@ -91,7 +93,8 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 		{
 			std::vector<int>::iterator low;
 			std::vector<int>::iterator start = temp.begin();
-			std::vector<int>::iterator end = start + std::min((1 << (i + 1)) - 1, sortedCnt);
+			// std::vector<int>::iterator end = start + std::min((1 << (i + 1)) - 1, sortedCnt);
+			std::vector<int>::iterator end = start + std::min(j, sortedCnt);
 			MyCompareVector com(origin);
 			low = std::lower_bound(start, end, unsorted[j], com);
 			temp.insert(low, unsorted[j]);
