@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/08/01 19:02:29 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:36:21 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 	sortVector(size / 2, origin, temp);
 
 	std::vector<int> unsorted;
-	// unsorted.reserve(mid);
 	for (int i = 0; i < mid; ++i)
 		unsorted.push_back(pairIndex[temp[i]]);
 	temp.insert(temp.begin(), *unsorted.begin());
@@ -183,13 +182,11 @@ std::vector<int>	mergeInsertionSortInVector(std::vector<int>& input)
 	std::vector<int> ret;
 	int size = input.size();
 
-	// temp.reserve(size);
 	for (int i = 0; i < size; ++i)
 		temp.push_back(i);
 
 	sortVector(size, input, temp);
 
-	// ret.reserve(size);
 	for (int i = 0; i < size; ++i)
 		ret.push_back(input[temp[i]]);
 
