@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:48:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/24 13:07:26 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:51:24 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ class BitcoinExchange
 		~BitcoinExchange();
 
 		void exchange(std::string input) const;
-		// void exchange(void) const;
 		
 	private:
 		std::map<time_t, double> mDateWithPrice;	

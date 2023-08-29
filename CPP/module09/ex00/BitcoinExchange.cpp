@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:58:58 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/04/24 13:47:32 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/29 13:19:51 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ time_t dateToSecond(std::string key)
 }
 
 
-std::map<time_t, double> initData(const std::string filepath, const std::string delimeter, int flag)
+std::map<time_t, double> initData(const std::string filepath, const std::string delimeter)
 {
 	std::fstream file;
 	std::map<time_t, double> ret;
@@ -193,10 +193,7 @@ std::map<time_t, double> initData(const std::string filepath, const std::string 
 		try
 		{
 			key = parseKey(line, delimeter);
-			if (flag != 0)
-				value = parseValue(line, delimeter, flag);
-			else
-				value = parseValue(line, delimeter);
+      value = parseValue(line, delimeter);
 			timeInSec = dateToSecond(key);
 			ret.insert(std::pair<time_t, double>(timeInSec, value));
 		}
@@ -211,7 +208,7 @@ std::map<time_t, double> initData(const std::string filepath, const std::string 
 
 BitcoinExchange::BitcoinExchange(const char* datapath)
 {
-	mDateWithPrice = initData(datapath, ",", 0);
+	mDateWithPrice = initData(datapath, ",");
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
@@ -256,6 +253,10 @@ void BitcoinExchange::exchange(std::string input) const
 			else
 			{
 				it = mDateWithPrice.upper_bound(timeInSec);
+        if (it != mDateWithPrice.begin())
+        {
+          --it;
+        }
 				std::cout << key << " => " << value << " = " << value * it->second << '\n';
 			}
 		}
