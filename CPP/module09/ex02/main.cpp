@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:27 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/08/01 19:04:09 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:54:10 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int main(int argc, char** argv)
 		PmergeMe<std::deque<int> > inputInDeque(beforeSortDeque);
 
 		PmergeMe<std::vector<int> > testVector(inputInVector);
-		PmergeMe<std::vector<int> > testVector1(inputInVector);
+		PmergeMe<std::vector<int> > testVectorStl(inputInVector);
 
 		PmergeMe<std::deque<int> > testDeque(inputInDeque);
-		PmergeMe<std::deque<int> > testDeque1(inputInDeque);
+		PmergeMe<std::deque<int> > testDequeStl(inputInDeque);
 
 		// first line
 		std::cout << "Before: ";
@@ -54,10 +54,22 @@ int main(int argc, char** argv)
 		//second line
 		std::cout << "After: ";
 		std::vector<int> dataInVector = inputInVector.getSequence();
-		std::vector<int> afterSort = mergeInsertionSortInVector(dataInVector);
-		for (size_t i = 0; i < afterSort.size(); ++i)
-			std::cout << afterSort[i] << ' ';
+		std::deque<int> dataInDeque = inputInDeque.getSequence();
+		std::vector<int> validationVector = inputInVector.getSequence();
+		std::deque<int> validationDeque = inputInDeque.getSequence();
+		std::vector<int> afterSortVector = mergeInsertionSortInVector(dataInVector);
+		std::deque<int> afterSortDeque = mergeInsertionSortInDeque(dataInDeque);
+		sort(validationVector.begin(), validationVector.end());
+		sort(validationDeque.begin(), validationDeque.end());
+		for (size_t i = 0; i < afterSortVector.size(); ++i)
+			std::cout << afterSortVector[i] << ' ';
 		std::cout << '\n';
+		if (validationVector == afterSortVector) {
+			std::cout << "sort vector validation OK!!" << '\n';
+		}
+		if (validationDeque == afterSortDeque) {
+			std::cout << "sort Deque validation OK!!" << '\n';
+		}
 
     // vector result
     std::cout << "Vector container" << '\n';
@@ -67,10 +79,10 @@ int main(int argc, char** argv)
 		mergeInsertionSortInVector(testTimeVector);
 		std::cout << get_time_from_base(startTime) << " usec\n";
 		
-		std::vector<int> testTimeVector1 = testVector1.getSequence();
+		std::vector<int> testTimeVectorStl = testVectorStl.getSequence();
 		gettimeofday(&startTime, NULL);
-		std::cout << "time to process rangeof " << testTimeVector1.size() << " element with STL sort : ";
-		sort(testTimeVector1.begin(), testTimeVector1.end());
+		std::cout << "time to process rangeof " << testTimeVectorStl.size() << " element with STL sort : ";
+		sort(testTimeVectorStl.begin(), testTimeVectorStl.end());
 		std::cout << get_time_from_base(startTime) << " usec\n";
 
     //deque result
@@ -81,10 +93,10 @@ int main(int argc, char** argv)
 		mergeInsertionSortInDeque(testTimeDeque);
 		std::cout << get_time_from_base(startTime) << " usec\n";
 		
-		std::deque<int> testTimeDeque1 = testDeque1.getSequence();
+		std::deque<int> testTimeDequeStl = testDequeStl.getSequence();
 		gettimeofday(&startTime, NULL);
-		std::cout << "time to process rangeof " << testTimeDeque1.size() << " element with STL sort : ";
-		sort(testTimeDeque1.begin(), testTimeDeque1.end());
+		std::cout << "time to process rangeof " << testTimeDequeStl.size() << " element with STL sort : ";
+		sort(testTimeDequeStl.begin(), testTimeDequeStl.end());
 		std::cout << get_time_from_base(startTime) << " usec\n";
 	}
 	catch(int)

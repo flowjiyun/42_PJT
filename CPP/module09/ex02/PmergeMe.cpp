@@ -6,7 +6,7 @@
 /*   By: jiyunpar <jiyunpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:06:24 by jiyunpar          #+#    #+#             */
-/*   Updated: 2023/08/29 18:57:31 by jiyunpar         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:11:02 by jiyunpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ static void sortVector(int size, std::vector<int>& origin, std::vector<int>& tem
 		{
 			std::vector<int>::iterator low;
 			std::vector<int>::iterator start = temp.begin();
-			// std::vector<int>::iterator end = start + std::min((1 << (i + 1)) - 1, sortedCnt);
-			std::vector<int>::iterator end = start + std::min(j, sortedCnt);
+			std::vector<int>::iterator end = start + std::min((1 << (i + 1)) - 1, sortedCnt);
 			MyCompareVector com(origin);
 			low = std::lower_bound(start, end, unsorted[j], com);
 			temp.insert(low, unsorted[j]);
